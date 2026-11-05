@@ -834,9 +834,9 @@ p,li,dd{font-feature-settings:"kern" 1}
 @media (max-width:820px){.timeline .cert{grid-column:auto;margin-top:10px;max-width:520px}}
 /* Learn more always sits on its own line under each logo name, so the three captions match */
 .logos .learn-hint{display:block;margin:6px 0 0}
-/* Footer keeps its original bottom spacing, plus room for the phone's home bar where there is one */
-body footer{padding-bottom:calc(40px + env(safe-area-inset-bottom, 0px))}
-@media (max-width:600px){body footer{padding-bottom:calc(1.75rem + env(safe-area-inset-bottom, 0px))}}
+/* Footer ends tight under the copyright row: about the same space below it as above it (the divider line), plus room for the phone's home bar where there is one */
+body footer{padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
+@media (max-width:600px){body footer{padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px))}}
 .toast{max-width:calc(100vw - 32px)}
 .lb{padding-bottom:max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px))}
 /* ===== Client projects: three open slots first, then MAKARANDAM and FAMGRAM ===== */
@@ -1046,11 +1046,11 @@ body footer{padding-bottom:calc(40px + env(safe-area-inset-bottom, 0px))}
   @keyframes lbL{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
 }
 @media (forced-colors: active){.lb-nav{border:1px solid ButtonText}}
-/* Image viewer zoom: pinch, double-tap, ctrl + scroll or the +/− buttons; drag to look around once zoomed */
+/* Image viewer zoom: the +/− buttons at the top (plus pinch and double-tap on touch screens); once zoomed, a hand cursor drags the image around */
 .lb-stage{touch-action:none;overflow:hidden}
-.lb-stage img{transform-origin:center center;cursor:zoom-in;-webkit-user-drag:none;user-select:none}
+.lb-stage img{transform-origin:center center;cursor:default;-webkit-user-drag:none;user-select:none}
 .lb-stage.is-zoomed img{cursor:grab}
-.lb-stage.is-zoomed:active img{cursor:grabbing}
+.lb-stage.is-panning,.lb-stage.is-panning img{cursor:grabbing}
 .lb-zoom{display:flex;gap:4px;padding:2px;border-radius:999px;border:1px solid rgba(169,200,255,.2)}
 .lb-zoom .lb-btn{border-color:transparent;background:transparent}
 .lb-zoom .lb-btn:hover:not(:disabled){background:rgba(169,200,255,.16)}
@@ -1082,6 +1082,22 @@ h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,section[tabindex="-1"]:focus{out
   .slide:hover .ph,.pcard:hover .ph{transform:none}
 }
 nav.main a{-webkit-tap-highlight-color:transparent}
+/* Phones and tablets: no page scrollbar along the right edge (touch scrolling needs none); scroll strips inside the page already hide theirs */
+@media (hover:none) and (pointer:coarse){
+  html,body{scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
+  .track{scrollbar-width:none}
+  .track::-webkit-scrollbar{display:none}
+}
+/* Image viewer: the frame hugs the picture (sized in script), with no grey panel behind it */
+#lb .lb-stage{flex:none;align-self:center;margin-block:auto;background:transparent}
+#lb .lb-box{transition:none}
+/* Phones: the viewer is a compact card around the picture too, instead of a full-screen panel; it opens out when zoomed in */
+@media (max-width:600px){
+  #lb{padding:max(12px, env(safe-area-inset-top, 0px)) max(10px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px))}
+  #lb .lb-box{height:auto;max-height:100%;border:1px solid rgba(169,200,255,.2);border-radius:18px;padding:12px}
+  #lb .lb-box:fullscreen{height:100%;max-height:none;border:0;border-radius:0}
+}
 </style>
 </head>
 <body>
@@ -2224,6 +2240,27 @@ nav.main a{-webkit-tap-highlight-color:transparent}
       h.onload=()=>{hdCache[u]='ok';(h.decode?h.decode():Promise.resolve()).catch(()=>{}).then(done)}; h.onerror=()=>{hdCache[u]='fail'}; h.src=u;
     }
     img.addEventListener('animationend',()=>img.classList.remove('lb-in-l','lb-in-r'));
+    // the viewer hugs the picture: no empty panel around a wide certificate or a tall phone screen.
+    // Once zoomed in, the frame opens out to the full space so there is room to look around.
+    function fit(){
+      if(lb.hidden) return;
+      const nw=img.naturalWidth, nh=img.naturalHeight; if(!nw||!nh) return;
+      const full=isFull(), mob=innerWidth<=600, num=v=>parseFloat(v)||0;
+      const bs=getComputedStyle(box), ls=getComputedStyle(lb), bar=box.querySelector('.lb-bar');
+      const padX=num(bs.paddingLeft)+num(bs.paddingRight), padY=num(bs.paddingTop)+num(bs.paddingBottom), gap=num(bs.rowGap)||12;
+      const vw=full?innerWidth:innerWidth-num(ls.paddingLeft)-num(ls.paddingRight);
+      const vh=full?innerHeight:innerHeight-num(ls.paddingTop)-num(ls.paddingBottom);
+      const side=(!mob&&group.length>1)?136:0;            // desktop: the arrows sit beside the picture, not on it
+      const maxW=Math.max(120,((full||mob)?vw:Math.min(1200,vw))-padX), maxH=Math.max(120,vh-padY-bar.offsetHeight-gap);
+      const k=Math.min((maxW-side)/nw, maxH/nh), w=Math.round(nw*k), h=Math.round(nh*k);
+      img.style.width=w+'px'; img.style.height=h+'px'; img.style.maxWidth='none'; img.style.maxHeight='none';
+      const big=zs>1, sw=big?maxW:(mob?maxW:w+side), sh=big?maxH:h;
+      stageEl.style.width=sw+'px'; stageEl.style.height=sh+'px';
+      if(full||mob){box.style.width=''}
+      else{const need=box.querySelector('.lb-actions').offsetWidth+240+padX; box.style.width=Math.min(Math.min(1200,vw),Math.max(sw+padX,need))+'px'}
+    }
+    img.addEventListener('load',fit);
+    addEventListener('resize',()=>{if(!lb.hidden){fit();if(zs>1)applyZoom(false)}});
     function open(ph){
       if(!ph.querySelector('img')) return;
       img.classList.remove('lb-in-l','lb-in-r');
@@ -2232,13 +2269,13 @@ nav.main a{-webkit-tap-highlight-color:transparent}
       group=set?[...set.querySelectorAll('.ph.filled')].filter(x=>x.querySelector('img')):[ph];
       if(!group.includes(ph)) group=[ph];
       lb.hidden=false;   // open first, so an already-downloaded sharp version is used straight away
-      show(group.indexOf(ph),0);
+      show(group.indexOf(ph),0); fit();
       document.body.style.overflow='hidden'; lenis&&lenis.stop(); setFullLabel(); x.focus();
     }
     function step(d){const k=gi+d; if(k<0||k>=group.length) return; show(k,d); opener=group[k]}
     prevB.addEventListener('click',()=>step(-1));
     nextB.addEventListener('click',()=>step(1));
-    // ----- zoom: pinch, double-tap / double-click, ctrl + scroll, the +/− buttons or the + − 0 keys -----
+    // ----- zoom: the +/− buttons or the + − 0 keys; pinch and double-tap on touch screens; trackpad pinch (ctrl + scroll) -----
     const zIn=document.getElementById('lbZoomIn'), zOut=document.getElementById('lbZoomOut'), zReset=document.getElementById('lbZoomReset');
     let zs=1, tx=0, ty=0;
     // the deepest zoom that stays sharp: never magnify past the image's real pixels (up to 3x, at least 1.5x)
@@ -2251,6 +2288,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
       if(w*zs<=r.width) tx=0; if(h*zs<=r.height) ty=0;
     }
     function applyZoom(anim){
+      if((zs>1)!==stageEl.classList.contains('is-zoomed')){stageEl.classList.toggle('is-zoomed',zs>1); fit()}
       if(zs>1) img.classList.remove('lb-in-l','lb-in-r');
       clampPan();
       img.style.transition=anim&&!reduceMQ.matches?'transform .28s cubic-bezier(.22,1,.36,1)':'none';
@@ -2273,9 +2311,13 @@ nav.main a{-webkit-tap-highlight-color:transparent}
     zOut.addEventListener('click',()=>zoomTo(zs-.5));
     zReset.addEventListener('click',()=>zoomTo(1));
     let lastType='mouse';
-    // double-click is for mouse users; touch double-taps are handled below, so a phone never zooms in and straight back out
-    stageEl.addEventListener('dblclick',e=>{if(e.target.closest('.lb-nav'))return;e.preventDefault();if(lastType!=='mouse')return;zoomTo(zs>1?1:2.2,{x:e.clientX,y:e.clientY})});
-    stageEl.addEventListener('wheel',e=>{if(!e.ctrlKey||lb.hidden)return;e.preventDefault();zoomTo(zs*Math.exp(-e.deltaY*.01),{x:e.clientX,y:e.clientY},true)},{passive:false});
+    // clicking the image never zooms on desktop (zoom lives in the top bar); the scroll wheel moves a zoomed image up and down
+    stageEl.addEventListener('dblclick',e=>e.preventDefault());
+    stageEl.addEventListener('wheel',e=>{
+      if(lb.hidden) return;
+      if(e.ctrlKey){e.preventDefault();zoomTo(zs*Math.exp(-e.deltaY*.01),{x:e.clientX,y:e.clientY},true);return}
+      if(zs>1){e.preventDefault();const k=e.deltaMode===1?16:1;tx-=(e.shiftKey&&!e.deltaX?e.deltaY:e.deltaX)*k;ty-=(e.shiftKey&&!e.deltaX?0:e.deltaY)*k;applyZoom(false)}
+    },{passive:false});
     // pointers: two fingers pinch; one finger drags when zoomed, swipes between images when not
     const pts=new Map(); let pinch=null, pan=null, sw=null, multi=false, lastTap=0;
     stageEl.addEventListener('pointerdown',e=>{
@@ -2288,7 +2330,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
         pinch={d:Math.hypot(a.x-b.x,a.y-b.y),z:zs,mid:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}};
       } else if(pts.size===1){
         multi=false;
-        if(zs>1){pan={x:e.clientX,y:e.clientY,tx,ty}; try{stageEl.setPointerCapture(e.pointerId)}catch(_){}}
+        if(zs>1){pan={x:e.clientX,y:e.clientY,tx,ty}; stageEl.classList.add('is-panning'); if(e.pointerType==='mouse') e.preventDefault(); try{stageEl.setPointerCapture(e.pointerId)}catch(_){}}
         else if(e.pointerType!=='mouse') sw={x:e.clientX,y:e.clientY};
       }
     });
@@ -2301,7 +2343,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
       const had=pts.has(e.pointerId); pts.delete(e.pointerId);
       if(pts.size<2) pinch=null;
       if(!had) return;
-      if(pan&&pts.size===0){pan=null}
+      if(pan&&pts.size===0){pan=null; stageEl.classList.remove('is-panning')}
       if(sw&&pts.size===0&&!multi&&zs===1){
         const dx=e.clientX-sw.x, dy=e.clientY-sw.y; sw=null;
         if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3){step(dx<0?1:-1);return}
@@ -2322,7 +2364,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
         else { const r=(box.requestFullscreen||box.webkitRequestFullscreen).call(box); if(r&&r.catch) r.catch(()=>{full.hidden=true}); }
       }catch(e){full.hidden=true}
     });
-    document.addEventListener('fullscreenchange',setFullLabel); document.addEventListener('webkitfullscreenchange',setFullLabel);
+    ['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{setFullLabel();requestAnimationFrame(()=>{fit();if(zs>1)applyZoom(false)})}));
     x.addEventListener('click',close);
     lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
     document.addEventListener('keydown',e=>{
