@@ -834,10 +834,10 @@ p,li,dd{font-feature-settings:"kern" 1}
 @media (max-width:820px){.timeline .cert{grid-column:auto;margin-top:10px;max-width:520px}}
 /* Learn more always sits on its own line under each logo name, so the three captions match */
 .logos .learn-hint{display:block;margin:6px 0 0}
-/* Room for the "Powered by Netlify" badge, which Netlify pins to the bottom-right corner of every page:
-   the footer ends with clear space below its last line, and the copy toast sits above the badge */
-body footer{padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px))}
-.toast{bottom:calc(92px + env(safe-area-inset-bottom, 0px));max-width:calc(100vw - 32px)}
+/* Footer keeps its original bottom spacing, plus room for the phone's home bar where there is one */
+body footer{padding-bottom:calc(40px + env(safe-area-inset-bottom, 0px))}
+@media (max-width:600px){body footer{padding-bottom:calc(1.75rem + env(safe-area-inset-bottom, 0px))}}
+.toast{max-width:calc(100vw - 32px)}
 .lb{padding-bottom:max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px))}
 /* ===== Client projects: three open slots first, then MAKARANDAM and FAMGRAM ===== */
 @media (min-width:700px){.pcards{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
