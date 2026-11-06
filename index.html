@@ -1109,6 +1109,32 @@ nav.main a{-webkit-tap-highlight-color:transparent}
   #lb .lb-box{height:auto;max-height:100%;border:1px solid rgba(169,200,255,.2);border-radius:18px;padding:12px}
   #lb .lb-box:fullscreen{height:100%;max-height:none;border:0;border-radius:0}
 }
+/* Footer contact card: the colours blended from the case-study palettes (SKYLIFT teal and status mint; GENZ IN ACTION sky,
+   blue, pink, orange and yellow; BYTEBALANCE lavender) flow slowly through the inside of the button. A dark veil over them keeps
+   the label at 5.6:1 contrast or better on every colour. Only a transform moves, so it stays smooth; reduced motion holds it still. */
+.foot-top .foot-social a.soc-btn{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(238,242,250,.16);background:transparent!important}
+.foot-top .foot-social a.soc-btn::before{content:"";position:absolute;z-index:-2;top:0;bottom:0;left:0;width:500%;pointer-events:none;
+  background:linear-gradient(90deg,#117CA1,#20B8F0,#1F5BD6,#9B6AFF,#E8318A,#F7841E,#FFC21A,#B9F2D8,#117CA1,#20B8F0,#1F5BD6,#9B6AFF,#E8318A,#F7841E,#FFC21A,#B9F2D8,#117CA1);
+  background:linear-gradient(90deg in oklab,#117CA1,#20B8F0,#1F5BD6,#9B6AFF,#E8318A,#F7841E,#FFC21A,#B9F2D8,#117CA1,#20B8F0,#1F5BD6,#9B6AFF,#E8318A,#F7841E,#FFC21A,#B9F2D8,#117CA1)}
+.foot-top .foot-social a.soc-btn::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 60%),rgba(4,7,14,.6);transition:background-color .4s var(--ease-soft)}
+.foot-top .foot-social a.soc-btn .soc-ico{color:#eef2fa}
+.foot-top .foot-social a.soc-btn:hover{background:transparent!important;border-color:rgba(238,242,250,.3)}
+.foot-top .foot-social a.soc-btn:hover::after,.foot-top .foot-social a.soc-btn:focus-visible::after{background-color:rgba(4,7,14,.56)}
+@media (prefers-reduced-motion: no-preference){
+  .foot-top .foot-social a.soc-btn::before{animation:cardFlow 9s linear infinite}
+  .foot-top .foot-social a.soc-btn:hover::before,.foot-top .foot-social a.soc-btn:focus-visible::before{animation-duration:5s}
+}
+@keyframes cardFlow{to{translate:-50% 0}}
+/* Pressed: the button sinks slightly, the colours brighten (label still 4.6:1 or better) and a glow in the site's blue
+   and lavender rings it. It springs back when released. */
+.foot-top .foot-social a.soc-btn:active{border-color:rgba(169,200,255,.75);
+  box-shadow:0 0 0 3px rgba(141,180,255,.28),0 0 22px -2px rgba(155,106,255,.55),0 8px 22px -12px rgba(95,141,255,.8)}
+.foot-top .foot-social a.soc-btn:active::after{background-color:rgba(4,7,14,.54)}
+@media (prefers-reduced-motion: no-preference){
+  .foot-top .foot-social a.soc-btn:active{transform:translateY(0) scale(.96);transition-duration:.08s}
+  .foot-top .foot-social a.soc-btn:active::before{animation-duration:2s}
+}
 </style>
 </head>
 <body>
@@ -2486,6 +2512,9 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 
   route();
 })();
+
+// iPhone Safari only shows a button's pressed look when the page listens for touches
+document.addEventListener('touchstart',()=>{},{passive:true});
 </script>
 
 </body>
