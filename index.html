@@ -1141,6 +1141,16 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 #h-touch{white-space:nowrap;max-width:none;
   font-size:min(var(--fs-display), calc((100vw - 2 * max(16px, env(safe-area-inset-left, 0px))) / 20));
   font-size:min(var(--fs-display), calc(100cqi / 20))}
+/* Connect page: the heading and the card sit close together as one group, and that group is centred in the screen
+   below the top bar. Any spare height is shared equally above the heading and below the card. */
+.view[data-view="connect"]{display:flex;flex-direction:column;
+  min-height:calc(100vh - var(--top-h, 64px) - env(safe-area-inset-top, 0px));
+  min-height:calc(100svh - var(--top-h, 64px) - env(safe-area-inset-top, 0px))}
+.view[data-view="connect"] > .band{flex:1 0 auto;display:flex;flex-direction:column;justify-content:flex-end}
+.view[data-view="connect"] > .band > .wrap{width:100%;box-sizing:border-box}
+.view[data-view="connect"] > .connect-bg{flex:1 0 auto}
+[data-view="connect"] .hero.compact{padding-block:clamp(1.5rem, 1rem + 1.5vw, 2.5rem) clamp(1rem, .75rem + .75vw, 1.5rem)}
+[data-view="connect"] .connect-wrap{padding-block:clamp(1rem, .75rem + .75vw, 1.5rem) clamp(2rem, 1.5rem + 2vw, 3.5rem)}
 </style>
 </head>
 <body>
@@ -2520,6 +2530,11 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 
 // iPhone Safari only shows a button's pressed look when the page listens for touches
 document.addEventListener('touchstart',()=>{},{passive:true});
+
+// remember the top bar's height so the Connect page can centre its content in the space below it
+(()=>{const top=document.querySelector('header.top'); if(!top) return;
+  const set=()=>document.documentElement.style.setProperty('--top-h', top.offsetHeight+'px');
+  set(); if('ResizeObserver' in window) new ResizeObserver(set).observe(top); else addEventListener('resize',set);})();
 </script>
 
 </body>
