@@ -1135,6 +1135,12 @@ nav.main a{-webkit-tap-highlight-color:transparent}
   .foot-top .foot-social a.soc-btn:active{transform:translateY(0) scale(.96);transition-duration:.08s}
   .foot-top .foot-social a.soc-btn:active::before{animation-duration:2s}
 }
+/* Connect heading stays on one line at every width: it shrinks with its column only when the line would not fit
+   (sized for Sora, about 19.1 font-sizes wide, with a little room to spare) */
+.view[data-view="connect"] .hero{container-type:inline-size}
+#h-touch{white-space:nowrap;max-width:none;
+  font-size:min(var(--fs-display), calc((100vw - 2 * max(16px, env(safe-area-inset-left, 0px))) / 20));
+  font-size:min(var(--fs-display), calc(100cqi / 20))}
 </style>
 </head>
 <body>
@@ -1352,14 +1358,13 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 <div class="view" data-view="clients" data-title="Clients" hidden>
   <section class="band" aria-labelledby="h-clients">
     <div class="wrap hero compact trusted-hero">
-      <span class="label">Clients</span>
-      <h1 id="h-clients" tabindex="-1">TRUSTED BY <span class="hl">PEOPLE</span></h1>
-      <p class="trusted-sub">My Work</p>
-      <p class="trusted-body">I have had the privilege of working with various clients, transforming their visions into user-friendly solutions that not only attract but retain customers. Explore some of the work I have done along my UI/UX journey.</p>
+      <span class="label">Selected work · 5 projects</span>
+      <h1 id="h-clients" tabindex="-1">Client <span class="hl">Projects</span></h1>
+      <p class="trusted-body">Pick a project to see its goal, what I delivered, key screens and the full case study.</p>
     </div>
   </section>
 
-  <section class="cs" aria-roledescription="carousel" aria-label="Client projects">
+  <section class="cs" aria-roledescription="carousel" aria-label="Project slides">
     <div class="wrap cs-bar">
       <div class="cs-tabs" role="tablist" aria-label="Choose a project">
         <button type="button" class="cs-tab" role="tab" id="cst-1" aria-controls="csp-1" data-color="#117CA1" aria-selected="true" tabindex="0"><span class="cs-num">01</span><span class="cs-name">SKYLIFT</span></button>
@@ -1383,7 +1388,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
       <dl class="facts"><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed SKYLIFT, an emergency services app that helps someone who has been in an accident call a quadcopter for help. With a single tap, the app shares their location, sends the nearest SKYLIFT quadcopter to them, and gets them to a hospital connected to the SKYLIFT network quickly and efficiently.</p>
       <div class="chips">
-        <a class="chip primary" href="https://www.figma.com/make/Hizacy8k7pT5N5Eon4cilG/Skylift-updated?fullscreen=1&amp;t=9EK8SepIsdYRzPNx-1&amp;code-node-id=0-6" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
+        <a class="chip primary" href="https://www.figma.com/make/Hizacy8k7pT5N5Eon4cilG/Skylift-updated?fullscreen=1&amp;t=aD4PXSd69P4RyVu8-1&amp;code-node-id=0-6" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
         <a class="chip" href="Skylift-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
       </div>
       <div class="carousel" role="region" aria-label="SKYLIFT screens">
@@ -1506,11 +1511,11 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 </div>
 
 <!-- ============ STAY IN TOUCH ============ -->
-<div class="view" data-view="connect" data-title="Connect with Me Today" hidden>
+<div class="view" data-view="connect" data-title="Contact" hidden>
   <section class="band" aria-labelledby="h-touch">
     <div class="wrap hero compact">
-      <span class="label">Connect</span>
-      <h1 id="h-touch" tabindex="-1">Connect with <span class="hl">Me Today</span></h1>
+      <span class="label">Come say hello</span>
+      <h1 id="h-touch" tabindex="-1">Good design starts with <span class="hl">a conversation</span></h1>
     </div>
   </section>
   <section class="connect-bg" aria-label="Contact details">
