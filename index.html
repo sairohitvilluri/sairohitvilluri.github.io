@@ -1123,8 +1123,10 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 .foot-top .foot-social a.soc-btn:hover{background:transparent!important;border-color:rgba(238,242,250,.3)}
 .foot-top .foot-social a.soc-btn:hover::after,.foot-top .foot-social a.soc-btn:focus-visible::after{background-color:rgba(4,7,14,.56)}
 @media (prefers-reduced-motion: no-preference){
-  .foot-top .foot-social a.soc-btn::before{animation:cardFlow 9s linear infinite}
-  .foot-top .foot-social a.soc-btn:hover::before,.foot-top .foot-social a.soc-btn:focus-visible::before{animation-duration:5s}
+  /* WCAG 2.2.2: motion that starts by itself stops within 5 seconds. One 4.5s pass plays each time the button
+     scrolls into view; after that it rests, and it only keeps flowing while someone hovers over it or tabs to it. */
+  .foot-top .foot-social a.soc-btn.in-view::before{animation:cardFlow 4.5s cubic-bezier(.45,0,.55,1) 1 both}
+  .foot-top .foot-social a.soc-btn:hover::before,.foot-top .foot-social a.soc-btn:focus-visible::before{animation:cardFlow 5s linear infinite}
 }
 @keyframes cardFlow{to{translate:-50% 0}}
 /* Pressed: the button sinks slightly, the colours brighten (label still 4.6:1 or better) and a glow in the site's blue
@@ -1152,6 +1154,26 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 .view[data-view="connect"] > .connect-bg{flex:1 0 auto}
 [data-view="connect"] .hero.compact{padding-block:clamp(1.5rem, 1rem + 1.5vw, 2.5rem) clamp(1rem, .75rem + .75vw, 1.5rem)}
 [data-view="connect"] .connect-wrap{padding-block:clamp(1rem, .75rem + .75vw, 1.5rem) clamp(2rem, 1.5rem + 2vw, 3.5rem)}
+/* Motion review against WCAG 2.2 and common UI timing guidance (about 200-500ms):
+   - the header glow no longer drifts on an endless 22s loop (WCAG 2.2.2 Pause, Stop, Hide: automatic motion over 5s);
+     it stays as a still glow, and the spotlight that follows the pointer only moves when the visitor moves
+   - image hover zooms and fade-ins that took 0.8-1.2s now take 0.4-0.5s, and page-load reveals take 0.6s */
+@media (prefers-reduced-motion: no-preference){
+  .band::after{animation:none}
+  .ph{transition:border-color .4s var(--ease-out),transform .45s var(--ease-out)}
+  .ph img{transition:opacity .4s var(--ease-soft),transform .5s var(--ease-out)}
+  .ph.filled img{animation-duration:.6s}
+  .hero-img.filled{transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
+  .hero-img{animation-duration:.6s}
+  .hero h1,.hero .tagline{animation-duration:.6s}
+  .btn-badge{transition:transform .45s var(--ease-out),color .3s var(--ease-soft)}
+}
+/* The name in the top bar is a label, not a link (Home is reached from the Home link only) */
+.brand{cursor:default;user-select:none}
+/* Below the dark footer the page ends on the same dark colour, so iPhones never show a light strip
+   under it (home-bar space or the rubber-band scroll). The footer already makes room for the home bar itself. */
+html{background:#04070e}
+:root{padding-bottom:0!important}
 </style>
 </head>
 <body>
@@ -1161,7 +1183,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 
 <header class="top">
   <div class="wrap bar">
-    <a class="brand" href="#home"><span class="mk" aria-hidden="true">SV</span><span class="brand-name">Sai Rohit Villuri</span></a>
+    <span class="brand"><span class="mk" aria-hidden="true">SV</span><span class="brand-name">Sai Rohit Villuri</span></span>
     <nav class="main" aria-label="Primary">
       <ul>
         <li><a href="#home" data-nav="home">Home</a></li>
@@ -1176,7 +1198,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 
 <div class="overlay" id="overlay" hidden role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="wrap bar">
-    <a class="brand" href="#home"><span class="mk" aria-hidden="true">SV</span>Sai Rohit Villuri</a>
+    <span class="brand"><span class="mk" aria-hidden="true">SV</span>Sai Rohit Villuri</span>
     <button class="close" id="closeBtn" type="button" aria-label="Close menu"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 4l18 18M22 4L4 22"/></svg></button>
   </div>
   <nav class="wrap" aria-label="Menu" style="display:flex;flex-direction:column;flex:1">
@@ -1322,7 +1344,7 @@ nav.main a{-webkit-tap-highlight-color:transparent}
             <div><dt>Program</dt><dd>Arts and Technology and Emerging Communications (ATEC), The University of Texas at Dallas</dd></div>
             <div><dt>Specialization</dt><dd>Human-Computer Interaction and Design</dd></div>
             <div><dt>Honors</dt><dd>Two undergraduate scholarships · Member, Phi Theta Kappa Honor Society and The National Society of Leadership and Success</dd></div>
-            <div><dt>Five electives</dt><dd><ul class="tags"><li>Human-Computer Interaction (both levels)</li><li>Design (both levels)</li><li>Project Management, business school</li><li>Sales and Marketing, business school</li></ul></dd></div>
+            <div><dt>Five electives</dt><dd><ul class="tags"><li>Human-Computer Interaction (both levels)</li><li>Design (both levels)</li><li>Project Management</li><li>Sales and Marketing, business school</li></ul></dd></div>
           </dl>
           <blockquote class="pquote"><p>These experiences transformed my perspective: good design starts with the foundational theories and human behaviors behind each decision, not just the tools we use.</p></blockquote>
         </div>
@@ -2536,6 +2558,12 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (()=>{const top=document.querySelector('header.top'); if(!top) return;
   const set=()=>document.documentElement.style.setProperty('--top-h', top.offsetHeight+'px');
   set(); if('ResizeObserver' in window) new ResizeObserver(set).observe(top); else addEventListener('resize',set);})();
+
+// contact card colours: one short pass each time the button scrolls into view (see WCAG 2.2.2 note in the styles)
+(()=>{const btn=document.querySelector('.foot-top .foot-social a.soc-btn'); if(!btn||!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){btn.classList.remove('in-view'); void btn.offsetWidth; btn.classList.add('in-view')}
+  }),{threshold:.6}).observe(btn);})();
 </script>
 
 </body>
