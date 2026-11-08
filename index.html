@@ -288,13 +288,14 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 .hbtn[aria-current="page"]{background:var(--band-ink);color:var(--band)}
 .ov-cta{align-self:stretch;justify-content:center;width:100%;max-width:420px;margin-top:28px;font-size:clamp(1rem, .95rem + .3vw, 1.125rem);min-height:52px;padding:0 24px}
 /* ===== Unified type scale & spacing ===== */
-/* One scale for the whole site: display 36-60px, h2 28-40px, h3 20-24px, lead 17-20px, body 16-17px, labels 12px.
+/* One scale for the whole site, in line with published design-system scales (Material 3, GitHub Primer, IBM Carbon):
+   page titles 28-44px, section headings 22-30px, sub-headings 18-20px, lead text 17-19px, body 16-17px, labels 12px.
    Sizes grow smoothly with the screen and are in rem, so browser text-size and zoom settings are respected. */
 :root{
-  --fs-display:clamp(2.25rem, 1.6rem + 2.2vw, 3.75rem);
-  --fs-h2:clamp(1.75rem, 1.45rem + 1.1vw, 2.5rem);
-  --fs-h3:clamp(1.25rem, 1.15rem + .4vw, 1.5rem);
-  --fs-lead:clamp(1.0625rem, 1rem + .3vw, 1.25rem);
+  --fs-display:clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+  --fs-h2:clamp(1.375rem, 1.2rem + .7vw, 1.875rem);
+  --fs-h3:clamp(1.125rem, 1.05rem + .25vw, 1.25rem);
+  --fs-lead:clamp(1.0625rem, 1rem + .2vw, 1.1875rem);
   --fs-body:1rem;
   --fs-prose:1.0625rem;
   --fs-small:.9375rem;
@@ -324,7 +325,7 @@ body{font-size:var(--fs-body);line-height:1.6}
 /* Menu and footer */
 .overlay li a{font-size:clamp(1.75rem, 1.5rem + 1.2vw, 2.25rem);padding-block:12px}
 .foot-name{font-size:1.25rem}
-.foot-sv{font-size:clamp(4rem, 2.5rem + 6vw, 8rem);margin-top:40px}
+.foot-sv{font-size:clamp(3.5rem, 2.5rem + 3vw, 5.5rem);margin-top:40px}
 
 /* Spacing rhythm */
 .hero{padding-block:var(--sp-hero)}
@@ -559,7 +560,7 @@ html{scroll-padding-top:calc(80px + env(safe-area-inset-top, 0px))}
 /* ===== About: Personal Profile, broken into scannable parts ===== */
 .profile-copy{display:grid;gap:clamp(16px, .8rem + 1vw, 24px);max-width:62ch}
 .profile-copy p{margin:0;font-size:var(--fs-lead);line-height:1.7;color:var(--muted)}
-.profile-copy p.lead{color:var(--ink);font-size:clamp(1.25rem, 1.1rem + .6vw, 1.5rem);line-height:1.45;letter-spacing:-.015em;font-weight:500}
+.profile-copy p.lead{color:var(--ink);font-size:var(--fs-lead);line-height:1.45;letter-spacing:-.015em;font-weight:500}
 .pfacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;border-top:1px solid var(--line)}
 .pfacts > div{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);min-width:0}
 .pfacts > div:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
@@ -791,7 +792,7 @@ p,li,dd{font-feature-settings:"kern" 1}
 .cx > div{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
 .cx > div + div{padding-left:40px;border-left:1px solid var(--line)}
 .touch-panel h2.label{margin:0 0 4px;font-size:var(--fs-label);font-weight:500;line-height:1.4;color:var(--muted)}
-.cx .mail-addr{font-family:var(--display);font-size:clamp(1.3rem, 1.15rem + .5vw, 1.5rem);overflow-wrap:break-word;font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--ink)}
+.cx .mail-addr{font-family:var(--display);font-size:clamp(1.2rem, 1.1rem + .35vw, 1.375rem);overflow-wrap:break-word;font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--ink)}
 .cx-note{margin:0;color:var(--muted);font-size:var(--fs-small)}
 .cx .small-btn{margin-top:6px}
 .cx-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;width:100%}
