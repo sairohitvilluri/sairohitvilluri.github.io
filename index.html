@@ -300,8 +300,10 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
   --fs-prose:1.0625rem;
   --fs-small:.9375rem;
   --fs-label:.75rem;
-  --sp-section:clamp(3.5rem, 2.5rem + 3.5vw, 6rem);
-  --sp-hero:clamp(3rem, 2rem + 3vw, 5.5rem);
+  --sp-section:clamp(2.25rem, 1.85rem + 1.75vw, 3.5rem);
+  --sp-hero:clamp(2.5rem, 1.75rem + 2.5vw, 4rem);
+  --sp-head:clamp(1.75rem, 1.25rem + 2vw, 3rem);      /* page headers on About, Clients and the legal pages */
+  --sp-after-head:clamp(2rem, 1.5rem + 2vw, 3.5rem);  /* from a page header to the first content below it */
 }
 body{font-size:var(--fs-body);line-height:1.6}
 .label{font-size:var(--fs-label);letter-spacing:.14em}
@@ -1174,6 +1176,25 @@ nav.main a{-webkit-tap-highlight-color:transparent}
    under it (home-bar space or the rubber-band scroll). The footer already makes room for the home bar itself. */
 html{background:#04070e}
 :root{padding-bottom:0!important}
+/* Layout review: page headers were padded for the old, larger titles (about 165px from a title to the content).
+   Compact page headers now sit 28-48px below the top bar and lead into the content within about 60-90px. */
+.hero.compact{padding-block:var(--sp-head) clamp(1.25rem, 1rem + 1.25vw, 2.25rem)}
+.band:has(> .hero.compact) + .sec{padding-top:var(--sp-after-head)}
+.band:has(> .hero.compact) + .wrap.legal,.band:has(> .hero.compact) ~ .wrap.legal{padding-top:var(--sp-after-head)}
+.trusted-hero h1 + .trusted-body{margin-top:.75rem}
+/* Project details: My role, Project, Goal and Delivered in an even 2 x 2 grid */
+.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.facts > div:nth-child(odd){padding:14px 18px 14px 0;border-left:0}
+.facts > div:nth-child(even){padding-left:18px;border-left:1px solid var(--line)}
+.facts > div:nth-child(n+3){border-top:1px solid var(--line)}
+@media (max-width:700px){.facts{grid-template-columns:1fr}
+  .facts > div:nth-child(odd),.facts > div:nth-child(even){padding:12px 0;border-left:0}
+  .facts > div + div{border-top:1px solid var(--line)}}
+/* Short project story: how I approached it, and the outcome */
+.story{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;margin:22px 0}
+.story h3{font-family:var(--mono);font-size:var(--fs-label);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.story p{margin:0;font-size:var(--fs-small);line-height:1.55;color:var(--ink)}
+@media (max-width:700px){.story{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1418,8 +1439,12 @@ html{background:#04070e}
     <div>
       <h2 id="h-proj1">SKYLIFT</h2>
       <p class="sub">Emergency help app for a client</p>
-      <dl class="facts"><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 42 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed SKYLIFT, an emergency services app that helps someone who has been in an accident call a quadcopter for help. With a single tap, the app shares their location, sends the nearest SKYLIFT quadcopter to them, and gets them to a hospital connected to the SKYLIFT network quickly and efficiently.</p>
+      <div class="story">
+        <div><h3>How I approached it</h3><p>Because people use this app under stress, I designed every screen around one clear action: a large help button in the centre of Home, three simple tabs, and live status and arrival time during dispatch.</p></div>
+        <div><h3>Outcome</h3><p>An interactive iOS prototype built to WCAG AA: all 36 colour pairs pass contrast in light and dark mode, and every control is at least 44px. Next, I&#x27;d test it with realistic emergency scenarios.</p></div>
+      </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/make/Hizacy8k7pT5N5Eon4cilG/Skylift-updated?fullscreen=1&amp;t=aD4PXSd69P4RyVu8-1&amp;code-node-id=0-6" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
         <a class="chip" href="Skylift-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
@@ -1439,8 +1464,12 @@ html{background:#04070e}
     <div>
       <h2 id="h-proj2">GENZ IN ACTION</h2>
       <p class="sub">Educational social media app for a client</p>
-      <dl class="facts"><div><dt>Project</dt><dd>Educational social app for iOS, Android and desktop, including tablets</dd></div><div><dt>Goal</dt><dd>Help people share resources, learn and grow, and get educated in a friendly format</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 32 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Educational social app for iOS, Android and desktop, including tablets</dd></div><div><dt>Goal</dt><dd>Help people share resources, learn and grow, and get educated in a friendly format</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed GENZ IN ACTION, an app all about collaboration and learning from each other in a social-media-like format. Its core goal is to help people share resources, learn and grow, and get educated in a friendly format.</p>
+      <div class="story">
+        <div><h3>How I approached it</h3><p>I reframed the social feed as a learning loop: collaborate, share, learn and grow. Familiar patterns from apps Gen Z already use mean there&#x27;s nothing new to learn, and clear privacy controls help young users feel safe.</p></div>
+        <div><h3>Outcome</h3><p>A clickable prototype for phones, tablets and desktop, with one bold brand identity carried into every screen. Next, I&#x27;d run usability tests with Gen Z users and design moderation tools for the community.</p></div>
+      </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/make/9TXBTsTCUoEJH6jkOxarAI/GenZ-in-Action-Community-App?fullscreen=1&amp;t=3tjaxE1hpTf0GL5z-1&amp;code-node-id=0-6" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for GENZ IN ACTION, opens in a new tab</span></a>
         <a class="chip" href="GenZ-in-Action-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for GENZ IN ACTION, opens in a new tab</span></a>
@@ -1460,8 +1489,12 @@ html{background:#04070e}
     <div>
       <h2 id="h-proj3">BYTEBALANCE</h2>
       <p class="sub">Nutrition tracker app for a client</p>
-      <dl class="facts"><div><dt>Project</dt><dd>Nutrition tracker app with a working prototype built in Lovable</dd></div><div><dt>Goal</dt><dd>Help people build and keep a healthy lifestyle by making it quick to log meals and water, see daily goals at a glance, and stay motivated</dd></div><div><dt>Delivered</dt><dd>Lovable prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 40 hours in Lovable</dd></div><div><dt>Project</dt><dd>Nutrition tracker app with a working prototype built in Lovable</dd></div><div><dt>Goal</dt><dd>Help people build and keep a healthy lifestyle by making it quick to log meals and water, see daily goals at a glance, and stay motivated</dd></div><div><dt>Delivered</dt><dd>Lovable prototype, case study</dd></div></dl>
       <p class="body">I designed BYTEBALANCE, a nutrition tracking app intentionally made to look familiar, like other calorie and fitness tracking apps. Its goal is to motivate users to stay healthy by tracking their calorie intake, so the habit forms naturally.</p>
+      <div class="story">
+        <div><h3>How I approached it</h3><p>I kept the design deliberately familiar, with calorie rings, macro bars, streaks and a centre + button people already know from fitness apps, so new users need no explanation and logging a meal takes seconds.</p></div>
+        <div><h3>Outcome</h3><p>A working prototype built in Lovable in 40 hours, including Nutrition Buddy, an AI assistant for meal ideas and plans. Next, I&#x27;d time how quickly people log a meal and refine onboarding.</p></div>
+      </div>
       <div class="chips">
         <a class="chip primary" href="https://bytebalance-wellness-compass.lovable.app" target="_blank" rel="noopener">Lovable prototype<span class="sr-only"> for BYTEBALANCE, opens in a new tab</span></a>
         <a class="chip" href="ByteBalance-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for BYTEBALANCE, opens in a new tab</span></a>
@@ -1481,8 +1514,12 @@ html{background:#04070e}
     <div>
       <h2 id="h-mak">MAKARANDAM</h2>
       <p class="sub">Honey business website for a client</p>
-      <dl class="facts"><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study, handover document</dd></div></dl>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer</dd></div><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study, handover document</dd></div></dl>
       <p class="body">I designed an end-to-end e-commerce experience for a local honey brand, focused entirely on building customer trust and simplifying the user journey. The project featured a custom logo theme and an intuitive site architecture that reflects a clean, natural aesthetic while ensuring a seamless path to purchase.</p>
+      <div class="story">
+        <div><h3>How I approached it</h3><p>Trust matters most when buying food online, so I built a clean, natural look around a custom logo theme and kept the path from browsing to checkout short and clear.</p></div>
+        <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype, a case study and a handover document, giving the client everything needed to build the site.</p></div>
+      </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/Gp88uGsvAzn3j9nPuvbgto/Makarandam?node-id=15-9&amp;starting-point-node-id=15%3A9&amp;t=o8ZeuLbse0WWH3TK-1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
         <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_6701aa6592274a73a01b4c4fe80bbfdd.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
@@ -1503,8 +1540,12 @@ html{background:#04070e}
     <div>
       <h2 id="h-fam">FAMGRAM</h2>
       <p class="sub">Secure family cloud app for a client</p>
-      <dl class="facts"><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, handover document, presentation</dd></div></dl>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer</dd></div><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, handover document, presentation</dd></div></dl>
       <p class="body">I designed a secure, private cloud storage solution focused on family connectivity, translating complex security features into intuitive multi-page user interfaces. The project prioritized building user trust and ease of use as core goals, ensuring a seamless and reliable experience for families.</p>
+      <div class="story">
+        <div><h3>How I approached it</h3><p>I translated complex security features into simple, friendly screens, so families can store and share privately without needing to understand the technology behind it.</p></div>
+        <div><h3>Outcome</h3><p>Multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study, a handover document and a client presentation.</p></div>
+      </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/0ndWszmmMOJpQlHvAJxQWf/FAMGRAM-masterfile?node-id=205-7667&amp;t=6jakqiisTDsxqIr5-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=205%3A7667&amp;show-proto-sidebar=1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
         <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_c994b3e47d114d0abc9a684a27d588f6.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
