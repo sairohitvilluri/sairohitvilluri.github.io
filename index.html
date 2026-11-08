@@ -1172,9 +1172,11 @@ nav.main a{-webkit-tap-highlight-color:transparent}
 }
 /* The name in the top bar is a label, not a link (Home is reached from the Home link only) */
 .brand{cursor:default;user-select:none}
-/* Below the dark footer the page ends on the same dark colour, so iPhones never show a light strip
-   under it (home-bar space or the rubber-band scroll). The footer already makes room for the home bar itself. */
-html{background:#04070e}
+/* Below the dark footer the page ends on the same dark colour, so phones never show a light strip under it:
+   not in the home-bar space, not when pulling past the end, and not behind Safari's see-through bottom toolbar,
+   which takes its colour from the page background. The footer already makes room for the home bar itself. */
+html,body{background:#04070e}
+main{background:var(--bg)}   /* the light page colour now belongs to the content area only, so every edge of the page is dark */
 :root{padding-bottom:0!important}
 /* Layout review: page headers were padded for the old, larger titles (about 165px from a title to the content).
    Compact page headers now sit 28-48px below the top bar and lead into the content within about 60-90px. */
