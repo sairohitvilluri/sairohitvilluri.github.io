@@ -9,6 +9,7 @@
 <meta name="description" content="Sai Rohit Villuri, Innovative UI/UX Designer. User-centered client work including SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM, with Figma and Lovable prototypes, case studies and handover documents.">
 <meta name="author" content="Sai Rohit Villuri">
 <meta name="theme-color" content="#04070e">
+<script>(function(){try{var t=localStorage.getItem("srv-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()</script>
 <link rel="canonical" href="https://sairohitvilluri.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sai Rohit Villuri">
@@ -738,10 +739,10 @@ body[data-page="connect"] .foot-top nav[aria-label="Footer site links"] ul{displ
    phones and tablets read top to bottom: intro, logo card, then View Resume */
 .home-row > .hero-actions{margin-top:0}
 @media (min-width:821px){
-  .hero-row.home-row{grid-template-columns:1fr 1fr;grid-template-areas:"text img" "cta img";row-gap:26px;align-items:center}
-  .home-row > div:first-child{grid-area:text;align-self:end}
+  .hero-row.home-row{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;grid-template-areas:"text img" "cta img";row-gap:clamp(36px, 1.5rem + 1vw, 44px);align-items:center}
+  .home-row > div:first-child{grid-area:text;align-self:start}   /* intro lines up with the top of the logo card */
   .home-row > .hero-img{grid-area:img}
-  .home-row > .hero-actions{grid-area:cta;align-self:start}
+  .home-row > .hero-actions{grid-area:cta;align-self:start}     /* View Resume follows right under the intro */
 }
 @media (max-width:820px){.hero-row.home-row{row-gap:20px}}
 /* Connect page: official LinkedIn and Behance marks beside their links */
@@ -1197,6 +1198,27 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
 .story h3{font-family:var(--mono);font-size:var(--fs-label);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
 .story p{margin:0;font-size:var(--fs-small);line-height:1.55;color:var(--ink)}
 @media (max-width:700px){.story{grid-template-columns:1fr}}
+/* ===== Dark mode switch (footer: site-wide settings live here; the site follows the device by default) ===== */
+.theme-switch{display:inline-flex;align-self:flex-start;justify-self:start;width:max-content;max-width:100%;align-items:center;gap:10px;min-height:44px;margin-top:14px;padding:0 8px 0 14px;border-radius:999px;border:1px solid rgba(180,192,212,.55);background:transparent;color:var(--band-ink);font:inherit;font-size:15px;font-weight:600;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.theme-switch:hover{border-color:var(--band-accent);background:rgba(169,200,255,.08)}
+.theme-switch:focus-visible{outline:3px solid var(--band-accent);outline-offset:3px}
+.ts-ico{flex:none}
+.ts-track{position:relative;flex:none;width:42px;height:24px;border-radius:999px;border:1.5px solid var(--band-muted);background:transparent}
+.ts-thumb{position:absolute;top:3px;left:3px;width:15px;height:15px;border-radius:50%;background:var(--band-muted)}
+.theme-switch[aria-checked="true"] .ts-track{background:var(--band-accent);border-color:var(--band-accent)}
+.theme-switch[aria-checked="true"] .ts-thumb{background:var(--band);transform:translateX(18px)}
+@media (prefers-reduced-motion: no-preference){.ts-thumb{transition:transform .2s ease,background-color .2s ease}.ts-track{transition:background-color .2s ease,border-color .2s ease}}
+body[data-page="connect"] .foot-brand .theme-switch{margin-top:12px}
+@media (forced-colors: active){.theme-switch,.ts-track{border:1px solid ButtonText}.ts-thumb{background:ButtonText}.theme-switch[aria-checked="true"] .ts-track{background:Highlight}}
+@media print{.theme-switch{display:none}}
+
+/* Label: "Try dark mode" when off, "Dark mode" when on; both share one grid cell so the switch never changes width */
+.ts-text{display:inline-grid}
+.ts-text > span{grid-area:1/1;justify-self:start}
+.ts-on{visibility:hidden}
+.theme-switch[aria-checked="true"] .ts-on{visibility:visible}
+.theme-switch[aria-checked="true"] .ts-off{visibility:hidden}
+
 </style>
 </head>
 <body>
@@ -1629,7 +1651,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
     <div class="wrap hero compact">
       <span class="label">Legal</span>
       <h1 id="h-privacy" tabindex="-1">Privacy <span class="hl">Policy</span></h1>
-      <p class="updated">Effective and last updated: November 3, 2026</p>
+      <p class="updated">Effective and last updated: November 14, 2026</p>
     </div>
   </section>
   <div class="wrap legal">
@@ -1655,7 +1677,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
         <ul>
           <li>This is a personal design portfolio. It has no sign-up, no forms, no ads and no analytics.</li>
           <li>I am based in India. This policy follows India's Digital Personal Data Protection Act, 2023, and respects the privacy laws of other countries too.</li>
-          <li>The site itself does not set cookies or ask you for personal information.</li>
+          <li>The site itself does not set cookies or ask you for personal information. If you use the Dark mode switch, your choice is remembered only in your own browser.</li>
           <li>Some technical data, such as your IP address, is handled by the hosting provider and the font service so the page can load.</li>
           <li>I never sell or share your personal information for advertising.</li>
           <li>Questions or requests: <strong>srv26uxd@gmail.com</strong></li>
@@ -1697,7 +1719,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
 
       <section id="p-cookies" tabindex="-1" aria-labelledby="ph-cookies">
         <h2 id="ph-cookies">4. Cookies and tracking</h2>
-        <p>This site does not set cookies, use analytics, use advertising or tracking pixels, or build profiles of visitors. Because there are no non-essential cookies, no cookie banner is needed. If this changes, I will update this policy and ask for your consent first where the law requires it.</p>
+        <p>This site does not set cookies, use analytics, use advertising or tracking pixels, or build profiles of visitors. If you use the Dark mode switch at the bottom of the page, your browser remembers that one setting (the word "light" or "dark") in its local storage on your device so the site looks the same next time. It is never sent to me or anyone else, and you can clear it at any time by clearing this site's data in your browser. Because there are no non-essential cookies or similar technologies, no cookie banner is needed. If this changes, I will update this policy and ask for your consent first where the law requires it.</p>
       </section>
 
       <section id="p-email" tabindex="-1" aria-labelledby="ph-email">
@@ -1786,7 +1808,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
     <div class="wrap hero compact">
       <span class="label">Legal</span>
       <h1 id="h-a11y" tabindex="-1">Accessibility <span class="hl">Statement</span></h1>
-      <p class="updated">Last updated: November 3, 2026</p>
+      <p class="updated">Last updated: November 14, 2026</p>
     </div>
   </section>
   <div class="wrap legal">
@@ -1807,7 +1829,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
         <h2>The short version</h2>
         <ul>
           <li>This site is designed to meet WCAG 2.2 Level AA, which also covers India's accessibility standard, IS 17802.</li>
-          <li>It works with a keyboard, screen readers, browser zoom and your device's light or dark mode.</li>
+          <li>It works with a keyboard, screen readers and browser zoom. It follows your device's light or dark mode, and a Dark mode switch at the bottom of every page lets you change it.</li>
           <li>Some linked PDFs and Figma prototypes are hosted elsewhere and may not be fully accessible. I can send them in another format on request.</li>
           <li>Need help or found a barrier? Email <strong>srv26uxd@gmail.com</strong>.</li>
         </ul>
@@ -1839,6 +1861,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
           <li><strong>Zoom and reflow:</strong> the layout adapts to 400% zoom and small screens without sideways scrolling.</li>
           <li><strong>Motion:</strong> animation is minimal and turns off when your device's "reduce motion" setting is on.</li>
           <li><strong>High contrast mode:</strong> controls keep visible borders in Windows high contrast mode.</li>
+          <li><strong>Light and dark mode:</strong> the site follows your device setting, and the dark mode switch at the bottom of every page changes it (it reads "Try dark mode" when off and "Dark mode" when on). It is a labelled on/off switch that tells screen readers whether dark mode is on, and your choice is remembered on your device.</li>
           <li><strong>No time limits, autoplay or flashing content.</strong></li>
         </ul>
       </section>
@@ -1989,6 +2012,7 @@ main{background:var(--bg)}   /* the light page colour now belongs to the content
       <div class="foot-brand">
         <p class="foot-role">Creating intuitive experiences</p>
         <p class="foot-mail">srv26uxd@gmail.com</p>
+        <button class="theme-switch" id="themeBtn" type="button" role="switch" aria-checked="false" aria-label="Try dark mode"><svg class="ts-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><span class="ts-text"><span class="ts-off">Try dark mode</span><span class="ts-on">Dark mode</span></span><span class="ts-track" aria-hidden="true"><span class="ts-thumb"></span></span></button>
       </div>
       <nav aria-label="Footer site links">
         <span class="label">Site</span>
@@ -2607,6 +2631,18 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){btn.classList.remove('in-view'); void btn.offsetWidth; btn.classList.add('in-view')}
   }),{threshold:.6}).observe(btn);})();
+
+/* Dark mode switch (footer): follows the device until the visitor picks, then remembers the pick on this device */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn'); if(!btn) return;
+  var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function current(){var a=root.getAttribute('data-theme');if(a==='dark'||a==='light')return a;return mq&&mq.matches?'dark':'light'}
+  function sync(){var on=current()==='dark';btn.setAttribute('aria-checked',on?'true':'false');btn.setAttribute('aria-label',on?'Dark mode':'Try dark mode')}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('srv-theme',next)}catch(e){}sync()});
+  if(mq){if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync)}
+  if(window.MutationObserver)new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['data-theme']});
+  sync();
+})();
 </script>
 
 </body>
