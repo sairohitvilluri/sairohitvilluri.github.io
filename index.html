@@ -1250,6 +1250,11 @@ body footer .foot-base .theme-switch{margin:0}
   body:not([data-page="connect"]) footer .foot-top{grid-template-columns:1fr;row-gap:32px!important}
 }
 
+/* ===== Connect page: label, title and card sit at the optical centre (a little above true centre): spare height splits 1 : 2 above : below ===== */
+.view[data-view="connect"] > .band{flex-grow:1}
+.view[data-view="connect"] > .connect-bg{flex-grow:2}
+@media (max-width:600px){[data-view="connect"] .hero.compact{padding-top:1rem}}
+
 </style>
 </head>
 <body>
