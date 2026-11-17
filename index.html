@@ -1255,6 +1255,37 @@ body footer .foot-base .theme-switch{margin:0}
 .view[data-view="connect"] > .connect-bg{flex-grow:2}
 @media (max-width:600px){[data-view="connect"] .hero.compact{padding-top:1rem}}
 
+/* ===== Connect page, Digital contact card: lighter shades of the OTHER projects' palettes (a different set from the footer button):
+   MAKARANDAM honey, amber, rust and olive; the T-shirt lime and dating-app green; EASY WEIGH deep teal; FAMGRAM sky-teal and royal blue. CSS only: one pseudo-element slides (transform), so it stays
+   on the graphics chip and never slows loading or scrolling. WCAG 2.2.2: one pass (4.5s) when the page opens, then it loops only
+   while hovered or focused; reduced motion holds it still. Text keeps its dark colours on the pastels in both modes (7:1 or better). */
+.ct.ct-card{--ink:#0a1220;--muted:#3a4558;--accent:#1b3caf;--accent-ink:#ffffff;
+  position:relative;isolation:isolate;color:var(--ink);background:transparent!important;
+  border:1px solid rgba(10,18,32,.14)!important;box-shadow:0 10px 28px -14px rgba(217,132,57,.42),0 6px 18px -12px rgba(148,223,37,.38)}
+/* the moving colours live in their own clipped layer behind the content, so the link itself never clips anything */
+.ct.ct-card .ct-fx{position:absolute;inset:0;z-index:-1;overflow:hidden;border-radius:inherit;pointer-events:none}
+.ct.ct-card .ct-fx::before{content:"";position:absolute;z-index:-2;top:0;bottom:0;right:0;width:400%;pointer-events:none;
+  background:linear-gradient(90deg,#F6F2D5,#F4DAC4,#E0C2B4,#E6EBB3,#DFF5BE,#DFE8C2,#BBCACC,#E5F0F4,#B3C8E6,#F6F2D5,#F4DAC4,#E0C2B4,#E6EBB3,#DFF5BE,#DFE8C2,#BBCACC,#E5F0F4,#B3C8E6,#F6F2D5);background:linear-gradient(90deg in oklab,#F6F2D5,#F4DAC4,#E0C2B4,#E6EBB3,#DFF5BE,#DFE8C2,#BBCACC,#E5F0F4,#B3C8E6,#F6F2D5,#F4DAC4,#E0C2B4,#E6EBB3,#DFF5BE,#DFE8C2,#BBCACC,#E5F0F4,#B3C8E6,#F6F2D5)}
+.ct.ct-card .ct-fx::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.08) 55%,rgba(255,255,255,0))}
+.ct.ct-card .ct-t{color:var(--ink)}
+.ct.ct-card .ct-d{color:var(--muted)}
+.ct.ct-card .ct-ico{background:rgba(255,255,255,.62);color:var(--accent)}
+.ct.ct-card .go{background:rgba(255,255,255,.55);border-color:rgba(27,60,175,.5);color:var(--accent)}
+.ct.ct-card:hover{background:transparent!important;border-color:rgba(10,18,32,.28)!important}
+.ct.ct-card:hover .go,.ct.ct-card:focus-visible .go{background:var(--accent);border-color:var(--accent);color:#fff}
+.ct.ct-card:active{transform:translateY(1px) scale(.99)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ct.ct-card{border-color:rgba(255,255,255,.35)!important;box-shadow:0 0 0 1px rgba(169,200,255,.08),0 12px 32px -12px rgba(217,132,57,.5),0 8px 24px -14px rgba(148,223,37,.42)}}
+:root[data-theme="dark"] .ct.ct-card{border-color:rgba(255,255,255,.35)!important;box-shadow:0 0 0 1px rgba(169,200,255,.08),0 12px 32px -12px rgba(217,132,57,.5),0 8px 24px -14px rgba(148,223,37,.42)}
+@media (prefers-reduced-motion: no-preference){
+  .ct.ct-card.in-view .ct-fx::before{animation:ctFlow 4.5s cubic-bezier(.45,0,.55,1) 1 both}
+  .ct.ct-card:hover .ct-fx::before,.ct.ct-card:focus-visible .ct-fx::before{animation:ctFlow 6s linear infinite}
+}
+@media (forced-colors: active){.ct.ct-card .ct-fx{display:none}.ct.ct-card{border:1px solid LinkText!important}}
+/* the strip hangs off the LEFT edge (never counted as overflow) and slides right; it repeats every half, so the loop is seamless */
+@keyframes ctFlow{to{translate:50% 0}}
+@media print{.ct.ct-card .ct-fx{display:none}}
+
 </style>
 </head>
 <body>
@@ -1671,7 +1702,7 @@ body footer .foot-base .theme-switch{margin:0}
           <div class="cx-group">
             <h2 class="label">Contact card &amp; resume</h2>
             <ul class="cx-list">
-              <li><a class="ct" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="ct-txt"><span class="ct-t">Digital contact card</span><span class="sr-only">, </span><span class="ct-d">Save my details</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
+              <li><a class="ct ct-card" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><span class="ct-fx" aria-hidden="true"></span><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="ct-txt"><span class="ct-t">Digital contact card</span><span class="sr-only">, </span><span class="ct-d">Save my details</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
               <li><a class="ct" href="Sai-Rohit-Villuri-Resume.pdf?v=2026-11-04" target="_blank" rel="noopener"><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2.75H7.25a2 2 0 0 0-2 2v14.5a2 2 0 0 0 2 2h9.5a2 2 0 0 0 2-2V7.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2.75V7.5h4.75M9 12.5h6M9 16h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ct-txt"><span class="ct-t">View Resume</span><span class="sr-only">, </span><span class="ct-d">One-page PDF</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
             </ul>
           </div>
@@ -2663,10 +2694,10 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   set(); if('ResizeObserver' in window) new ResizeObserver(set).observe(top); else addEventListener('resize',set);})();
 
 // contact card colours: one short pass each time the button scrolls into view (see WCAG 2.2.2 note in the styles)
-(()=>{const btn=document.querySelector('.foot-top .foot-social a.soc-btn'); if(!btn||!('IntersectionObserver' in window)) return;
-  new IntersectionObserver(es=>es.forEach(e=>{
+(()=>{const btns=document.querySelectorAll('.foot-top .foot-social a.soc-btn, .ct.ct-card'); if(!btns.length||!('IntersectionObserver' in window)) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const btn=e.target;
     if(e.isIntersecting){btn.classList.remove('in-view'); void btn.offsetWidth; btn.classList.add('in-view')}
-  }),{threshold:.6}).observe(btn);})();
+  }),{threshold:.6}); btns.forEach(b=>io.observe(b));})();
 
 /* Dark mode switch (footer): follows the device until the visitor picks, then remembers the pick on this device */
 (function(){
