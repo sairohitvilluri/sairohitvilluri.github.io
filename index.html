@@ -1480,7 +1480,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-honors">
+  <section class="sec" aria-labelledby="h-honors" data-lb-set>
     <div class="wrap sec-grid">
       <span class="label">Honors</span>
       <div>
@@ -1525,7 +1525,7 @@ body footer .foot-base .theme-switch{margin:0}
       </div>
     </div>
     <div class="cs-stage">
-  <div class="wrap case cs-slide" id="csp-1" role="tabpanel" aria-labelledby="h-proj1" aria-roledescription="slide" aria-label="1 of 5: SKYLIFT">
+  <div class="wrap case cs-slide" id="csp-1" data-lb-set role="tabpanel" aria-labelledby="h-proj1" aria-roledescription="slide" aria-label="1 of 5: SKYLIFT">
     <span class="label">01 · Client</span>
     <div>
       <h2 id="h-proj1">SKYLIFT</h2>
@@ -1550,7 +1550,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </div>
 
-  <div class="wrap case cs-slide" id="csp-2" role="tabpanel" aria-labelledby="h-proj2" aria-roledescription="slide" aria-label="2 of 5: GENZ IN ACTION" hidden>
+  <div class="wrap case cs-slide" id="csp-2" data-lb-set role="tabpanel" aria-labelledby="h-proj2" aria-roledescription="slide" aria-label="2 of 5: GENZ IN ACTION" hidden>
     <span class="label">02 · Client</span>
     <div>
       <h2 id="h-proj2">GENZ IN ACTION</h2>
@@ -1575,7 +1575,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </div>
 
-  <div class="wrap case cs-slide" id="csp-3" role="tabpanel" aria-labelledby="h-proj3" aria-roledescription="slide" aria-label="3 of 5: BYTEBALANCE" hidden>
+  <div class="wrap case cs-slide" id="csp-3" data-lb-set role="tabpanel" aria-labelledby="h-proj3" aria-roledescription="slide" aria-label="3 of 5: BYTEBALANCE" hidden>
     <span class="label">03 · Client</span>
     <div>
       <h2 id="h-proj3">BYTEBALANCE</h2>
@@ -1600,7 +1600,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </div>
 
-  <div class="wrap case cs-slide" id="csp-4" role="tabpanel" aria-labelledby="h-mak" aria-roledescription="slide" aria-label="4 of 5: MAKARANDAM" hidden>
+  <div class="wrap case cs-slide" id="csp-4" data-lb-set role="tabpanel" aria-labelledby="h-mak" aria-roledescription="slide" aria-label="4 of 5: MAKARANDAM" hidden>
     <span class="label">04 · Client</span>
     <div>
       <h2 id="h-mak">MAKARANDAM</h2>
@@ -1626,7 +1626,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </div>
 
-  <div class="wrap case cs-slide" id="csp-5" role="tabpanel" aria-labelledby="h-fam" aria-roledescription="slide" aria-label="5 of 5: FAMGRAM" hidden>
+  <div class="wrap case cs-slide" id="csp-5" data-lb-set role="tabpanel" aria-labelledby="h-fam" aria-roledescription="slide" aria-label="5 of 5: FAMGRAM" hidden>
     <span class="label">05 · Client</span>
     <div>
       <h2 id="h-fam">FAMGRAM</h2>
@@ -2427,15 +2427,13 @@ body footer .foot-base .theme-switch{margin:0}
       const ph=group[k]; const src=ph&&ph.querySelector('img'); if(!src) return;
       gi=k; zoomTo(1,null,true); img.src=src.currentSrc||src.src;
       // swap in the high-resolution version (when there is one) so zooming stays crisp; the page itself keeps the lighter file
-      const swap=()=>{loadHd(ph,true); [group[k-1],group[k+1]].forEach(n=>n&&loadHd(n,false))};
+      const L=group.length, swap=()=>{loadHd(ph,true); if(L>1)[group[(k-1+L)%L],group[(k+1)%L]].forEach(n=>n&&loadHd(n,false))};
       if(dir===0&&!reduceMQ.matches) setTimeout(swap,340); else swap(); img.alt=src.alt; cap.textContent=capOf(ph).trim();
       const many=group.length>1;
       prevB.hidden=nextB.hidden=count.hidden=!many;
       count.textContent=many?(k+1)+' of '+group.length:'';
-      const fa=document.activeElement;
-      prevB.disabled=k===0; nextB.disabled=k===group.length-1;
-      // never strand keyboard focus on a button that just switched off at the start or end of the set
-      if(fa&&fa.disabled){(fa===nextB?(prevB.disabled?x:prevB):(nextB.disabled?x:nextB)).focus()}
+      // the set loops: Next on the last image goes back to the first, Previous on the first goes to the last
+      prevB.disabled=nextB.disabled=false;
       if(dir&&!reduceMQ.matches){img.classList.remove('lb-in-l','lb-in-r');void img.offsetWidth;img.classList.add(dir>0?'lb-in-r':'lb-in-l')}
     }
     const hdCache={};
@@ -2474,14 +2472,15 @@ body footer .foot-base .theme-switch{margin:0}
       if(!ph.querySelector('img')) return;
       img.classList.remove('lb-in-l','lb-in-r');
       opener=ph;
-      const set=ph.closest('.track, .honors-tl');
+      // an image set: a whole project or section marked data-lb-set, otherwise the row it sits in
+      const set=ph.closest('[data-lb-set]')||ph.closest('.track, .honors-tl');
       group=set?[...set.querySelectorAll('.ph.filled')].filter(x=>x.querySelector('img')):[ph];
       if(!group.includes(ph)) group=[ph];
       lb.hidden=false;   // open first, so an already-downloaded sharp version is used straight away
       show(group.indexOf(ph),0); fit();
       document.body.style.overflow='hidden'; lenis&&lenis.stop(); setFullLabel(); x.focus();
     }
-    function step(d){const k=gi+d; if(k<0||k>=group.length) return; show(k,d); opener=group[k]}
+    function step(d){const L=group.length; if(L<2) return; const k=(gi+d+L)%L; show(k,d); opener=group[k]}
     prevB.addEventListener('click',()=>step(-1));
     nextB.addEventListener('click',()=>step(1));
     // ----- zoom: the +/− buttons or the + − 0 keys; pinch and double-tap on touch screens; trackpad pinch (ctrl + scroll) -----
