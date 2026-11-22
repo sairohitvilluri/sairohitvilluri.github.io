@@ -1480,7 +1480,7 @@ body footer .foot-base .theme-switch{margin:0}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-honors" data-lb-set>
+  <section class="sec" aria-labelledby="h-honors">
     <div class="wrap sec-grid">
       <span class="label">Honors</span>
       <div>
@@ -2474,7 +2474,8 @@ body footer .foot-base .theme-switch{margin:0}
       opener=ph;
       // an image set: a whole project or section marked data-lb-set, otherwise the row it sits in
       const set=ph.closest('[data-lb-set]')||ph.closest('.track, .honors-tl');
-      group=set?[...set.querySelectorAll('.ph.filled')].filter(x=>x.querySelector('img')):[ph];
+      // only images that open the viewer themselves (on About that is just the certificates, not the logos)
+      group=set?[...set.querySelectorAll('.ph.filled')].filter(x=>x.querySelector('img')&&x.dataset.zoom):[ph];
       if(!group.includes(ph)) group=[ph];
       lb.hidden=false;   // open first, so an already-downloaded sharp version is used straight away
       show(group.indexOf(ph),0); fit();
