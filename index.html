@@ -2473,7 +2473,7 @@ body footer .foot-base .theme-switch{margin:0}
       img.classList.remove('lb-in-l','lb-in-r');
       opener=ph;
       // an image set: a whole project or section marked data-lb-set, otherwise the row it sits in
-      const set=ph.closest('[data-lb-set]')||ph.closest('.track, .honors-tl');
+      const set=ph.closest('[data-lb-set]')||ph.closest('.track');   // About certificates are not in a set: each opens on its own
       // only images that open the viewer themselves (on About that is just the certificates, not the logos)
       group=set?[...set.querySelectorAll('.ph.filled')].filter(x=>x.querySelector('img')&&x.dataset.zoom):[ph];
       if(!group.includes(ph)) group=[ph];
