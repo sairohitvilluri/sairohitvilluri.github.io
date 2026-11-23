@@ -1306,8 +1306,14 @@ body footer .foot-base .theme-switch{margin:0}
 
 /* ===== Home: a man (seen from behind) flying a kite in the project colours (decorative, Home only) =====
    The boy stands bottom-left just above the footer, facing you; the kite climbs to just below the header as the page scrolls.
-   Everything is hidden from screen readers, never takes clicks, and only moves while you scroll (reduced motion: kite rests, nothing moves). */
-.kite-boy-wrap{display:flex;align-items:flex-end;margin-top:clamp(8px, 1vw, 16px);pointer-events:none}
+   The drawing is hidden from screen readers and never takes clicks. The kite flies above the man and follows him when he is moved; it sways in the wind while the visitor is active (reduced motion: nothing moves). */
+.kite-boy-wrap{display:flex;align-items:flex-end;gap:12px;margin-top:clamp(8px, 1vw, 16px);pointer-events:none}
+/* the man can be moved anywhere along his row: drag him, tap a spot on the row (single-pointer alternative, WCAG 2.5.7), or use arrow keys */
+.kb-track{position:relative;flex:1;min-width:0;display:flex;align-items:flex-end;pointer-events:auto;cursor:pointer;touch-action:pan-y}
+.kb-drag{display:block;flex:none;border-radius:14px;cursor:grab;touch-action:pan-y;transform:translateX(var(--kbx,0px));-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.kb-drag.dragging{cursor:grabbing}
+.kb-drag:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media (prefers-reduced-motion: no-preference){.kb-drag.glide{transition:transform .35s cubic-bezier(.2,.8,.2,1)}}
 .kite-boy{display:block;width:clamp(84px, 6.4vw, 104px);height:auto;margin-bottom:-4px}
 .kite-sky{position:fixed;inset:0;z-index:15;pointer-events:none;transition:opacity .3s ease;contain:strict}
 .kite-sky[hidden]{display:none}
@@ -1331,6 +1337,17 @@ body:not([data-page="home"]) .kite-string{display:none}
   body.kite-flying .kb-head{animation:kbBob .9s ease-in-out infinite alternate}
 }
 @keyframes kiteTail{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+/* wind: the kite sways about the point where the string is tied, so the string stays attached.
+   WCAG 2.2.2 without a pause button: the wind blows whenever the visitor does something (scroll, pointer, touch, keys)
+   and calms within 5 seconds of the last activity (the sway holds where it is). Reduced motion: no wind at all. */
+.kite-svg{transform-origin:50% 35.4%}
+@media (prefers-reduced-motion: no-preference){
+  .kite-sky .kite-svg{animation:kiteWind 7.2s ease-in-out infinite}
+  .kite-sky:not(.flying) .kite-tail{animation:kiteTail 1.3s ease-in-out infinite alternate}
+  .kite-sky:not(.windy) .kite-svg,.kite-sky:not(.windy):not(.flying) .kite-tail{animation-play-state:paused}
+}
+@keyframes kiteWind{0%{transform:rotate(0)}14%{transform:rotate(-5deg)}31%{transform:rotate(2.5deg)}47%{transform:rotate(-2deg)}63%{transform:rotate(6deg)}80%{transform:rotate(-1.5deg)}100%{transform:rotate(0)}}
+
 @keyframes kbTug{from{transform:rotate(0)}to{transform:rotate(-6deg)}}
 @keyframes kbBob{from{transform:rotate(5deg)}to{transform:rotate(9deg)}}
 @media print{.kite-sky,.kite-string,.kite-boy-wrap{display:none!important}}
@@ -1339,25 +1356,25 @@ body:not([data-page="home"]) .kite-string{display:none}
 /* ===== Opening: the site comes out of a rounded laptop bag (every load; skipped for reduced motion) =====
    Drawn in code (no images). The page itself is never removed or hidden from assistive tech: header, main and footer are only
    scaled and moved with transforms while the intro runs. Any key, click or the Skip button finishes it at once. */
-.bp-back,.bp-front,.bp-hint,.bp-skip,.bp-sky{display:none}
-html.bp-on .bp-back,html.bp-on .bp-front,html.bp-on .bp-hint,html.bp-on .bp-skip{display:block}
+.bp-back,.bp-front,.bp-hint,.bp-sky{display:none}
+html.bp-on .bp-back,html.bp-on .bp-front,html.bp-on .bp-hint{display:block}
 html.bp-on .bp-sky{display:flex}
 html.bp-on header.top{position:relative!important;animation:none!important}
 html.bp-on header.top,html.bp-on main,html.bp-on footer{will-change:transform;animation:none!important;transform:translateY(120vh) scale(.62)}
 html.bp-on .kite-sky,html.bp-on .kite-string{display:none!important}
+/* during the opening the page does not scroll natively: wheel and swipe drive the animation directly, so the page never
+   lags a frame behind the browser's scroll (that lag was the jitter). The gutter stays so nothing shifts when it ends. */
+html{scrollbar-gutter:stable}
+html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action:none}
 .bp-back{position:fixed;left:0;top:0;z-index:1;pointer-events:none;transform-origin:50% 100%}
 html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 .bp-back svg{display:block;width:100%;height:100%}
 .bp-front{position:fixed;left:0;top:0;z-index:95;pointer-events:none;filter:drop-shadow(0 -10px 30px rgba(0,0,0,.35))}
 .bp-front svg{display:block;width:100%;height:auto;overflow:visible}
 .bp-pull{transform-box:view-box}
+.bp-hint b{font:inherit}
 .bp-hint{position:fixed;left:50%;bottom:max(24px, env(safe-area-inset-bottom, 0px));z-index:96;translate:-50% 0;margin:0;padding:8px 16px;border-radius:999px;
   background:rgba(4,7,14,.72);color:#fff;font:600 14px/1.2 Inter,system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;white-space:nowrap}
-.bp-skip{position:fixed;right:max(16px, env(safe-area-inset-right, 0px));bottom:max(16px, env(safe-area-inset-bottom, 0px));z-index:97;min-height:44px;padding:0 18px;border-radius:999px;
-  border:1.5px solid rgba(255,255,255,.75);background:rgba(4,7,14,.78);color:#fff;font:600 15px/1 Inter,system-ui,sans-serif;cursor:pointer}
-.bp-skip:hover{background:#0B2A55}
-@media (max-width:640px){.bp-hint{bottom:calc(max(16px, env(safe-area-inset-bottom, 0px)) + 60px)}}
-.bp-skip:focus-visible{outline:3px solid #A9C8FF;outline-offset:3px}
 @media (prefers-reduced-motion: no-preference){
   html.bp-on .bp-lid{animation:bpUnzip .8s cubic-bezier(.45,0,.3,1) .25s both}
   html.bp-on .bp-pull{animation:bpPull .8s cubic-bezier(.45,0,.3,1) .25s both}
@@ -1366,7 +1383,7 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 @keyframes bpUnzip{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
 @keyframes bpPull{from{transform:translateX(0)}to{transform:translateX(820px)}}
 @keyframes bpNudge{from{transform:translateY(-2px)}to{transform:translateY(3px)}}
-@media print{.bp-back,.bp-front,.bp-hint,.bp-skip{display:none!important}html.bp-on header.top,html.bp-on main,html.bp-on footer{transform:none!important}}
+@media print{.bp-back,.bp-front,.bp-hint{display:none!important}html.bp-on header.top,html.bp-on main,html.bp-on footer{transform:none!important}}
 @media (forced-colors: active){.bp-back,.bp-front{display:none!important}}
 
 /* greeting clouds above the bag; the page rises in front of them as you scroll */
@@ -1423,8 +1440,7 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
   <p class="bp-cloud bp-c1">Hey! Welcome to my portfolio.</p>
   <p class="bp-cloud bp-c2">I'm Sai Rohit Villuri, a UI/UX Designer who loves to create intuitive experiences.</p>
 </div>
-<p class="bp-hint" aria-hidden="true">Scroll to unpack <span>↓</span></p>
-<button class="bp-skip" type="button">Skip intro</button>
+<p class="bp-hint" aria-hidden="true"><b class="bp-hint-t">Scroll to unpack</b> <span>↓</span></p>
 <a class="skip" href="#main" id="skipLink">Skip to main content</a>
 
 <header class="top">
@@ -1569,8 +1585,9 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
       </div>
     </div>
   </section>
-  <div class="wrap kite-boy-wrap" aria-hidden="true">
-    <svg class="kite-boy" viewBox="0 0 124 204" width="124" height="204" focusable="false">
+  <div class="wrap kite-boy-wrap">
+    <div class="kb-track"><div class="kb-drag" role="slider" tabindex="0" aria-label="Kite flyer position" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Far left" title="Drag me, tap a spot on this row, or use the arrow keys">
+    <svg class="kite-boy" viewBox="0 0 124 204" width="124" height="204" focusable="false" aria-hidden="true">
   <defs>
     <linearGradient id="kbShirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AA7D6"/><stop offset="1" stop-color="#1583AB"/></linearGradient>
     <linearGradient id="kbPant" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34446B"/><stop offset="1" stop-color="#263354"/></linearGradient>
@@ -1610,7 +1627,7 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
     <path d="M58 15.6c-9.6 0-15.6 7.2-15.6 16.4 0 4.4 1.2 8.4 3.2 11.4 3.8-1.4 8.2-2 12.4-2s8.6.6 12.4 2c2-3 3.2-7 3.2-11.4 0-9.2-6-16.4-15.6-16.4z" fill="#22160E"/><path d="M45.3 43.4c-2.2-3.2-3.4-7.2-3.4-11.6l-2.4-3.4 3.6-.6-1.2-5.2 4.2 1.4.2-5.8 4.2 3.2 2.6-6.2 3.2 5 3.6-6 2.6 6.2 4.6-3.4-.2 6 4.4-1.4-1.4 5.2 3.8.8-2.6 3.4c0 4.4-1.2 8.4-3.4 11.6-3.8-1.4-8.2-2-12.7-2s-8.9.6-12.7 2z" fill="#22160E"/><path d="M48 26l3.6-4.4M55 22.6l2.6-5M62 22.8l2-4.6M67.6 26.4l3-3.6" stroke="#3E2A1B" stroke-width="1.1" stroke-linecap="round"/>
     
   </g>
-</svg>
+</svg></div></div>
   </div>
 </div>
 
@@ -2120,8 +2137,9 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
           <li><strong>Touch targets:</strong> buttons and links are at least 44 by 44 pixels where possible.</li>
           <li><strong>Zoom and reflow:</strong> the layout adapts to 400% zoom and small screens without sideways scrolling.</li>
           <li><strong>Motion:</strong> all animation turns off when your device's "reduce motion" setting is on. Nothing moves on its own for more than 5 seconds: the colours on the Digital contact card buttons flow once when they appear, then only while you hover over or focus them.</li>
-          <li><strong>Opening animation:</strong> when the site loads, a short greeting appears and the page comes out of a laptop bag as you scroll. A "Skip intro" button is always on screen, and pressing any key, clicking or tapping ends it straight away. It is skipped completely when "reduce motion" is on, and the page stays fully usable by keyboard and screen readers.</li>
-          <li><strong>Decorative kite:</strong> the kite on the Home page only moves while you scroll. It is hidden from screen readers, cannot be clicked, and fades out of the way if it overlaps something you have focused.</li>
+          <li><strong>Opening animation:</strong> when the site loads, a short greeting appears and the page comes out of a laptop bag as you scroll. Scrolling opens it, and a "Scroll to unpack" note says so. Keyboard and screen reader users get the page straight away: pressing any key or moving focus opens it at once. It is skipped completely when "reduce motion" is on, and the page stays fully usable by keyboard and screen readers.</li>
+          <li><strong>Kite flyer you can move:</strong> on the Home page you can move the man along his row by dragging him, tapping or clicking a spot on the row, or focusing him and using the arrow keys (Home and End jump to either end). Screen readers announce him as a slider with his position.</li>
+          <li><strong>Decorative kite:</strong> the kite on the Home page sways gently in the wind. It flies above the man and follows him when you move him. The wind only blows while you are scrolling, moving the pointer, tapping or typing, and it settles within 5 seconds once you stop. With "reduce motion" on, it stays still. The kite is hidden from screen readers, cannot be clicked, and fades out of the way if it overlaps something you have focused.</li>
           <li><strong>High contrast mode:</strong> controls keep visible borders in Windows high contrast mode.</li>
           <li><strong>Light and dark mode:</strong> the site opens in light mode. The switch at the bottom of every page turns on dark mode (it reads "Try dark mode" when off and "Dark mode" when on), which stays on as you move between pages until you close or reload the site. It is a labelled on/off switch that tells screen readers whether dark mode is on, and both modes meet the same contrast standards.</li>
           <li><strong>No time limits, flashing content or media that plays by itself.</strong></li>
@@ -2348,6 +2366,8 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
   let lenis=null;
   function startLenis(){
     if(lenis||reduceMQ.matches||typeof window.Lenis!=='function') return;
+    // the opening animation owns the wheel and touch until it ends; smooth scrolling starts after it
+    if(document.documentElement.classList.contains('bp-on')){ addEventListener('bp-done',startLenis,{once:true}); return }
     try{
       lenis=new window.Lenis({duration:1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true,wheelMultiplier:1,touchMultiplier:1.4});
       (function raf(t){if(!lenis)return;lenis.raf(t);requestAnimationFrame(raf)})(performance.now());
@@ -2916,7 +2936,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   const sky=document.querySelector('.kite-sky'); if(!sky) return;
   const kite=sky.querySelector('.kite'), line=document.querySelector('.kite-string'), path=line.querySelector('path'), hand=document.querySelector('.kite-boy .kb-hand');
   const header=document.querySelector('header.top'), rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
-  let raf=0, lastY=scrollY, tilt=0, target=0, stopT=0;
+  let raf=0, lastY=scrollY, tilt=0, target=0, stopT=0, kx=null, windT=0;
   const ease=t=>1-Math.pow(1-t,2);
   // geometry is measured only when something changes (resize, page switch, focus, content height), never per scroll frame
   let G=null, F=null;
@@ -2938,8 +2958,10 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     const {W,H,kw,kh,hb,max,wr}=G, sy=scrollY;
     const p=rm.matches?1:Math.min(1,Math.max(0,sy/max));
     const gutter=W-wr;
-    let x=gutter>=kw+28 ? wr+(gutter-kw)/2 : W-kw-12;
-    x-=(1-p)*Math.min(90,W*.08);
+    // the kite flies downwind of the man's raised hand and drifts after him when he is moved
+    const tx=Math.max(8,Math.min(W-kw-8,G.hx+Math.min(110,W*.09)-kw/2));
+    if(kx===null||Math.abs(tx-kx)>W) kx=tx; else kx+=(tx-kx)*.12;
+    let x=kx;
     const yTop=hb+14, yStart=Math.max(yTop,H-kh-36);
     const y=yStart+(yTop-yStart)*ease(p);
     tilt+=(target-tilt)*.18; target*=.9;
@@ -2952,7 +2974,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // never hide something a keyboard user is focused on (WCAG 2.4.11): fade the kite while it overlaps the focused item
     const over=!!F&&!(x+kw<F.l-6||x>F.r+6||y+kh<F.t-sy-6||y>F.b-sy+6);
     if(over!==sky.classList.contains('shy')) sky.classList.toggle('shy',over);
-    if(Math.abs(target-tilt)>.05||Math.abs(tilt)>.05) raf=requestAnimationFrame(frame);
+    if(Math.abs(target-tilt)>.05||Math.abs(tilt)>.05||Math.abs(tx-kx)>.4) raf=requestAnimationFrame(frame);
   }
   const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame) };
   addEventListener('scroll',()=>{
@@ -2968,6 +2990,32 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   // never hide something a keyboard user is focused on (WCAG 2.4.11): fade the kite if it overlaps the focused item
   document.addEventListener('focusin',()=>{setTimeout(remeasure,0); setTimeout(remeasure,160)}); document.addEventListener('focusout',()=>setTimeout(remeasure,0));
   new MutationObserver(remeasure).observe(document.body,{attributes:true,attributeFilter:['data-page']});
+  // Move the man along his row: drag, tap a spot on the row, or arrow keys / Home / End. Per visit only: nothing is stored.
+  const track=document.querySelector('.kb-track'), dr=document.querySelector('.kb-drag');
+  if(track&&dr){
+    let pos=0, drag=null;
+    const span=()=>Math.max(0,track.clientWidth-dr.offsetWidth);
+    const set=(v,glide)=>{ pos=Math.max(0,Math.min(1,v)); dr.classList.toggle('glide',!!glide); dr.style.setProperty('--kbx',(pos*span()).toFixed(1)+'px');
+      const n=Math.round(pos*100); dr.setAttribute('aria-valuenow',n);
+      dr.setAttribute('aria-valuetext',n<=2?'Far left':n>=98?'Far right':n>=45&&n<=55?'Middle':n+'% of the way to the right');
+      if(glide) setTimeout(remeasure,380); else remeasure() };
+    dr.addEventListener('pointerdown',e=>{ if(e.button>0) return; drag={x:e.clientX,p:pos,moved:false}; try{dr.setPointerCapture(e.pointerId)}catch(_){} dr.classList.add('dragging') });
+    dr.addEventListener('pointermove',e=>{ if(!drag) return; const dx=e.clientX-drag.x; if(Math.abs(dx)>3) drag.moved=true; const sp=span(); if(sp) set(drag.p+dx/sp) });
+    const end=()=>{ if(!drag) return; dr.classList.remove('dragging'); drag=null };
+    dr.addEventListener('pointerup',end); dr.addEventListener('pointercancel',end); dr.addEventListener('lostpointercapture',end);
+    dr.addEventListener('click',e=>{ e.stopPropagation() });
+    track.addEventListener('click',e=>{ if(e.target.closest('.kb-drag')) return; const r=track.getBoundingClientRect(), sp=span(); if(!sp) return;
+      set((e.clientX-r.left-dr.offsetWidth/2)/sp,true) });
+    dr.addEventListener('keydown',e=>{ const k=e.key, st=e.shiftKey?.25:.05; let v=null;
+      if(k==='ArrowLeft'||k==='ArrowDown') v=pos-st; else if(k==='ArrowRight'||k==='ArrowUp') v=pos+st;
+      else if(k==='PageDown') v=pos-.25; else if(k==='PageUp') v=pos+.25; else if(k==='Home') v=0; else if(k==='End') v=1;
+      if(v!==null){ e.preventDefault(); set(v,true) } });
+    addEventListener('resize',()=>set(pos),{passive:true});
+  }
+  // Wind blows while the visitor is active and calms within 5 seconds of the last activity (WCAG 2.2.2)
+  const gust=()=>{ if(rm.matches) return; sky.classList.add('windy'); clearTimeout(windT); windT=setTimeout(()=>sky.classList.remove('windy'),4600) };
+  ['scroll','pointermove','pointerdown','keydown','wheel','touchstart'].forEach(t=>addEventListener(t,gust,{passive:true}));
+  gust();
   kick(); setTimeout(remeasure,400);
 })();
 
@@ -2975,7 +3023,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (()=>{
   const H=document.documentElement; if(!H.classList.contains('bp-on')) return;
   H.classList.add('bp-js');
-  const front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), skip=document.querySelector('.bp-skip'), sky=document.querySelector('.bp-sky');
+  const front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
   const parts=[document.querySelector('header.top'),document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
   const ease=t=>1-Math.pow(1-t,3);
   let W,Hh,s0,mouth,bw,bx,D,offs,rise=0,riseStart=null,done=false,force=null,raf=0;
@@ -2983,55 +3031,80 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     W=innerWidth; Hh=innerHeight; s0=W>900?.62:.8;
     bw=Math.min(W-8,s0*W/0.86); mouth=Math.round(Hh*(W>900?.7:.72)); D=Math.round(Hh*.9);
     // keep the bag's top below the greeting clouds on any screen (short landscape phones included)
-    const skyB=sky?sky.getBoundingClientRect().bottom:0;
-    if(mouth<skyB+bw*.22+10) mouth=Math.round(skyB+bw*.22+10);
-    if(mouth>Hh-70){ mouth=Hh-70; bw=Math.max(220,Math.min(bw,(mouth-skyB-10)/.22)) }
+    // the "Scroll to unpack" note sits in the gap between the clouds and the bag, never on the bag itself
+    const skyB=sky?sky.getBoundingClientRect().bottom:0, hh=(hint.offsetHeight||34)+20;
+    if(mouth<skyB+hh+bw*.22+10) mouth=Math.round(skyB+hh+bw*.22+10);
+    if(mouth>Hh-70){ mouth=Hh-70; bw=Math.max(200,Math.min(bw,(mouth-skyB-hh-10)/.22)) }
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
-    const bh=bw*.22; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+(mouth-bh+bw*.02)+'px';
-    document.body.style.paddingBottom=D+'px';
+    const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
+    hint.style.bottom='auto'; hint.style.top=Math.round(Math.max(skyB+6,(skyB+backTop)/2-(hint.offsetHeight||34)/2))+'px';
     offs=parts.map(el=>[el.offsetLeft,el.offsetTop]);
   }
   function apply(t){
     const e=ease(t), s=s0+(1-s0)*e;
     const peek=(mouth-Hh*.16)*ease(rise);
     const top0=mouth+12-peek;
-    const topY=top0*(1-e), sy=scrollY;
+    const topY=top0*(1-e), sy=0;
     parts.forEach((el,i)=>{ el.style.transformOrigin=(W/2-offs[i][0])+'px '+(-offs[i][1])+'px';
-      el.style.transform='translateY('+(topY+sy).toFixed(1)+'px) scale('+s.toFixed(4)+')' });
+      el.style.transform='translate3d(0,'+(topY+sy).toFixed(2)+'px,0) scale('+s.toFixed(5)+')' });
     const drop=e*Hh*1.15, fade=Math.max(0,Math.min(1,(t-.5)/.45));
-    front.style.transform=back.style.transform='translateY('+drop.toFixed(1)+'px)';
+    front.style.transform=back.style.transform='translate3d(0,'+drop.toFixed(2)+'px,0)';
     front.style.opacity=back.style.opacity=(1-fade).toFixed(3);
-    sky.style.opacity=Math.max(0,1-t*4).toFixed(3); sky.style.transform='translateY('+(-t*80).toFixed(1)+'px)';
-    hint.style.opacity=Math.max(0,1-t*4).toFixed(3); const so=Math.max(0,1-t*2.5); skip.style.opacity=so.toFixed(3); skip.style.visibility=so<.05?'hidden':'';
+    sky.style.opacity=Math.max(0,1-t*4).toFixed(3); sky.style.transform='translate3d(0,'+(-t*80).toFixed(2)+'px,0)';
+    hint.style.opacity=Math.max(0,1-t*4).toFixed(3);
   }
   function finish(){
     if(done) return; done=true; cancelAnimationFrame(raf);
     parts.forEach(el=>{el.style.transform='';el.style.transformOrigin=''});
-    document.body.style.paddingBottom='';
     H.classList.remove('bp-on');
     window.scrollTo({top:0,left:0,behavior:'instant'});
-    [front,back,hint,skip,sky].forEach(el=>el.remove());
-    dispatchEvent(new Event('resize'));
+    [front,back,hint,sky].forEach(el=>el.remove());
+    guard=performance.now()+260; guardCap=performance.now()+1200;
+    dispatchEvent(new Event('resize')); dispatchEvent(new Event('bp-done'));
   }
+  // Input sets a target; the bag eases toward it every frame (time-based, so it is equally smooth at 60, 90 or 120Hz).
+  let cur=0, tgt=0, last=0, fast=false, snapT=0;
   function tick(now){
     raf=0; if(done) return;
-    let t=Math.max(0,Math.min(1,scrollY/D));
-    if(force){ const f=Math.min(1,(now-force.t0)/420); t=force.from+(1-force.from)*ease(f); if(f>=1){ apply(1); finish(); return } }
-    apply(t);
-    if(t>=1&&!force){ finish(); return }
-    if(force) raf=requestAnimationFrame(tick);
+    const dt=last?Math.min(50,now-last):16.7; last=now;
+    // keyboard / focus: a fixed, quick 420ms ease so it feels instant on any screen
+    if(fast){ const f=Math.min(1,(now-fast.t0)/420); cur=fast.from+(1-fast.from)*ease(f); apply(cur); if(f>=1){ finish(); return } raf=requestAnimationFrame(tick); return }
+    const k=1-Math.pow(1-.12,dt/16.67);
+    cur+=(tgt-cur)*k; if(Math.abs(tgt-cur)<.0006) cur=tgt;
+    apply(cur);
+    // past 98% the eased motion is already at rest (under 0.01px), so finish without waiting for the long tail
+    if(cur>=.98){ apply(1); finish(); return }
+    if(cur!==tgt) raf=requestAnimationFrame(tick); else last=0;
   }
   const kick=()=>{ if(!raf&&!done) raf=requestAnimationFrame(tick) };
-  const finishSoon=()=>{ if(done||force) return; rise=1; force={t0:performance.now(),from:Math.max(0,Math.min(1,scrollY/D))}; kick() };
-  layout(); apply(0); kick();
-  addEventListener('scroll',kick,{passive:true});
-  addEventListener('resize',()=>{ if(!done){layout(); kick()} },{passive:true});
-  skip.addEventListener('click',finishSoon);
-  // keyboard users and anyone who clicks get the page straight away
+  // "smart" finish: once the visitor has unpacked about a third, a pause completes it; a smaller nudge stays put
+  const setT=v=>{ if(done) return; tgt=Math.max(0,Math.min(1,v)); kick();
+    clearTimeout(snapT); snapT=setTimeout(()=>{ if(tgt>=.3&&tgt<1){ tgt=1; kick() } },240) };
+  const finishSoon=()=>{ if(done||fast) return; fast={t0:performance.now(),from:cur}; clearTimeout(snapT); tgt=1; kick() };
+  try{ if('scrollRestoration' in history) history.scrollRestoration='manual' }catch(e){}
+  window.scrollTo(0,0);
+  layout(); apply(0);
+  addEventListener('resize',()=>{ if(!done){ layout(); apply(cur) } },{passive:true});
+  // mouse wheel and trackpad
+  // after the bag opens, the rest of the same gesture (trackpad momentum, a fast wheel) is absorbed so the visitor lands
+  // exactly at the top of the page; it ends as soon as the wheel goes quiet (200ms) and never lasts more than 1.2s
+  let guard=0, guardCap=0;
+  addEventListener('wheel',e=>{
+    if(done){ const n=performance.now(); if(n<guard&&n<guardCap){ e.preventDefault(); e.stopImmediatePropagation(); guard=n+200 } return }
+    e.preventDefault(); e.stopImmediatePropagation();
+    const dy=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?Hh:1); setT(tgt+dy/D) },{passive:false,capture:true});
+  // touch: the bag follows the finger; a quick upward flick finishes it
+  let ty=null, tv=0, tt=0;
+  addEventListener('touchstart',e=>{ if(done) return; ty=e.touches[0].clientY; tt=performance.now(); tv=0 },{passive:true});
+  addEventListener('touchmove',e=>{ if(done||ty===null) return; e.preventDefault();
+    const y=e.touches[0].clientY, now=performance.now(), dy=ty-y; tv=dy/Math.max(1,now-tt); ty=y; tt=now; setT(tgt+dy*1.25/D) },{passive:false});
+  addEventListener('touchend',()=>{ if(done) return; ty=null; if(tv>.45) setT(1) },{passive:true});
+  // scrollbar drag or anything else that scrolls the page (eg. assistive tech) also opens it
+  addEventListener('scroll',()=>{ if(!done&&scrollY>2) finishSoon() },{passive:true});
+  // keyboard and screen-reader users (who may not scroll) get the page at once (WCAG 2.1.1)
   addEventListener('keydown',e=>{ if(!['Shift','Control','Alt','Meta','CapsLock'].includes(e.key)) finishSoon() },true);
-  document.addEventListener('click',e=>{ if(e.target!==skip) finishSoon() },true);
-  document.addEventListener('focusin',e=>{ if(e.target!==skip) finishSoon() });
+  document.addEventListener('focusin',finishSoon);
   const rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null;
   if(rm&&rm.addEventListener) rm.addEventListener('change',()=>{ if(rm.matches) finish() });
 })();
