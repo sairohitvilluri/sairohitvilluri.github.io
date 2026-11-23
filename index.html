@@ -1369,6 +1369,9 @@ html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action
 html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 .bp-back svg{display:block;width:100%;height:100%}
 .bp-front{position:fixed;left:0;top:0;z-index:95;pointer-events:none;filter:drop-shadow(0 -10px 30px rgba(0,0,0,.35))}
+/* the splash screen shows nothing of the page underneath: below the bag (and behind a phone's browser toolbar)
+   it is solid night sky, and it moves away with the bag as the page comes out */
+.bp-front::after{content:"";position:absolute;left:-150vw;right:-150vw;top:calc(100% - 2px);height:300vh;background:#04070E}
 .bp-front svg{display:block;width:100%;height:auto;overflow:visible}
 .bp-pull{transform-box:view-box}
 .bp-hint b{font:inherit}
@@ -3059,8 +3062,10 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     const skyB=sky?sky.getBoundingClientRect().bottom:0, hh=(hint.offsetHeight||34)+20;
     // show the whole front of the bag (pocket, SV badge, star and dot) above the bottom of the screen:
     // the lid needs bw*.22 above the mouth, the decorated front bw*.66 below it
-    bw=Math.max(150,Math.min(bw,(Hh-18-skyB-hh)/.88));
-    mouth=Math.round(Math.max(skyB+hh+bw*.22+10, Hh-10-bw*.66));
+    // phones: keep the bag's decorations above the browser's bottom toolbar (Safari draws it over the page)
+    let foot=10; try{ if(matchMedia('(pointer: coarse)').matches) foot=Math.max(foot, 84) }catch(e){}
+    bw=Math.max(150,Math.min(bw,(Hh-8-foot-skyB-hh)/.88));
+    mouth=Math.round(Math.max(skyB+hh+bw*.22+10, Hh-foot-bw*.66));
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
     const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
