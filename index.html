@@ -1310,7 +1310,7 @@ body footer .foot-base .theme-switch{margin:0}
 .kite-boy-wrap{display:flex;align-items:flex-end;gap:12px;margin-top:clamp(8px, 1vw, 16px);pointer-events:none}
 /* the man can be moved anywhere along his row: drag him, tap a spot on the row (single-pointer alternative, WCAG 2.5.7), or use arrow keys */
 .kb-track{position:relative;flex:1;min-width:0;display:flex;align-items:flex-end;pointer-events:auto;cursor:pointer;touch-action:pan-y}
-.kb-drag{display:block;flex:none;border-radius:14px;cursor:grab;touch-action:pan-y;transform:translateX(var(--kbx,0px));-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.kb-drag{display:block;flex:none;border-radius:14px;cursor:grab;touch-action:none;-webkit-touch-callout:none;padding:6px 10px 0;margin:-6px -10px 0;transform:translateX(var(--kbx,0px));-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 .kb-drag.dragging{cursor:grabbing}
 .kb-drag:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 @media (prefers-reduced-motion: no-preference){.kb-drag.glide{transition:transform .35s cubic-bezier(.2,.8,.2,1)}}
@@ -1327,7 +1327,9 @@ body:not([data-page="home"]) .kite-string{display:none}
 .kite-string path{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-linecap:round;opacity:.75}
 .kite{position:absolute;left:0;top:0;width:48px;height:77px;transform-origin:50% 36%;will-change:transform}
 .kite-svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
-@media (max-width:699px){.kite{width:34px;height:54px}}
+@media (max-width:699px){.kite{width:34px;height:54px}
+  /* on phones the kite flies behind the page content (like its string), so it never covers text, images or buttons */
+  .kite-sky{z-index:0}}
 .kite-tail{transform-origin:30px 72px}
 .kb-arm{transform-origin:80px 66px}
 .kb-head{transform-origin:58px 46px;transform:rotate(7deg)}
@@ -1586,7 +1588,7 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
     </div>
   </section>
   <div class="wrap kite-boy-wrap">
-    <div class="kb-track"><div class="kb-drag" role="slider" tabindex="0" aria-label="Kite flyer position" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Far left" title="Drag me, tap a spot on this row, or use the arrow keys">
+    <div class="kb-track"><div class="kb-drag" role="slider" tabindex="0" aria-label="Kite flyer position" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-valuetext="Far right" title="Drag me, tap a spot on this row, or use the arrow keys">
     <svg class="kite-boy" viewBox="0 0 124 204" width="124" height="204" focusable="false" aria-hidden="true">
   <defs>
     <linearGradient id="kbShirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AA7D6"/><stop offset="1" stop-color="#1583AB"/></linearGradient>
@@ -2139,7 +2141,7 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
           <li><strong>Motion:</strong> all animation turns off when your device's "reduce motion" setting is on. Nothing moves on its own for more than 5 seconds: the colours on the Digital contact card buttons flow once when they appear, then only while you hover over or focus them.</li>
           <li><strong>Opening animation:</strong> when the site loads, a short greeting appears and the page comes out of a laptop bag as you scroll. Scrolling opens it, and a "Scroll to unpack" note says so. Keyboard and screen reader users get the page straight away: pressing any key or moving focus opens it at once. It is skipped completely when "reduce motion" is on, and the page stays fully usable by keyboard and screen readers.</li>
           <li><strong>Kite flyer you can move:</strong> on the Home page you can move the man along his row by dragging him, tapping or clicking a spot on the row, or focusing him and using the arrow keys (Home and End jump to either end). Screen readers announce him as a slider with his position.</li>
-          <li><strong>Decorative kite:</strong> the kite on the Home page sways gently in the wind. It flies above the man and follows him when you move him. The wind only blows while you are scrolling, moving the pointer, tapping or typing, and it settles within 5 seconds once you stop. With "reduce motion" on, it stays still. The kite is hidden from screen readers, cannot be clicked, and fades out of the way if it overlaps something you have focused.</li>
+          <li><strong>Decorative kite:</strong> the kite on the Home page sways gently in the wind. It flies on the right-hand side of the page, beside the content, with its string tied to the man's hand. The wind only blows while you are scrolling, moving the pointer, tapping or typing, and it settles within 5 seconds once you stop. With "reduce motion" on, it stays still. On phones it flies behind the page content so it never covers anything. The kite is hidden from screen readers, cannot be clicked, and fades out of the way if it overlaps something you have focused.</li>
           <li><strong>High contrast mode:</strong> controls keep visible borders in Windows high contrast mode.</li>
           <li><strong>Light and dark mode:</strong> the site opens in light mode. The switch at the bottom of every page turns on dark mode (it reads "Try dark mode" when off and "Dark mode" when on), which stays on as you move between pages until you close or reload the site. It is a labelled on/off switch that tells screen readers whether dark mode is on, and both modes meet the same contrast standards.</li>
           <li><strong>No time limits, flashing content or media that plays by itself.</strong></li>
@@ -2936,10 +2938,56 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   const sky=document.querySelector('.kite-sky'); if(!sky) return;
   const kite=sky.querySelector('.kite'), line=document.querySelector('.kite-string'), path=line.querySelector('path'), hand=document.querySelector('.kite-boy .kb-hand');
   const header=document.querySelector('header.top'), rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
-  let raf=0, lastY=scrollY, tilt=0, target=0, stopT=0, kx=null, windT=0;
+  let raf=0, lastY=scrollY, tilt=0, target=0, stopT=0, kx=null, ky=0, windT=0;
   const ease=t=>1-Math.pow(1-t,2);
   // geometry is measured only when something changes (resize, page switch, focus, content height), never per scroll frame
-  let G=null, F=null;
+  let G=null, F=null, OB=[];
+  // Content the kite must fly around (text, images, cards, buttons), stored in page coordinates.
+  // Measured only when layout changes; a carousel (scrolling or sliding) counts as one block, so slides never go stale.
+  function measureObstacles(sy){
+    OB=[]; const W=innerWidth, roots=[document.querySelector('[data-view="home"]'),document.querySelector('footer')].filter(Boolean);
+    const add=r=>{ if(r.width>1&&r.height>1) OB.push({l:r.left,r:r.right,t:r.top+sy,b:r.bottom+sy}) };
+    roots.forEach(root=>{
+      const all=[...root.querySelectorAll('*')], scrollers=new Set();
+      all.forEach(e=>{ const c=getComputedStyle(e); if(/(auto|scroll|hidden|clip)/.test(c.overflowX)&&e.scrollWidth>e.clientWidth+4&&e.clientWidth>40){ scrollers.add(e); add(e.getBoundingClientRect()) } });
+      all.forEach(e=>{
+        if(e.closest('.kite-boy-wrap')) return;
+        for(let a=e.parentElement;a&&a!==root;a=a.parentElement) if(scrollers.has(a)) return;
+        if(scrollers.has(e)) return;
+        const r=e.getBoundingClientRect(); if(r.width<2||r.height<2) return;
+        const tag=e.tagName, c=getComputedStyle(e); if(c.visibility==='hidden'||c.display==='none') return; // (fade-in-on-scroll items count even before they appear)
+        const text=[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim());
+        const media=/^(IMG|VIDEO|CANVAS|PICTURE|svg)$/.test(tag)||tag.toLowerCase()==='svg';
+        const ctl=/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(tag);
+        const box=r.width<W*.9&&((c.backgroundColor&&!/rgba\(\d+, \d+, \d+, 0\)|transparent/.test(c.backgroundColor))||c.backgroundImage!=='none'||parseFloat(c.borderTopWidth)>0);
+        if(text||media||ctl||box) add(r);
+      });
+    });
+  }
+  // Nearest spot to (tx,ty) where the kite (plus a 10px margin) touches no content; searches rows outward from ty.
+  function findFree(tx,ty,kw,kh,minY,maxY){
+    const W=innerWidth, pad=10, minX=6, maxX=W-kw-6, sy=scrollY, obs=[];
+    tx=Math.max(minX,Math.min(maxX,tx)); ty=Math.max(minY,Math.min(maxY,ty));
+    for(const o of OB){ const t=o.t-sy, b=o.b-sy; if(b>minY-kh-pad&&t<maxY+kh+pad) obs.push([o.l-pad-kw,o.r+pad,t-pad-kh,b+pad]) }
+    const rowX=y=>{
+      const iv=[]; for(const o of obs) if(y>o[2]&&y<o[3]) iv.push([o[0],o[1]]);
+      if(!iv.length) return tx;
+      iv.sort((a,b)=>a[0]-b[0]); const m=[iv[0].slice()];
+      for(let i=1;i<iv.length;i++){ const L=m[m.length-1]; if(iv[i][0]<=L[1]) L[1]=Math.max(L[1],iv[i][1]); else m.push(iv[i].slice()) }
+      const hit=m.find(v=>tx>v[0]&&tx<v[1]); if(!hit) return tx;
+      let bx=null, bd=1e9;
+      if(hit[0]>=minX){ bx=hit[0]; bd=tx-hit[0] }
+      if(hit[1]<=maxX&&hit[1]-tx<bd){ bx=hit[1] }
+      return bx;
+    };
+    let best=null, bs=1e9, step=10;
+    for(let k=0;k*step<=Math.max(ty-minY,maxY-ty);k++){
+      if(k*step*1.6>=bs) break;
+      for(const sg of (k?[-1,1]:[1])){ const y=ty+sg*k*step; if(y<minY||y>maxY) continue;
+        const x=rowX(y); if(x!==null){ const sc=Math.abs(x-tx)+k*step*1.6; if(sc<bs){ bs=sc; best=[x,y] } } }
+    }
+    return best||[tx,ty];
+  }
   function measure(){
     if(document.body.dataset.page!=='home'){ G=null; return }
     const wrap=document.querySelector('[data-view="home"] .kite-boy-wrap'), sy=scrollY;
@@ -2947,6 +2995,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     G={W:innerWidth,H:innerHeight,kw:kite.offsetWidth||48,kh:kite.offsetHeight||77,hb:header?header.getBoundingClientRect().bottom:0,
        max:Math.max(1,document.documentElement.scrollHeight-innerHeight),wr:wrap?wrap.getBoundingClientRect().right-pr:innerWidth,
        hx:hr?hr.left+hr.width/2:0,hy:hr?hr.top+hr.height/2+sy:0};
+    measureObstacles(sy);
     const ae=document.activeElement;
     F=(ae&&ae!==document.body&&ae.matches&&ae.matches(':focus-visible'))?(()=>{const r=ae.getBoundingClientRect();return {l:r.left,r:r.right,t:r.top+sy,b:r.bottom+sy}})():null;
   }
@@ -2959,11 +3008,12 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     const p=rm.matches?1:Math.min(1,Math.max(0,sy/max));
     const gutter=W-wr;
     // the kite flies downwind of the man's raised hand and drifts after him when he is moved
-    const tx=Math.max(8,Math.min(W-kw-8,G.hx+Math.min(110,W*.09)-kw/2));
-    if(kx===null||Math.abs(tx-kx)>W) kx=tx; else kx+=(tx-kx)*.12;
-    let x=kx;
+    // the kite always flies on the far right, just beside the page content (at the screen edge when there is no margin)
+    const tx=Math.min(W-kw-6, gutter>=kw+18 ? wr+12 : W-kw-6);
     const yTop=hb+14, yStart=Math.max(yTop,H-kh-36);
-    const y=yStart+(yTop-yStart)*ease(p);
+    const tyF=yStart+(yTop-yStart)*ease(p);
+    if(kx===null||Math.abs(tx-kx)>W){ kx=tx; ky=tyF } else { kx+=(tx-kx)*.14; ky+=(tyF-ky)*.14 }
+    const x=kx, y=ky;
     tilt+=(target-tilt)*.18; target*=.9;
     kite.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+tilt.toFixed(2)+'deg)';
     if(hand){
@@ -2974,7 +3024,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // never hide something a keyboard user is focused on (WCAG 2.4.11): fade the kite while it overlaps the focused item
     const over=!!F&&!(x+kw<F.l-6||x>F.r+6||y+kh<F.t-sy-6||y>F.b-sy+6);
     if(over!==sky.classList.contains('shy')) sky.classList.toggle('shy',over);
-    if(Math.abs(target-tilt)>.05||Math.abs(tilt)>.05||Math.abs(tx-kx)>.4) raf=requestAnimationFrame(frame);
+    if(Math.abs(target-tilt)>.05||Math.abs(tilt)>.05||Math.abs(tx-kx)>.4||Math.abs(tyF-ky)>.4) raf=requestAnimationFrame(frame);
   }
   const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame) };
   addEventListener('scroll',()=>{
@@ -2993,7 +3043,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   // Move the man along his row: drag, tap a spot on the row, or arrow keys / Home / End. Per visit only: nothing is stored.
   const track=document.querySelector('.kb-track'), dr=document.querySelector('.kb-drag');
   if(track&&dr){
-    let pos=0, drag=null;
+    let pos=1, drag=null; // he stands on the right, under the kite
     const span=()=>Math.max(0,track.clientWidth-dr.offsetWidth);
     const set=(v,glide)=>{ pos=Math.max(0,Math.min(1,v)); dr.classList.toggle('glide',!!glide); dr.style.setProperty('--kbx',(pos*span()).toFixed(1)+'px');
       const n=Math.round(pos*100); dr.setAttribute('aria-valuenow',n);
@@ -3011,6 +3061,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
       else if(k==='PageDown') v=pos-.25; else if(k==='PageUp') v=pos+.25; else if(k==='Home') v=0; else if(k==='End') v=1;
       if(v!==null){ e.preventDefault(); set(v,true) } });
     addEventListener('resize',()=>set(pos),{passive:true});
+    requestAnimationFrame(()=>set(1));
   }
   // Wind blows while the visitor is active and calms within 5 seconds of the last activity (WCAG 2.2.2)
   const gust=()=>{ if(rm.matches) return; sky.classList.add('windy'); clearTimeout(windT); windT=setTimeout(()=>sky.classList.remove('windy'),4600) };
@@ -3033,8 +3084,10 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // keep the bag's top below the greeting clouds on any screen (short landscape phones included)
     // the "Scroll to unpack" note sits in the gap between the clouds and the bag, never on the bag itself
     const skyB=sky?sky.getBoundingClientRect().bottom:0, hh=(hint.offsetHeight||34)+20;
-    if(mouth<skyB+hh+bw*.22+10) mouth=Math.round(skyB+hh+bw*.22+10);
-    if(mouth>Hh-70){ mouth=Hh-70; bw=Math.max(200,Math.min(bw,(mouth-skyB-hh-10)/.22)) }
+    // show the whole front of the bag (pocket, SV badge, star and dot) above the bottom of the screen:
+    // the lid needs bw*.22 above the mouth, the decorated front bw*.66 below it
+    bw=Math.max(150,Math.min(bw,(Hh-18-skyB-hh)/.88));
+    mouth=Math.round(Math.max(skyB+hh+bw*.22+10, Hh-10-bw*.66));
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
     const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
