@@ -1369,9 +1369,12 @@ html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action
 html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 .bp-back svg{display:block;width:100%;height:100%}
 .bp-front{position:fixed;left:0;top:0;z-index:95;pointer-events:none;filter:drop-shadow(0 -10px 30px rgba(0,0,0,.35))}
-/* the splash screen shows nothing of the page underneath: below the bag (and behind a phone's browser toolbar)
-   it is solid night sky, and it moves away with the bag as the page comes out */
-.bp-front::after{content:"";position:absolute;left:-150vw;right:-150vw;top:calc(100% - 2px);height:300vh;background:#04070E}
+/* the splash screen shows nothing of the page underneath: a separate solid "floor" layer (not a child of the
+   shadowed bag, which Safari clips) fills everything below the bag, including behind a phone's browser toolbar */
+.bp-floor{display:none;position:fixed;left:0;right:0;top:0;height:300vh;z-index:94;pointer-events:none;background:#04070E}
+html.bp-on .bp-floor{display:block}
+@media print{.bp-floor{display:none!important}}
+@media (forced-colors: active){.bp-floor{display:none!important}}
 .bp-front svg{display:block;width:100%;height:auto;overflow:visible}
 .bp-pull{transform-box:view-box}
 .bp-hint b{font:inherit}
@@ -1412,30 +1415,55 @@ html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 <body>
 
 
-<div class="bp-back" aria-hidden="true"><svg viewBox="0 0 1000 220" preserveAspectRatio="none" focusable="false">
+<div class="bp-back" aria-hidden="true"><svg viewBox="0 0 1000 220" preserveAspectRatio="none" focusable="false" overflow="visible" style="overflow:visible">
+    <path d="M420 26V-14Q420 -58 470 -58H530Q580 -58 580 -14V26" fill="none" stroke="#0B2A55" stroke-width="26" stroke-linecap="round"/>
+    <path d="M420 26V-14Q420 -58 470 -58H530Q580 -58 580 -14V26" fill="none" stroke="#2A4F8F" stroke-width="3" stroke-dasharray="8 8"/>
     <defs><linearGradient id="bpBack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E6B8C"/><stop offset="1" stop-color="#1A4FB8"/></linearGradient></defs>
     <path d="M20 220V150C20 60 120 24 240 20 410 12 590 12 760 20c120 4 220 40 220 130v70z" fill="url(#bpBack)"/>
     <path class="bp-lining" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="#071321"/>
     <path class="bp-lid" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="url(#bpBack)"/>
   </svg></div>
+<div class="bp-floor" aria-hidden="true"></div>
 <div class="bp-front" aria-hidden="true"><svg viewBox="0 0 1000 760" focusable="false">
     <defs>
       <linearGradient id="bpBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#117CA1"/><stop offset=".55" stop-color="#1F5BD6"/><stop offset="1" stop-color="#0246AD"/></linearGradient>
       <linearGradient id="bpPocket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B08CFF"/><stop offset="1" stop-color="#7C4DF0"/></linearGradient>
+      <linearGradient id="bpSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2BB3C9"/><stop offset="1" stop-color="#147C9E"/></linearGradient>
+      <pattern id="bpMesh" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 0L16 16M16 0L0 16" stroke="#0B2A55" stroke-width="2.2" opacity=".45"/></pattern>
     </defs>
-    <!-- rounded laptop-bag body with piping -->
-    <path d="M20 120Q20 0 140 0H860Q980 0 980 120V640Q980 760 860 760H140Q20 760 20 640Z" fill="url(#bpBody)"/>
-    <path d="M38 126Q38 18 146 18H854Q962 18 962 126V634Q962 742 854 742H146Q38 742 38 634Z" fill="none" stroke="#B9F2D8" stroke-width="6" stroke-dasharray="14 10" opacity=".85"/>
-    <!-- zip along the opening -->
+    <!-- laptop backpack body: straight padded sides, squared rounded base -->
+    <path d="M20 90Q20 0 110 0H890Q980 0 980 90V660Q980 760 880 760H120Q20 760 20 660Z" fill="url(#bpBody)"/>
+    <!-- padded laptop-compartment seam -->
+    <path d="M60 128H940" stroke="#0B2A55" stroke-width="5" opacity=".35"/>
+    <path d="M60 140H940" stroke="#B9F2D8" stroke-width="4" stroke-dasharray="12 9" opacity=".7"/>
+    <!-- side mesh bottle pockets -->
+    <path d="M20 330H118V690Q118 742 70 742Q20 742 20 690Z" fill="url(#bpSide)"/>
+    <path d="M20 330H118V690Q118 742 70 742Q20 742 20 690Z" fill="url(#bpMesh)"/>
+    <path d="M20 334H118" stroke="#0B2A55" stroke-width="10" stroke-linecap="round"/>
+    <path d="M882 330H980V690Q980 742 930 742Q882 742 882 690Z" fill="url(#bpSide)"/>
+    <path d="M882 330H980V690Q980 742 930 742Q882 742 882 690Z" fill="url(#bpMesh)"/>
+    <path d="M882 334H980" stroke="#0B2A55" stroke-width="10" stroke-linecap="round"/>
+    <!-- reinforced base panel -->
+    <path d="M118 640H882V700Q882 742 840 742H160Q118 742 118 700Z" fill="#0B2A55"/>
+    <path d="M140 656H860" stroke="#B9F2D8" stroke-width="4" stroke-dasharray="12 9" opacity=".6"/>
+    <!-- front organiser pocket with its own zip -->
+    <rect x="250" y="230" width="500" height="400" rx="46" fill="url(#bpPocket)"/>
+    <rect x="266" y="246" width="468" height="368" rx="34" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="10 8" opacity=".55"/>
+    <path d="M286 286H714" stroke="#0B2A55" stroke-width="14" stroke-linecap="round"/>
+    <path d="M292 286H708" stroke="#FFC21A" stroke-width="6" stroke-dasharray="6 6"/>
+    <rect x="676" y="276" width="30" height="20" rx="6" fill="#D98439"/><rect x="684" y="294" width="14" height="40" rx="7" fill="#FFC21A"/>
+    <!-- compression straps with buckles -->
+    <path d="M170 150V640M830 150V640" stroke="#0B2A55" stroke-width="34"/>
+    <path d="M170 150V640M830 150V640" stroke="#2A4F8F" stroke-width="2" stroke-dasharray="8 8" opacity=".9"/>
+    <rect x="146" y="420" width="48" height="56" rx="10" fill="#FFC21A"/><rect x="156" y="432" width="28" height="12" rx="4" fill="#0B2A55"/>
+    <rect x="806" y="420" width="48" height="56" rx="10" fill="#FFC21A"/><rect x="816" y="432" width="28" height="12" rx="4" fill="#0B2A55"/>
+    <!-- SV patch and pins on the pocket -->
+    <circle cx="500" cy="452" r="86" fill="#E8318A"/><circle cx="500" cy="452" r="72" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="10 8"/>
+    <text x="500" y="482" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="84" fill="#fff">SV</text>
+    <circle cx="330" cy="566" r="28" fill="#B9F2D8"/><path d="M668 528l12 26 28 4-20 19 5 28-25-14-25 14 5-28-20-19 28-4z" fill="#FFC21A"/>
+    <!-- main zip along the opening -->
     <path d="M70 12H930" stroke="#0B2A55" stroke-width="22" stroke-linecap="round"/>
     <path d="M80 12H920" stroke="#FFC21A" stroke-width="9" stroke-dasharray="6 6"/>
-    <!-- wide rounded front pocket -->
-    <rect x="130" y="250" width="740" height="420" rx="150" fill="url(#bpPocket)"/>
-    <path d="M220 312Q500 262 780 312" stroke="#FFC21A" stroke-width="10" fill="none" stroke-dasharray="7 6"/>
-    <rect x="752" y="300" width="34" height="56" rx="10" fill="#D98439"/>
-    <circle cx="500" cy="480" r="86" fill="#E8318A"/><circle cx="500" cy="480" r="72" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="10 8"/>
-    <text x="500" y="510" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="84" fill="#fff">SV</text>
-    <circle cx="290" cy="560" r="34" fill="#B9F2D8"/><path d="M700 530l14 30 33 4-24 23 6 33-29-16-29 16 6-33-24-23 33-4z" fill="#FFC21A"/>
     <g class="bp-pull"><rect x="66" y="-6" width="34" height="36" rx="8" fill="#D98439"/><rect x="74" y="28" width="18" height="44" rx="8" fill="#FFC21A"/><circle cx="83" cy="60" r="5" fill="#0B2A55"/></g>
   </svg></div>
 <div class="bp-sky" aria-hidden="true">
@@ -3050,7 +3078,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (()=>{
   const H=document.documentElement; if(!H.classList.contains('bp-on')) return;
   H.classList.add('bp-js');
-  const front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
+  const floor=document.querySelector('.bp-floor'), front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
   const parts=[document.querySelector('header.top'),document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
   const ease=t=>1-Math.pow(1-t,3);
   let W,Hh,s0,mouth,bw,bx,D,offs,rise=0,riseStart=null,done=false,force=null,raf=0;
@@ -3064,12 +3092,14 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // the lid needs bw*.22 above the mouth, the decorated front bw*.66 below it
     // phones: keep the bag's decorations above the browser's bottom toolbar (Safari draws it over the page)
     let foot=10; try{ if(matchMedia('(pointer: coarse)').matches) foot=Math.max(foot, 84) }catch(e){}
-    bw=Math.max(150,Math.min(bw,(Hh-8-foot-skyB-hh)/.88));
-    mouth=Math.round(Math.max(skyB+hh+bw*.22+10, Hh-foot-bw*.66));
+    bw=Math.max(150,Math.min(bw,(Hh-8-foot-skyB-hh)/.95));
+    mouth=Math.round(Math.max(skyB+hh+bw*.29+10, Hh-foot-bw*.66));
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
+    // the floor starts just above the bag's rounded bottom so no gap shows at its corners
+    floor.style.top=Math.round(mouth-bw*12/1000+bw*.76-bw*.06)+'px';
     const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
-    hint.style.bottom='auto'; hint.style.top=Math.round(Math.max(skyB+6,(skyB+backTop)/2-(hint.offsetHeight||34)/2))+'px';
+    hint.style.bottom='auto'; hint.style.top=Math.round(Math.max(skyB+6,(skyB+backTop-bw*.07)/2-(hint.offsetHeight||34)/2))+'px';
     offs=parts.map(el=>[el.offsetLeft,el.offsetTop]);
   }
   function apply(t){
@@ -3080,8 +3110,8 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     parts.forEach((el,i)=>{ el.style.transformOrigin=(W/2-offs[i][0])+'px '+(-offs[i][1])+'px';
       el.style.transform='translate3d(0,'+(topY+sy).toFixed(2)+'px,0) scale('+s.toFixed(5)+')' });
     const drop=e*Hh*1.15, fade=Math.max(0,Math.min(1,(t-.5)/.45));
-    front.style.transform=back.style.transform='translate3d(0,'+drop.toFixed(2)+'px,0)';
-    front.style.opacity=back.style.opacity=(1-fade).toFixed(3);
+    front.style.transform=back.style.transform=floor.style.transform='translate3d(0,'+drop.toFixed(2)+'px,0)';
+    front.style.opacity=back.style.opacity=floor.style.opacity=(1-fade).toFixed(3);
     sky.style.opacity=Math.max(0,1-t*4).toFixed(3); sky.style.transform='translate3d(0,'+(-t*80).toFixed(2)+'px,0)';
     hint.style.opacity=Math.max(0,1-t*4).toFixed(3);
   }
@@ -3090,7 +3120,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     parts.forEach(el=>{el.style.transform='';el.style.transformOrigin=''});
     H.classList.remove('bp-on');
     window.scrollTo({top:0,left:0,behavior:'instant'});
-    [front,back,hint,sky].forEach(el=>el.remove());
+    [front,back,hint,sky,floor].forEach(el=>el.remove());
     guard=performance.now()+260; guardCap=performance.now()+1200;
     dispatchEvent(new Event('resize')); dispatchEvent(new Event('bp-done'));
   }
