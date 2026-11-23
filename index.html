@@ -11,6 +11,8 @@
 <meta name="theme-color" content="#04070e">
 <script>/* Backpack opening: plays on every load; skipped for "reduce motion". Safety net: never leave the page hidden. */
 (function(){try{if(!/[?&]intro=off\b/.test(location.search)&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){var h=document.documentElement;h.classList.add('bp-on');
+/* every load with the splash starts on Home: the page opens out of the bag at the top of the Home view */
+if(location.hash&&location.hash!=='#home'){try{history.replaceState(null,'',location.pathname+location.search+'#home')}catch(e){location.hash='home'}}
 setTimeout(function(){if(!h.classList.contains('bp-js'))h.classList.remove('bp-on')},4000)}}catch(e){}})()</script>
 <script>/* Always open in light mode. Nothing is saved; a setting left by an earlier version of the site is cleared. */document.documentElement.setAttribute("data-theme","light");try{localStorage.removeItem("srv-theme")}catch(e){}</script>
 <link rel="canonical" href="https://sairohitvilluri.github.io/">
