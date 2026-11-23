@@ -1365,6 +1365,8 @@ html.bp-on .kite-sky,html.bp-on .kite-string{display:none!important}
    lags a frame behind the browser's scroll (that lag was the jitter). The gutter stays so nothing shifts when it ends. */
 html{scrollbar-gutter:stable}
 html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action:none}
+html.bp-on body{overflow:clip;overflow-clip-margin:0;background:#04070E}
+html.bp-on{background:#04070E}
 .bp-back{position:fixed;left:0;top:0;z-index:1;pointer-events:none;transform-origin:50% 100%}
 html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 .bp-back svg{display:block;width:100%;height:100%}
@@ -1416,8 +1418,10 @@ html.bp-on .bp-floor{display:block}
 
 
 <div class="bp-back" aria-hidden="true"><svg viewBox="0 0 1000 220" preserveAspectRatio="none" focusable="false" overflow="visible" style="overflow:visible">
-    <path d="M420 26V-14Q420 -58 470 -58H530Q580 -58 580 -14V26" fill="none" stroke="#0B2A55" stroke-width="26" stroke-linecap="round"/>
-    <path d="M420 26V-14Q420 -58 470 -58H530Q580 -58 580 -14V26" fill="none" stroke="#2A4F8F" stroke-width="3" stroke-dasharray="8 8"/>
+    <path d="M150 150Q150 -10 330 -52" fill="none" stroke="#0B2A55" stroke-width="78" stroke-linecap="round"/>
+    <path d="M850 150Q850 -10 670 -52" fill="none" stroke="#0B2A55" stroke-width="78" stroke-linecap="round"/>
+    <path d="M150 150Q150 -10 330 -52M850 150Q850 -10 670 -52" fill="none" stroke="#2A4F8F" stroke-width="3" stroke-dasharray="9 8"/>
+    <path d="M390 40Q390 -36 500 -36Q610 -36 610 40" fill="none" stroke="#0B2A55" stroke-width="34" stroke-linecap="round"/>
     <defs><linearGradient id="bpBack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E6B8C"/><stop offset="1" stop-color="#1A4FB8"/></linearGradient></defs>
     <path d="M20 220V150C20 60 120 24 240 20 410 12 590 12 760 20c120 4 220 40 220 130v70z" fill="url(#bpBack)"/>
     <path class="bp-lining" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="#071321"/>
@@ -1428,40 +1432,33 @@ html.bp-on .bp-floor{display:block}
     <defs>
       <linearGradient id="bpBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#117CA1"/><stop offset=".55" stop-color="#1F5BD6"/><stop offset="1" stop-color="#0246AD"/></linearGradient>
       <linearGradient id="bpPocket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B08CFF"/><stop offset="1" stop-color="#7C4DF0"/></linearGradient>
-      <linearGradient id="bpSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2BB3C9"/><stop offset="1" stop-color="#147C9E"/></linearGradient>
-      <pattern id="bpMesh" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 0L16 16M16 0L0 16" stroke="#0B2A55" stroke-width="2.2" opacity=".45"/></pattern>
+      <linearGradient id="bpUpper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2BB3C9"/><stop offset="1" stop-color="#1E7FC0"/></linearGradient>
+      <pattern id="bpDiamond" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="22" height="22" fill="none" stroke="#0B2A55" stroke-width="2" opacity=".35"/></pattern>
+      <pattern id="bpMesh" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 0L14 14M14 0L0 14" stroke="#0B2A55" stroke-width="2" opacity=".45"/></pattern>
     </defs>
-    <!-- laptop backpack body: straight padded sides, squared rounded base -->
-    <path d="M20 90Q20 0 110 0H890Q980 0 980 90V660Q980 760 880 760H120Q20 760 20 660Z" fill="url(#bpBody)"/>
-    <!-- padded laptop-compartment seam -->
-    <path d="M60 128H940" stroke="#0B2A55" stroke-width="5" opacity=".35"/>
-    <path d="M60 140H940" stroke="#B9F2D8" stroke-width="4" stroke-dasharray="12 9" opacity=".7"/>
-    <!-- side mesh bottle pockets -->
-    <path d="M20 330H118V690Q118 742 70 742Q20 742 20 690Z" fill="url(#bpSide)"/>
-    <path d="M20 330H118V690Q118 742 70 742Q20 742 20 690Z" fill="url(#bpMesh)"/>
-    <path d="M20 334H118" stroke="#0B2A55" stroke-width="10" stroke-linecap="round"/>
-    <path d="M882 330H980V690Q980 742 930 742Q882 742 882 690Z" fill="url(#bpSide)"/>
-    <path d="M882 330H980V690Q980 742 930 742Q882 742 882 690Z" fill="url(#bpMesh)"/>
-    <path d="M882 334H980" stroke="#0B2A55" stroke-width="10" stroke-linecap="round"/>
-    <!-- reinforced base panel -->
-    <path d="M118 640H882V700Q882 742 840 742H160Q118 742 118 700Z" fill="#0B2A55"/>
-    <path d="M140 656H860" stroke="#B9F2D8" stroke-width="4" stroke-dasharray="12 9" opacity=".6"/>
-    <!-- front organiser pocket with its own zip -->
-    <rect x="250" y="230" width="500" height="400" rx="46" fill="url(#bpPocket)"/>
-    <rect x="266" y="246" width="468" height="368" rx="34" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="10 8" opacity=".55"/>
-    <path d="M286 286H714" stroke="#0B2A55" stroke-width="14" stroke-linecap="round"/>
-    <path d="M292 286H708" stroke="#FFC21A" stroke-width="6" stroke-dasharray="6 6"/>
-    <rect x="676" y="276" width="30" height="20" rx="6" fill="#D98439"/><rect x="684" y="294" width="14" height="40" rx="7" fill="#FFC21A"/>
-    <!-- compression straps with buckles -->
-    <path d="M170 150V640M830 150V640" stroke="#0B2A55" stroke-width="34"/>
-    <path d="M170 150V640M830 150V640" stroke="#2A4F8F" stroke-width="2" stroke-dasharray="8 8" opacity=".9"/>
-    <rect x="146" y="420" width="48" height="56" rx="10" fill="#FFC21A"/><rect x="156" y="432" width="28" height="12" rx="4" fill="#0B2A55"/>
-    <rect x="806" y="420" width="48" height="56" rx="10" fill="#FFC21A"/><rect x="816" y="432" width="28" height="12" rx="4" fill="#0B2A55"/>
-    <!-- SV patch and pins on the pocket -->
-    <circle cx="500" cy="452" r="86" fill="#E8318A"/><circle cx="500" cy="452" r="72" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="10 8"/>
-    <text x="500" y="482" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="84" fill="#fff">SV</text>
-    <circle cx="330" cy="566" r="28" fill="#B9F2D8"/><path d="M668 528l12 26 28 4-20 19 5 28-25-14-25 14 5-28-20-19 28-4z" fill="#FFC21A"/>
-    <!-- main zip along the opening -->
+    <!-- structured laptop backpack: straight padded sides, wide rounded base -->
+    <path d="M40 70Q40 0 110 0H890Q960 0 960 70V560Q960 748 790 748H210Q40 748 40 560Z" fill="url(#bpBody)"/>
+    <!-- main-compartment zip running round the body -->
+    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#0B2A55" stroke-width="12"/>
+    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#FFC21A" stroke-width="5" stroke-dasharray="6 6"/>
+    <!-- upper front panel: diamond mesh with a vertical contrast stripe -->
+    <path d="M120 60Q120 34 146 34H854Q880 34 880 60V336Q500 304 120 336Z" fill="url(#bpUpper)"/>
+    <path d="M120 60Q120 34 146 34H854Q880 34 880 60V336Q500 304 120 336Z" fill="url(#bpDiamond)"/>
+    <path d="M640 34H724V318Q682 314 640 314Z" fill="#0B2A55"/>
+    <!-- lower organiser pocket with a curved zip and its pull on the left -->
+    <path d="M120 336Q500 304 880 336V560Q880 690 760 690H240Q120 690 120 560Z" fill="url(#bpPocket)"/>
+    <path d="M136 340Q500 310 864 340" fill="none" stroke="#0B2A55" stroke-width="14" stroke-linecap="round"/>
+    <path d="M142 340Q500 310 858 340" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="6 6"/>
+    <rect x="150" y="332" width="30" height="22" rx="6" fill="#D98439"/><rect x="158" y="352" width="14" height="46" rx="7" fill="#FFC21A"/><circle cx="165" cy="388" r="4" fill="#0B2A55"/>
+    <path d="M150 380V556Q150 662 248 662H752Q850 662 850 556V380" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="10 8" opacity=".45"/>
+    <!-- side mesh bottle pocket -->
+    <path d="M934 380H970V600Q970 660 934 668Z" fill="#2BB3C9"/><path d="M934 380H970V600Q970 660 934 668Z" fill="url(#bpMesh)"/>
+    <path d="M30 380H66V668Q30 660 30 600Z" fill="#2BB3C9"/><path d="M30 380H66V668Q30 660 30 600Z" fill="url(#bpMesh)"/>
+    <!-- SV badge and pins on the pocket -->
+    <circle cx="500" cy="500" r="84" fill="#E8318A"/><circle cx="500" cy="500" r="70" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="10 8"/>
+    <text x="500" y="530" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="82" fill="#fff">SV</text>
+    <circle cx="300" cy="600" r="28" fill="#B9F2D8"/><path d="M700 566l12 26 28 4-20 19 5 28-25-14-25 14 5-28-20-19 28-4z" fill="#FFC21A"/>
+    <!-- opening zip (animates open) -->
     <path d="M70 12H930" stroke="#0B2A55" stroke-width="22" stroke-linecap="round"/>
     <path d="M80 12H920" stroke="#FFC21A" stroke-width="9" stroke-dasharray="6 6"/>
     <g class="bp-pull"><rect x="66" y="-6" width="34" height="36" rx="8" fill="#D98439"/><rect x="74" y="28" width="18" height="44" rx="8" fill="#FFC21A"/><circle cx="83" cy="60" r="5" fill="#0B2A55"/></g>
@@ -3078,7 +3075,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (()=>{
   const H=document.documentElement; if(!H.classList.contains('bp-on')) return;
   H.classList.add('bp-js');
-  const floor=document.querySelector('.bp-floor'), front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
+  let floorY=99999; const floor=document.querySelector('.bp-floor'), front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
   const parts=[document.querySelector('header.top'),document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
   const ease=t=>1-Math.pow(1-t,3);
   let W,Hh,s0,mouth,bw,bx,D,offs,rise=0,riseStart=null,done=false,force=null,raf=0;
@@ -3097,7 +3094,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
     // the floor starts just above the bag's rounded bottom so no gap shows at its corners
-    floor.style.top=Math.round(mouth-bw*12/1000+bw*.76-bw*.06)+'px';
+    floorY=Math.round(mouth-bw*12/1000+bw*.76-bw*.06); floor.style.top=floorY+'px';
     const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
     hint.style.bottom='auto'; hint.style.top=Math.round(Math.max(skyB+6,(skyB+backTop-bw*.07)/2-(hint.offsetHeight||34)/2))+'px';
     offs=parts.map(el=>[el.offsetLeft,el.offsetTop]);
@@ -3111,6 +3108,9 @@ document.addEventListener('touchstart',()=>{},{passive:true});
       el.style.transform='translate3d(0,'+(topY+sy).toFixed(2)+'px,0) scale('+s.toFixed(5)+')' });
     const drop=e*Hh*1.15, fade=Math.max(0,Math.min(1,(t-.5)/.45));
     front.style.transform=back.style.transform=floor.style.transform='translate3d(0,'+drop.toFixed(2)+'px,0)';
+    // the website is clipped at the bag's bottom edge, so nothing of it is drawn below the bag (Safari shows the area
+    // behind its toolbar, where a fixed cover does not reach); the clip line moves down with the bag
+    document.body.style.height=Math.round(floorY+drop)+'px';
     front.style.opacity=back.style.opacity=floor.style.opacity=(1-fade).toFixed(3);
     sky.style.opacity=Math.max(0,1-t*4).toFixed(3); sky.style.transform='translate3d(0,'+(-t*80).toFixed(2)+'px,0)';
     hint.style.opacity=Math.max(0,1-t*4).toFixed(3);
@@ -3120,7 +3120,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     parts.forEach(el=>{el.style.transform='';el.style.transformOrigin=''});
     H.classList.remove('bp-on');
     window.scrollTo({top:0,left:0,behavior:'instant'});
-    [front,back,hint,sky,floor].forEach(el=>el.remove());
+    [front,back,hint,sky,floor].forEach(el=>el.remove()); document.body.style.height='';
     guard=performance.now()+260; guardCap=performance.now()+1200;
     dispatchEvent(new Event('resize')); dispatchEvent(new Event('bp-done'));
   }
