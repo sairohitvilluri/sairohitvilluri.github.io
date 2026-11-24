@@ -1545,17 +1545,24 @@ html.bp-on .bp-bgfx{display:block}
 /* phones and tablets: the portrait comes first in Personal Profile, so the face is seen before the details */
 @media (max-width:980px){.profile > .label{order:-2}.profile > .sticker.portrait{order:-1;margin-bottom:8px}}
 
+/* devices in dark mode (often in dim rooms): the clouds become a soft moonlit off-white instead of pure white,
+   and the sky glows are a touch calmer. Cloud text stays about 13:1 (AAA). */
+@media (prefers-color-scheme: dark){
+  html.bp-on .bp-puff{filter:brightness(.87)}
+  html.bp-on .bp-bgfx{filter:saturate(.9) brightness(.92)}
+}
+
 </style>
 </head>
 <body>
 
 
 <div class="bp-back" aria-hidden="true"><svg viewBox="0 0 1000 220" preserveAspectRatio="none" focusable="false" overflow="visible" style="overflow:visible">
-    <path d="M150 150Q150 -10 330 -52" fill="none" stroke="#0B2A55" stroke-width="78" stroke-linecap="round"/>
-    <path d="M850 150Q850 -10 670 -52" fill="none" stroke="#0B2A55" stroke-width="78" stroke-linecap="round"/>
-    <path d="M150 150Q150 -10 330 -52M850 150Q850 -10 670 -52" fill="none" stroke="#2A4F8F" stroke-width="3" stroke-dasharray="9 8"/>
-    <path d="M390 40Q390 -36 500 -36Q610 -36 610 40" fill="none" stroke="#0B2A55" stroke-width="34" stroke-linecap="round"/>
-    <defs><linearGradient id="bpBack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E6B8C"/><stop offset="1" stop-color="#1A4FB8"/></linearGradient></defs>
+    <path d="M150 150Q150 -10 330 -52" fill="none" stroke="#17284C" stroke-width="78" stroke-linecap="round"/>
+    <path d="M850 150Q850 -10 670 -52" fill="none" stroke="#17284C" stroke-width="78" stroke-linecap="round"/>
+    <path d="M150 150Q150 -10 330 -52M850 150Q850 -10 670 -52" fill="none" stroke="#4F6795" stroke-width="3" stroke-dasharray="9 8"/>
+    <path d="M390 40Q390 -36 500 -36Q610 -36 610 40" fill="none" stroke="#17284C" stroke-width="34" stroke-linecap="round"/>
+    <defs><linearGradient id="bpBack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2F4D7A"/><stop offset="1" stop-color="#27416E"/></linearGradient></defs>
     <path d="M20 220V150C20 60 120 24 240 20 410 12 590 12 760 20c120 4 220 40 220 130v70z" fill="url(#bpBack)"/>
     <path class="bp-lining" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="#071321"/>
     <path class="bp-lid" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="url(#bpBack)"/>
@@ -1564,38 +1571,38 @@ html.bp-on .bp-bgfx{display:block}
 <div class="bp-floor" aria-hidden="true"></div>
 <div class="bp-front" aria-hidden="true"><svg viewBox="0 0 1000 760" focusable="false">
     <defs>
-      <linearGradient id="bpBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#117CA1"/><stop offset=".55" stop-color="#1F5BD6"/><stop offset="1" stop-color="#0246AD"/></linearGradient>
-      <linearGradient id="bpPocket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B08CFF"/><stop offset="1" stop-color="#7C4DF0"/></linearGradient>
-      <linearGradient id="bpUpper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2BB3C9"/><stop offset="1" stop-color="#1E7FC0"/></linearGradient>
-      <pattern id="bpDiamond" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="22" height="22" fill="none" stroke="#0B2A55" stroke-width="2" opacity=".35"/></pattern>
-      <pattern id="bpMesh" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 0L14 14M14 0L0 14" stroke="#0B2A55" stroke-width="2" opacity=".45"/></pattern>
+      <linearGradient id="bpBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#36598F"/><stop offset=".55" stop-color="#2E4E84"/><stop offset="1" stop-color="#223E6E"/></linearGradient>
+      <linearGradient id="bpPocket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5D84C4"/><stop offset="1" stop-color="#4A6DA6"/></linearGradient>
+      <linearGradient id="bpUpper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C77AE"/><stop offset="1" stop-color="#3D6398"/></linearGradient>
+      <pattern id="bpDiamond" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="22" height="22" fill="none" stroke="#17284C" stroke-width="2" opacity=".35"/></pattern>
+      <pattern id="bpMesh" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 0L14 14M14 0L0 14" stroke="#17284C" stroke-width="2" opacity=".45"/></pattern>
     </defs>
     <!-- structured laptop backpack: straight padded sides, wide rounded base -->
-    <path d="M40 70Q40 0 110 0H890Q960 0 960 70V560Q960 748 790 748H210Q40 748 40 560Z" fill="url(#bpBody)"/>
+    <path d="M40 70Q40 0 110 0H890Q960 0 960 70V560Q960 748 790 748H210Q40 748 40 560Z" fill="url(#bpBody)" stroke="#A9C8FF" stroke-opacity=".32" stroke-width="4"/>
     <!-- main-compartment zip running round the body -->
-    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#0B2A55" stroke-width="12"/>
-    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#FFC21A" stroke-width="5" stroke-dasharray="6 6"/>
+    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#17284C" stroke-width="12"/>
+    <path d="M66 40V556Q66 722 214 722H786Q934 722 934 556V40" fill="none" stroke="#EBC25C" stroke-width="5" stroke-dasharray="6 6"/>
     <!-- upper front panel: diamond mesh with a vertical contrast stripe -->
     <path d="M120 60Q120 34 146 34H854Q880 34 880 60V336Q500 304 120 336Z" fill="url(#bpUpper)"/>
     <path d="M120 60Q120 34 146 34H854Q880 34 880 60V336Q500 304 120 336Z" fill="url(#bpDiamond)"/>
-    <path d="M640 34H724V318Q682 314 640 314Z" fill="#0B2A55"/>
+    <path d="M640 34H724V318Q682 314 640 314Z" fill="#17284C"/>
     <!-- lower organiser pocket with a curved zip and its pull on the left -->
     <path d="M120 336Q500 304 880 336V560Q880 690 760 690H240Q120 690 120 560Z" fill="url(#bpPocket)"/>
-    <path d="M136 340Q500 310 864 340" fill="none" stroke="#0B2A55" stroke-width="14" stroke-linecap="round"/>
-    <path d="M142 340Q500 310 858 340" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="6 6"/>
-    <rect x="150" y="332" width="30" height="22" rx="6" fill="#D98439"/><rect x="158" y="352" width="14" height="46" rx="7" fill="#FFC21A"/><circle cx="165" cy="388" r="4" fill="#0B2A55"/>
+    <path d="M136 340Q500 310 864 340" fill="none" stroke="#17284C" stroke-width="14" stroke-linecap="round"/>
+    <path d="M142 340Q500 310 858 340" fill="none" stroke="#EBC25C" stroke-width="6" stroke-dasharray="6 6"/>
+    <rect x="150" y="332" width="30" height="22" rx="6" fill="#CC9247"/><rect x="158" y="352" width="14" height="46" rx="7" fill="#EBC25C"/><circle cx="165" cy="388" r="4" fill="#17284C"/>
     <path d="M150 380V556Q150 662 248 662H752Q850 662 850 556V380" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="10 8" opacity=".45"/>
     <!-- side mesh bottle pocket -->
-    <path d="M934 380H970V600Q970 660 934 668Z" fill="#2BB3C9"/><path d="M934 380H970V600Q970 660 934 668Z" fill="url(#bpMesh)"/>
-    <path d="M30 380H66V668Q30 660 30 600Z" fill="#2BB3C9"/><path d="M30 380H66V668Q30 660 30 600Z" fill="url(#bpMesh)"/>
+    <path d="M934 380H970V600Q970 660 934 668Z" fill="#4C77AE"/><path d="M934 380H970V600Q970 660 934 668Z" fill="url(#bpMesh)"/>
+    <path d="M30 380H66V668Q30 660 30 600Z" fill="#4C77AE"/><path d="M30 380H66V668Q30 660 30 600Z" fill="url(#bpMesh)"/>
     <!-- SV badge and pins on the pocket -->
-    <circle cx="500" cy="500" r="84" fill="#E8318A"/><circle cx="500" cy="500" r="70" fill="none" stroke="#FFC21A" stroke-width="6" stroke-dasharray="10 8"/>
-    <text x="500" y="530" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="82" fill="#fff">SV</text>
-    <circle cx="300" cy="600" r="28" fill="#B9F2D8"/><path d="M700 566l12 26 28 4-20 19 5 28-25-14-25 14 5-28-20-19 28-4z" fill="#FFC21A"/>
+    <circle cx="500" cy="500" r="84" fill="#A9C8FF"/><circle cx="500" cy="500" r="70" fill="none" stroke="#EBC25C" stroke-width="6" stroke-dasharray="10 8"/>
+    <text x="500" y="530" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="82" fill="#0E1524">SV</text>
+    <circle cx="300" cy="600" r="28" fill="#A9E8D0"/><path d="M700 566l12 26 28 4-20 19 5 28-25-14-25 14 5-28-20-19 28-4z" fill="#EBC25C"/>
     <!-- opening zip (animates open) -->
-    <path d="M70 12H930" stroke="#0B2A55" stroke-width="22" stroke-linecap="round"/>
-    <path d="M80 12H920" stroke="#FFC21A" stroke-width="9" stroke-dasharray="6 6"/>
-    <g class="bp-pull"><rect x="66" y="-6" width="34" height="36" rx="8" fill="#D98439"/><rect x="74" y="28" width="18" height="44" rx="8" fill="#FFC21A"/><circle cx="83" cy="60" r="5" fill="#0B2A55"/></g>
+    <path d="M70 12H930" stroke="#17284C" stroke-width="22" stroke-linecap="round"/>
+    <path d="M80 12H920" stroke="#EBC25C" stroke-width="9" stroke-dasharray="6 6"/>
+    <g class="bp-pull"><rect x="66" y="-6" width="34" height="36" rx="8" fill="#CC9247"/><rect x="74" y="28" width="18" height="44" rx="8" fill="#EBC25C"/><circle cx="83" cy="60" r="5" fill="#17284C"/></g>
   </svg></div>
 <div class="bp-sky" aria-hidden="true">
   <span class="bp-wisp bp-w1"></span><span class="bp-wisp bp-w2"></span><span class="bp-wisp bp-w3"></span>
@@ -1612,7 +1619,7 @@ html.bp-on .bp-bgfx{display:block}
       <ul>
         <li><a href="#home" data-nav="home">Home</a></li>
         <li><a href="#about" data-nav="about">About</a></li>
-        <li><a href="#clients" data-nav="clients">Clients</a></li>
+        <li><a href="#clients" data-nav="clients">Work</a></li>
       </ul>
     </nav>
     <a class="hbtn" href="#connect" data-nav="connect">Connect with Me Today</a>
@@ -1629,7 +1636,7 @@ html.bp-on .bp-bgfx{display:block}
     <ol>
       <li><a href="#home" data-nav="home"><span aria-hidden="true">01</span>Home</a></li>
       <li><a href="#about" data-nav="about"><span aria-hidden="true">02</span>About</a></li>
-      <li><a href="#clients" data-nav="clients"><span aria-hidden="true">03</span>Clients</a></li>
+      <li><a href="#clients" data-nav="clients"><span aria-hidden="true">03</span>Work</a></li>
     </ol>
     <a class="hbtn ov-cta" href="#connect" data-nav="connect">Connect with Me Today</a>
     <div class="ov-foot">
@@ -1672,17 +1679,17 @@ html.bp-on .bp-bgfx{display:block}
   </section>
   <section class="sec" aria-labelledby="h-proj">
     <div class="wrap sec-grid">
-      <span class="label">Clients</span>
+      <span class="label">Work</span>
       <div>
         <div class="pc-head">
-          <h2 id="h-proj">Client projects</h2>
-          <div class="pc-ctrl" role="group" aria-label="Scroll client projects">
+          <h2 id="h-proj">Client case studies</h2>
+          <div class="pc-ctrl" role="group" aria-label="Scroll client case studies">
             <button type="button" class="pc-btn" data-pc-prev aria-label="Previous project" aria-controls="pcTrack"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 6 8.5 12l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <span class="pc-count" id="pcCount" aria-live="polite">1–3 of 5</span>
             <button type="button" class="pc-btn" data-pc-next aria-label="Next project" aria-controls="pcTrack"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
         </div>
-        <ul class="pcards pc-track" id="pcTrack" tabindex="0" aria-label="Client projects, scrolls sideways">
+        <ul class="pcards pc-track" id="pcTrack" tabindex="0" aria-label="Client case studies, scrolls sideways">
           <li>
             <a class="pcard" href="#clients" data-case="h-proj1">
               <div aria-hidden="true" data-alt="SKYLIFT emergency help app poster: the SKY LIFT logo with a drone and a red cross, the tagline Emergency Help. Right When You Need It., icons for Request Emergency Help, Share Your Location and Get Fast Response, and a drone flying over a city at dusk" class="ph pcard-img" data-src="images/client-project-1-sm" data-w="524" data-md="images/client-project-1-md.webp" data-mdw="777" data-ext="webp" data-hd="images/client-project-1.jpg"></div>
@@ -1911,11 +1918,11 @@ html.bp-on .bp-bgfx{display:block}
 </div>
 
 <!-- ============ CLIENTS ============ -->
-<div class="view" data-view="clients" data-title="Clients" hidden>
+<div class="view" data-view="clients" data-title="Work" hidden>
   <section class="band" aria-labelledby="h-clients">
     <div class="wrap hero compact trusted-hero">
       <span class="label">Selected work · 5 projects</span>
-      <h1 id="h-clients" tabindex="-1">Client <span class="hl">Projects</span></h1>
+      <h1 id="h-clients" tabindex="-1">Client <span class="hl">Case Studies</span></h1>
       <p class="trusted-body">Pick a project to see its goal, what I delivered, key screens and the full case study.</p>
     </div>
   </section>
@@ -2497,7 +2504,7 @@ html.bp-on .bp-bgfx{display:block}
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#clients">Clients</a></li>
+          <li><a href="#clients">Work</a></li>
         </ul>
       </nav>
       <nav aria-label="Connect with me">
