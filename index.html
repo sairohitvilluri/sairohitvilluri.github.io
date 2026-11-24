@@ -1464,11 +1464,20 @@ a.mail-addr:hover{text-decoration-thickness:2px}
 .foot-mail a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;display:inline-block;padding-block:4px}
 
 /* About on phones: date ranges on one line, profile facts stacked full width */
-.timeline .yr > span{display:block}
-@media (max-width:700px){.timeline .yr > span{display:inline}.timeline .yr{white-space:nowrap}}
+.timeline .yr{white-space:nowrap}
 @media (max-width:560px){
   .pfacts{grid-template-columns:1fr!important}
   .pfacts > div:nth-child(even){padding-left:0!important;border-left:0!important}
+}
+
+/* Work experience on laptops and larger: date | role · company on one line, description underneath (resume style) */
+@media (min-width:821px){
+  .exp-tl li{grid-template-columns:200px 1fr;column-gap:28px;row-gap:8px}
+  .exp-tl .yr{grid-row:1 / span 2;padding-top:4px}
+  .exp-tl h3{grid-column:2;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px}
+  .exp-tl .org{display:inline-flex;align-items:baseline;gap:12px;margin-top:0;font-size:17px;font-weight:600;color:var(--muted)}
+  .exp-tl .org::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;align-self:center;opacity:.7}
+  .exp-tl p{grid-column:2;max-width:68ch}
 }
 
 </style>
@@ -1749,7 +1758,7 @@ a.mail-addr:hover{text-decoration-thickness:2px}
       <span class="label">Experience</span>
       <div>
         <h2 id="h-exp">Work Experience</h2>
-        <ol class="timeline">
+        <ol class="timeline exp-tl">
           <li><span class="yr">Jun 2026</span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
           <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
           <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
