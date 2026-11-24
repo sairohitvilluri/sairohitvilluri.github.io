@@ -1430,7 +1430,10 @@ html.bp-on .bp-floor{display:block}
   html.bp-on .bp-mark{display:inline-block;animation:bpMark .7s cubic-bezier(.4,0,.2,1) both, bpPop 3.6s ease-in-out infinite}
   html.bp-on .bp-mark-name{animation-delay:2.2s, 3.2s}
   html.bp-on .bp-mark-role{animation-delay:2.6s, 5s}
-  html.bp-on .bp-cloud{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  html.bp-on .bp-puff{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;will-change:transform}
+.bp-puff{display:block;max-width:100%}
+@keyframes bpPuff{0%{transform:scale(1)}38%{transform:scale(1.06)}72%{transform:scale(.995)}100%{transform:scale(1)}}
+.bp-puff.puffing{animation:bpPuff 1.15s cubic-bezier(.37,0,.25,1)}
   html.bp-on .bp-wisp{animation:bpWisp 4.6s cubic-bezier(.3,.1,.3,1) .1s both}
   html.bp-on .bp-w2{animation-delay:.3s}
   html.bp-on .bp-w3{animation-delay:.5s}
@@ -1501,7 +1504,8 @@ a.mail-addr:hover{text-decoration-thickness:2px}
   background:var(--ink);color:var(--bg);font-size:14px;line-height:1.45;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.25);
   display:none;animation:tipIn .15s ease both}
 .tip::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px} /* bridge so the pointer can move onto the note */
-.has-tip:hover .tip,.has-tip.open .tip,.chip-btn:focus-visible + .tip{display:block}
+.has-tip.open .tip,.chip-btn:focus-visible + .tip{display:block}
+@media (hover:hover) and (pointer:fine){.has-tip:hover .tip{display:block}} /* touch screens: tap to open */
 @keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .has-tip.hush .tip{display:none!important}
 @media (prefers-reduced-motion: reduce){.tip{animation:none}}
@@ -1511,6 +1515,10 @@ a.mail-addr:hover{text-decoration-thickness:2px}
 .tip-hint svg{flex:none}
 .tip-hint .h-touch{display:none}
 @media (hover:none),(pointer:coarse){.tip-hint .h-fine{display:none}.tip-hint .h-touch{display:inline}}
+
+/* one chip for the three AI tools, with small dividers */
+.ai-chip{display:inline-flex;align-items:center;gap:9px}
+.ai-chip i{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.55}
 
 </style>
 </head>
@@ -1565,8 +1573,8 @@ a.mail-addr:hover{text-decoration-thickness:2px}
   </svg></div>
 <div class="bp-sky" aria-hidden="true">
   <span class="bp-wisp bp-w1"></span><span class="bp-wisp bp-w2"></span><span class="bp-wisp bp-w3"></span>
-  <p class="bp-cloud bp-c1"><span class="w" style="--i:0">Hey!</span> <span class="w" style="--i:1">Welcome</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">my</span> <span class="w" style="--i:4">portfolio.</span></p>
-  <p class="bp-cloud bp-c2"><span class="w" style="--i:0">I'm</span> <span class="bp-mark bp-mark-name"><span class="w" style="--i:1">Sai</span> <span class="w" style="--i:2">Rohit</span> <span class="w" style="--i:3">Villuri,</span></span> <span class="w" style="--i:4">a</span> <span class="bp-mark bp-mark-role"><span class="w" style="--i:5">UI/UX</span> <span class="w" style="--i:6">Designer</span></span> <span class="w" style="--i:7">who</span> <span class="w" style="--i:8">loves</span> <span class="w" style="--i:9">to</span> <span class="w" style="--i:10">create</span> <span class="w" style="--i:11">intuitive</span> <span class="w" style="--i:12">experiences.</span></p>
+  <div class="bp-puff"><p class="bp-cloud bp-c1"><span class="w" style="--i:0">Hey!</span> <span class="w" style="--i:1">Welcome</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">my</span> <span class="w" style="--i:4">portfolio.</span></p></div>
+  <div class="bp-puff"><p class="bp-cloud bp-c2"><span class="w" style="--i:0">I'm</span> <span class="bp-mark bp-mark-name"><span class="w" style="--i:1">Sai</span> <span class="w" style="--i:2">Rohit</span> <span class="w" style="--i:3">Villuri,</span></span> <span class="w" style="--i:4">a</span> <span class="bp-mark bp-mark-role"><span class="w" style="--i:5">UI/UX</span> <span class="w" style="--i:6">Designer</span></span> <span class="w" style="--i:7">who</span> <span class="w" style="--i:8">loves</span> <span class="w" style="--i:9">to</span> <span class="w" style="--i:10">create</span> <span class="w" style="--i:11">intuitive</span> <span class="w" style="--i:12">experiences.</span></p></div>
 </div>
 <p class="bp-hint" aria-hidden="true"><b class="bp-hint-t">Scroll to unpack</b> <span>↓</span></p>
 <a class="skip" href="#main" id="skipLink">Skip to main content</a>
@@ -1815,8 +1823,8 @@ a.mail-addr:hover{text-decoration-thickness:2px}
           </div>
           <div class="skill-grp">
             <h4 id="h-sk5">Tools</h4>
-            <p class="tip-hint"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span><span class="h-fine">Hover over or focus</span><span class="h-touch">Tap</span> the dotted AI tools to see how I use them</span></p>
-            <ul class="tags" aria-labelledby="h-sk5"><li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai1">Claude</button><span class="tip" role="tooltip" id="tip-ai1">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai2">Gemini</button><span class="tip" role="tooltip" id="tip-ai2">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai3">ChatGPT</button><span class="tip" role="tooltip" id="tip-ai3">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li>Canva</li><li>Salesforce</li></ul>
+            <p class="tip-hint"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span><span class="h-fine">Hover over or focus</span><span class="h-touch">Tap</span> the AI tools to see how I use them</span></p>
+            <ul class="tags" aria-labelledby="h-sk5"><li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li class="has-tip"><button type="button" class="chip-btn ai-chip" aria-describedby="tip-ai"><span>Claude</span><i aria-hidden="true"></i><span>Gemini</span><i aria-hidden="true"></i><span>ChatGPT</span></button><span class="tip" role="tooltip" id="tip-ai">I use Claude, Gemini and ChatGPT for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li>Canva</li><li>Salesforce</li></ul>
           </div>
         </div>
       </div>
@@ -3319,33 +3327,47 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (function(){
   const items=[...document.querySelectorAll('.has-tip')]; if(!items.length) return;
   // the note is placed inside its list, above the chip, so it never runs off the screen or widens the page
-  const fit=li=>{ const ul=li.parentElement, b=li.querySelector('.chip-btn'), t=li.querySelector('.tip');
+  const fit=li=>{ const ul=li.parentElement, b=li.querySelector('.chip-btn'), t=li.querySelector('.tip'); const was=t.style.display; t.style.visibility='hidden'; t.style.display='block';
     t.style.maxWidth=Math.min(260,ul.clientWidth)+'px';
     const L=Math.max(0,Math.min(b.offsetLeft, ul.clientWidth-t.offsetWidth));
-    t.style.left=L+'px'; t.style.top=(b.offsetTop-t.offsetHeight-10)+'px' };
+    t.style.left=L+'px'; t.style.top=(b.offsetTop-t.offsetHeight-10)+'px'; t.style.display=was; t.style.visibility='' };
   items.forEach(li=>{
     const b=li.querySelector('.chip-btn');
     const solo=()=>items.forEach(x=>{ if(x!==li){ x.classList.add('hush'); x.classList.remove('open') } });
-    li.addEventListener('mouseenter',()=>{ solo(); li.classList.remove('hush'); requestAnimationFrame(()=>fit(li)) });
+    li.addEventListener('mouseenter',()=>{ solo(); li.classList.remove('hush'); fit(li) });
     li.addEventListener('mouseleave',()=>{ li.classList.remove('hush'); items.forEach(x=>{ if(x!==li&&!x.contains(document.activeElement)) x.classList.remove('hush') }) });
-    b.addEventListener('focus',()=>{ solo(); li.classList.remove('hush'); requestAnimationFrame(()=>fit(li)) });
+    b.addEventListener('focus',()=>{ solo(); li.classList.remove('hush'); fit(li) });
     b.addEventListener('blur',()=>{ li.classList.remove('open'); items.forEach(x=>x.classList.remove('hush')) });
-    b.addEventListener('click',()=>{ const o=!li.classList.contains('open'); items.forEach(x=>x.classList.remove('open')); li.classList.toggle('open',o); li.classList.remove('hush'); if(o){ solo(); requestAnimationFrame(()=>fit(li)) } });
+    b.addEventListener('click',()=>{ const o=!li.classList.contains('open'); items.forEach(x=>x.classList.remove('open')); li.classList.toggle('open',o); li.classList.remove('hush'); if(o){ solo(); fit(li) } });
   });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') items.forEach(li=>{ if(li.matches(':hover')||li.contains(document.activeElement)||li.classList.contains('open')){ li.classList.add('hush'); li.classList.remove('open') } }) });
   document.addEventListener('click',e=>{ if(!e.target.closest('.has-tip')) items.forEach(li=>li.classList.remove('open')) });
 })();
 
-/* Splash clouds are playful: a tap or click makes a cloud puff up and spring back (it does not open the site) */
+/* Splash clouds are playful: a tap or click makes a cloud puff up softly and settle back (it does not open the site).
+   Works with finger, mouse and pen: it reacts when the finger lifts without having moved, so a swipe still unpacks. */
 (function(){
   const rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
-  document.querySelectorAll('.bp-cloud').forEach(c=>c.addEventListener('click',()=>{
-    if(rm&&rm.matches||!c.animate) return;
-    // soft puff: a gentle swell and one small settle; a second tap starts from wherever the cloud is, so it never jumps
-    const from=parseFloat(getComputedStyle(c).scale)||1;
-    (c._puff&&c._puff.cancel());
-    c._puff=c.animate([{scale:from},{scale:1.06,offset:.38},{scale:.995,offset:.72},{scale:1}],{duration:1150,easing:'cubic-bezier(.37,0,.25,1)'});
-  }));
+  document.querySelectorAll('.bp-puff').forEach(w=>{
+    let sx=0, sy=0, down=false, last=0;
+    const puff=()=>{ const now=Date.now(); if(now-last<250) return; last=now; if(rm&&rm.matches) return;
+      if(w.animate){ const m=getComputedStyle(w).transform, from=(m&&m!=='none')?m:'scale(1)';
+        if(w._a) w._a.cancel();
+        w._a=w.animate([{transform:from},{transform:'scale(1.06)',offset:.38},{transform:'scale(.995)',offset:.72},{transform:'scale(1)'}],{duration:1150,easing:'cubic-bezier(.37,0,.25,1)'});
+      } else { w.classList.remove('puffing'); void w.offsetWidth; w.classList.add('puffing') } };
+    const start=(x,y)=>{ down=true; sx=x; sy=y };
+    const end=(x,y)=>{ if(down&&Math.hypot(x-sx,y-sy)<12) puff(); down=false };
+    if(window.PointerEvent){
+      w.addEventListener('pointerdown',e=>start(e.clientX,e.clientY));
+      w.addEventListener('pointerup',e=>end(e.clientX,e.clientY));
+      w.addEventListener('pointercancel',()=>{ down=false });
+    } else {
+      w.addEventListener('touchstart',e=>{ const t=e.changedTouches[0]; start(t.clientX,t.clientY) },{passive:true});
+      w.addEventListener('touchend',e=>{ const t=e.changedTouches[0]; end(t.clientX,t.clientY) },{passive:true});
+      w.addEventListener('mousedown',e=>start(e.clientX,e.clientY));
+      w.addEventListener('mouseup',e=>end(e.clientX,e.clientY));
+    }
+  });
 })();
 </script>
 
