@@ -3341,7 +3341,10 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   const rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('.bp-cloud').forEach(c=>c.addEventListener('click',()=>{
     if(rm&&rm.matches||!c.animate) return;
-    c.animate([{scale:1},{scale:1.13,offset:.3},{scale:.96,offset:.55},{scale:1.03,offset:.75},{scale:1}],{duration:760,easing:'cubic-bezier(.3,.7,.3,1)'});
+    // soft puff: a gentle swell and one small settle; a second tap starts from wherever the cloud is, so it never jumps
+    const from=parseFloat(getComputedStyle(c).scale)||1;
+    (c._puff&&c._puff.cancel());
+    c._puff=c.animate([{scale:from},{scale:1.06,offset:.38},{scale:.995,offset:.72},{scale:1}],{duration:1150,easing:'cubic-bezier(.37,0,.25,1)'});
   }));
 })();
 </script>
