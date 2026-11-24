@@ -1378,15 +1378,15 @@ html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action
   html.bp-reveal header.top .bar > *{animation:bpRise .5s cubic-bezier(.2,.8,.2,1) both}
 }
 @keyframes bpRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-html.bp-on body{overflow:clip;overflow-clip-margin:0;background:#04070E}
-html.bp-on{background:#04070E}
+html.bp-on body{overflow:clip;overflow-clip-margin:0;background:#070b14}
+html.bp-on{background:#070b14}
 .bp-back{position:fixed;left:0;top:0;z-index:1;pointer-events:none;transform-origin:50% 100%}
 html.bp-on main,html.bp-on footer{position:relative;z-index:2}
 .bp-back svg{display:block;width:100%;height:100%}
 .bp-front{position:fixed;left:0;top:0;z-index:95;pointer-events:none;filter:drop-shadow(0 -10px 30px rgba(0,0,0,.35))}
 /* the splash screen shows nothing of the page underneath: a separate solid "floor" layer (not a child of the
    shadowed bag, which Safari clips) fills everything below the bag, including behind a phone's browser toolbar */
-.bp-floor{display:none;position:fixed;left:0;right:0;top:0;height:300vh;z-index:94;pointer-events:none;background:#04070E}
+.bp-floor{display:none;position:fixed;left:0;right:0;top:0;height:300vh;z-index:94;pointer-events:none;background:transparent} /* the website is already clipped at the bag; the sky shows through, so no seam */
 html.bp-on .bp-floor{display:block}
 @media print{.bp-floor{display:none!important}}
 @media (forced-colors: active){.bp-floor{display:none!important}}
@@ -1394,7 +1394,7 @@ html.bp-on .bp-floor{display:block}
 .bp-pull{transform-box:view-box}
 .bp-hint b{font:inherit}
 .bp-hint{position:fixed;left:50%;bottom:max(24px, env(safe-area-inset-bottom, 0px));z-index:96;translate:-50% 0;margin:0;padding:8px 16px;border-radius:999px;
-  background:rgba(4,7,14,.72);color:#fff;font:600 14px/1.2 Inter,system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;white-space:nowrap}
+  background:rgba(4,12,28,.82);box-shadow:0 0 0 1px rgba(255,255,255,.14);color:#fff;font:600 14px/1.2 Inter,system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;white-space:nowrap}
 @media (prefers-reduced-motion: no-preference){
   html.bp-on .bp-lid{animation:bpUnzip .8s cubic-bezier(.45,0,.3,1) .25s both}
   html.bp-on .bp-pull{animation:bpPull .8s cubic-bezier(.45,0,.3,1) .25s both}
@@ -1524,6 +1524,27 @@ a.mail-addr:hover{text-decoration-thickness:2px}
 .sticker.portrait{aspect-ratio:1/1;border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px var(--line),0 14px 34px rgba(4,7,14,.16)}
 .sticker.portrait img{width:100%;height:100%;object-fit:cover}
 
+/* splash sky in the site's own Night City palette: navy base from the site's --surface/--bg tokens, glows in the
+   site accent blue, Skylift teal and FamGram cobalt, and a faint amber horizon from the project colours (no pinks or purples).
+   It ends in the site background colour, so the page underneath continues it with no seam. Clouds keep dark text on white. */
+.bp-bgfx{display:none;position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(70% 45% at 10% 6%, rgba(17,124,161,.55), rgba(17,124,161,0) 70%),
+    radial-gradient(60% 42% at 94% 20%, rgba(2,70,173,.65), rgba(2,70,173,0) 72%),
+    radial-gradient(55% 34% at 50% 50%, rgba(141,180,255,.22), rgba(141,180,255,0) 72%),
+    radial-gradient(85% 26% at 50% 102%, rgba(247,132,30,.22), rgba(247,132,30,0) 70%),
+    linear-gradient(180deg,#0e1524 0%,#0c1830 38%,#0a1222 72%,#070b14 100%)}
+html.bp-on .bp-bgfx{display:block}
+@media print{.bp-bgfx{display:none!important}}
+@media (forced-colors: active){.bp-bgfx{display:none!important}}
+
+/* dark mode: the portrait sits softly in the navy page, with an accent-blue edge and a teal glow from the splash sky */
+:root:not([data-theme="light"]) .sticker.portrait{box-shadow:0 0 0 1px rgba(141,180,255,.38),0 18px 46px rgba(0,0,0,.55),0 0 70px rgba(17,124,161,.28)}
+:root:not([data-theme="light"]) .sticker.portrait img{filter:brightness(.92) contrast(1.04)}
+
+/* phones and tablets: the portrait comes first in Personal Profile, so the face is seen before the details */
+@media (max-width:980px){.profile > .label{order:-2}.profile > .sticker.portrait{order:-1;margin-bottom:8px}}
+
 </style>
 </head>
 <body>
@@ -1539,6 +1560,7 @@ a.mail-addr:hover{text-decoration-thickness:2px}
     <path class="bp-lining" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="#071321"/>
     <path class="bp-lid" d="M64 220v-62c0-62 80-90 180-94 170-8 342-8 512 0 100 4 180 32 180 94v62z" fill="url(#bpBack)"/>
   </svg></div>
+<div class="bp-bgfx" aria-hidden="true"></div>
 <div class="bp-floor" aria-hidden="true"></div>
 <div class="bp-front" aria-hidden="true"><svg viewBox="0 0 1000 760" focusable="false">
     <defs>
@@ -3225,7 +3247,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
 (()=>{
   const H=document.documentElement; if(!H.classList.contains('bp-on')) return;
   H.classList.add('bp-js');
-  let floorY=99999; const floor=document.querySelector('.bp-floor'), front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
+  let floorY=99999; const bgfx=document.querySelector('.bp-bgfx'), floor=document.querySelector('.bp-floor'), front=document.querySelector('.bp-front'), back=document.querySelector('.bp-back'), hint=document.querySelector('.bp-hint'), sky=document.querySelector('.bp-sky');
   const parts=[document.querySelector('header.top'),document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
   const ease=t=>1-Math.pow(1-t,3);
   let W,Hh,s0,mouth,bw,bx,D,offs,rise=0,riseStart=null,done=false,force=null,raf=0;
@@ -3261,7 +3283,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // the website is clipped at the bag's bottom edge, so nothing of it is drawn below the bag (Safari shows the area
     // behind its toolbar, where a fixed cover does not reach); the clip line moves down with the bag
     document.body.style.height=Math.round(floorY+drop)+'px';
-    front.style.opacity=back.style.opacity=floor.style.opacity=(1-fade).toFixed(3);
+    front.style.opacity=back.style.opacity=floor.style.opacity=(1-fade).toFixed(3); if(bgfx) bgfx.style.opacity=(1-fade).toFixed(3);
     sky.style.opacity=Math.max(0,1-t*4).toFixed(3); sky.style.transform='translate3d(0,'+(-t*80).toFixed(2)+'px,0)';
     hint.style.opacity=Math.max(0,1-t*4).toFixed(3);
   }
@@ -3272,7 +3294,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // the Home page then settles in: headline, intro, image and Resume button rise in one after another (under 1s)
     H.classList.add('bp-reveal'); setTimeout(()=>H.classList.remove('bp-reveal'),1300);
     window.scrollTo({top:0,left:0,behavior:'instant'});
-    [front,back,hint,sky,floor].forEach(el=>el.remove()); document.body.style.height='';
+    [front,back,hint,sky,floor,bgfx].forEach(el=>el&&el.remove()); document.body.style.height='';
     guard=performance.now()+260; guardCap=performance.now()+1200;
     dispatchEvent(new Event('resize')); dispatchEvent(new Event('bp-done'));
   }
