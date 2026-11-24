@@ -1418,10 +1418,37 @@ html.bp-on .bp-floor{display:block}
 }
 /* realistic cumulus: overlapping puffs, soft edges, sunlit tops and cool undersides (the text sits on the brightest middle) */
 @media (prefers-reduced-motion: no-preference){
-  html.bp-on .bp-c1{animation:bpCloud 1.1s cubic-bezier(.2,.8,.2,1) .2s both}
-  html.bp-on .bp-c2{animation:bpCloud 1.1s cubic-bezier(.2,.8,.2,1) .6s both}
+  /* clouds float in from opposite sides, the words appear one by one, name and role get a highlighter swipe,
+     then each cloud bobs twice and settles. Everything has stopped by 4.8s (WCAG 2.2.2). */
+  html.bp-on .bp-c1{animation:bpIn1 1.25s cubic-bezier(.16,.84,.24,1) .15s both, bpBob 1.5s ease-in-out 1.6s 2 both}
+  html.bp-on .bp-c2{animation:bpIn2 1.25s cubic-bezier(.16,.84,.24,1) .5s both, bpBob 1.5s ease-in-out 1.8s 2 both}
+  html.bp-on .bp-cloud .w{display:inline-block;animation:bpWord .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d) + var(--i) * 65ms)}
+  html.bp-on .bp-c1{--d:.55s}
+  html.bp-on .bp-c2{--d:.95s}
+  html.bp-on .bp-mark{animation:bpMark .7s cubic-bezier(.4,0,.2,1) both}
+  html.bp-on .bp-mark-name{animation-delay:2.2s}
+  html.bp-on .bp-mark-role{animation-delay:2.6s}
+  html.bp-on .bp-wisp{animation:bpWisp 4.6s cubic-bezier(.3,.1,.3,1) .1s both}
+  html.bp-on .bp-w2{animation-delay:.3s}
+  html.bp-on .bp-w3{animation-delay:.5s}
 }
-@keyframes bpCloud{from{opacity:0;transform:translate(-26px,10px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes bpIn1{from{opacity:0;transform:translate(-14vw,14px) scale(.9)}60%{opacity:1}to{opacity:1;transform:none}}
+@keyframes bpIn2{from{opacity:0;transform:translate(14vw,18px) scale(.9)}60%{opacity:1}to{opacity:1;transform:none}}
+@keyframes bpBob{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes bpWord{from{opacity:0;transform:translateY(.45em) scale(.96)}to{opacity:1;transform:none}}
+@keyframes bpMark{from{background-size:0% 38%}to{background-size:100% 38%}}
+@keyframes bpWisp{from{opacity:0;transform:translateX(-40px)}25%{opacity:1}to{opacity:1;transform:translateX(40px)}}
+/* refined greeting type: tighter display face, highlighter marks in the project colours (dark text stays 12:1+) */
+.bp-cloud{font-family:var(--display);letter-spacing:-.015em}
+.bp-c1{font-size:clamp(20px, 1.15rem + .8vw, 30px);font-weight:800}
+.bp-mark{background-repeat:no-repeat;background-position:0 88%;background-size:100% 38%;border-radius:3px;padding:0 .08em;font-weight:700}
+.bp-mark-name{background-image:linear-gradient(#FFD66B,#FFD66B)}
+.bp-mark-role{background-image:linear-gradient(#B9F2D8,#B9F2D8)}
+/* faint background clouds that drift once behind the greeting */
+.bp-wisp{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.13),rgba(255,255,255,0));opacity:0}
+.bp-w1{width:42vw;height:13vh;left:-6vw;top:-2vh}
+.bp-w2{width:34vw;height:11vh;right:-4vw;top:22vh}
+.bp-w3{width:28vw;height:9vh;left:30vw;top:46vh}
 @media print{.bp-sky{display:none!important}}
 
 /* recruiter additions: experience line on Home, work experience + skills on About, clickable email */
@@ -1495,8 +1522,9 @@ a.mail-addr:hover{text-decoration-thickness:2px}
     <g class="bp-pull"><rect x="66" y="-6" width="34" height="36" rx="8" fill="#D98439"/><rect x="74" y="28" width="18" height="44" rx="8" fill="#FFC21A"/><circle cx="83" cy="60" r="5" fill="#0B2A55"/></g>
   </svg></div>
 <div class="bp-sky" aria-hidden="true">
-  <p class="bp-cloud bp-c1">Hey! Welcome to my portfolio.</p>
-  <p class="bp-cloud bp-c2">I'm Sai Rohit Villuri, a UI/UX Designer who loves to create intuitive experiences.</p>
+  <span class="bp-wisp bp-w1"></span><span class="bp-wisp bp-w2"></span><span class="bp-wisp bp-w3"></span>
+  <p class="bp-cloud bp-c1"><span class="w" style="--i:0">Hey!</span> <span class="w" style="--i:1">Welcome</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">my</span> <span class="w" style="--i:4">portfolio.</span></p>
+  <p class="bp-cloud bp-c2"><span class="w" style="--i:0">I'm</span> <span class="bp-mark bp-mark-name"><span class="w" style="--i:1">Sai</span> <span class="w" style="--i:2">Rohit</span> <span class="w" style="--i:3">Villuri,</span></span> <span class="w" style="--i:4">a</span> <span class="bp-mark bp-mark-role"><span class="w" style="--i:5">UI/UX</span> <span class="w" style="--i:6">Designer</span></span> <span class="w" style="--i:7">who</span> <span class="w" style="--i:8">loves</span> <span class="w" style="--i:9">to</span> <span class="w" style="--i:10">create</span> <span class="w" style="--i:11">intuitive</span> <span class="w" style="--i:12">experiences.</span></p>
 </div>
 <p class="bp-hint" aria-hidden="true"><b class="bp-hint-t">Scroll to unpack</b> <span>↓</span></p>
 <a class="skip" href="#main" id="skipLink">Skip to main content</a>
