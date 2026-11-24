@@ -1427,9 +1427,9 @@ html.bp-on .bp-floor{display:block}
   html.bp-on .bp-c1{--d:.55s}
   html.bp-on .bp-c2{--d:.95s}
   /* the highlighter swipes in, then name and role gently pop in turn on a slow loop (scrolling or any key hides the splash; off with reduce motion) */
-  html.bp-on .bp-mark{display:inline-block;animation:bpMark .7s cubic-bezier(.4,0,.2,1) both, bpPop 3.6s ease-in-out infinite}
-  html.bp-on .bp-mark-name{animation-delay:2.2s, 3.2s}
-  html.bp-on .bp-mark-role{animation-delay:2.6s, 5s}
+  html.bp-on .bp-mark{display:inline-block;animation:bpMark .7s cubic-bezier(.4,0,.2,1) both}
+  html.bp-on .bp-mark-name{animation-delay:2.2s}
+  html.bp-on .bp-mark-role{animation-delay:2.6s}
   html.bp-on .bp-puff{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;will-change:transform}
 .bp-puff{display:block;max-width:100%}
 @keyframes bpPuff{0%{transform:scale(1)}38%{transform:scale(1.06)}72%{transform:scale(.995)}100%{transform:scale(1)}}
@@ -1832,7 +1832,7 @@ html.bp-on .bp-bgfx{display:block}
       <div>
         <h2 id="h-exp">Work Experience</h2>
         <ol class="timeline exp-tl">
-          <li><span class="yr">Jun 2026</span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
+          <li><span class="yr"><span>Jun 2026 –</span> <span>Present</span></span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
           <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
           <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
         </ol>
@@ -3267,7 +3267,8 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     // show the whole front of the bag (pocket, SV badge, star and dot) above the bottom of the screen:
     // the lid needs bw*.22 above the mouth, the decorated front bw*.66 below it
     // phones: keep the bag's decorations above the browser's bottom toolbar (Safari draws it over the page)
-    let foot=10; try{ if(matchMedia('(pointer: coarse)').matches) foot=Math.max(foot, 84) }catch(e){}
+    // tablets (iPad Safari, desktop mode included) keep their toolbar at the top, so they only need a small margin
+    let foot=10; try{ if(matchMedia('(pointer: coarse)').matches) foot=Math.max(foot, Math.min(W,Hh)<600?84:22) }catch(e){}
     bw=Math.max(150,Math.min(bw,(Hh-8-foot-skyB-hh)/.95));
     mouth=Math.round(Math.max(skyB+hh+bw*.29+10, Hh-foot-bw*.66));
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
