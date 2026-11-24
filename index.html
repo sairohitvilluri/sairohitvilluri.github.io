@@ -1435,6 +1435,14 @@ a.mail-addr{color:inherit;text-decoration:underline;text-decoration-thickness:1p
 a.mail-addr:hover{text-decoration-thickness:2px}
 .foot-mail a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;display:inline-block;padding-block:4px}
 
+/* About on phones: date ranges on one line, profile facts stacked full width */
+.timeline .yr > span{display:block}
+@media (max-width:700px){.timeline .yr > span{display:inline}.timeline .yr{white-space:nowrap}}
+@media (max-width:560px){
+  .pfacts{grid-template-columns:1fr!important}
+  .pfacts > div:nth-child(even){padding-left:0!important;border-left:0!important}
+}
+
 </style>
 </head>
 <body>
@@ -1714,12 +1722,12 @@ a.mail-addr:hover{text-decoration-thickness:2px}
         <h2 id="h-exp">Work Experience</h2>
         <ol class="timeline">
           <li><span class="yr">Jun 2026</span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
-          <li><span class="yr">Aug 2024 –<br>May 2026</span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
-          <li><span class="yr">Jan 2023 –<br>Jul 2024</span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
+          <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
+          <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
         </ol>
         <h3 class="skills-h" id="h-skills">Skills &amp; tools</h3>
         <ul class="tags skills" aria-labelledby="h-skills">
-          <li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Accessibility (WCAG AA)</li><li>Developer handoff</li>
+          <li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Accessibility (WCAG AA)</li><li>Developer handoff</li><li>Leadership</li><li>Strategic thinking</li>
           <li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li>Canva</li><li>Google Docs</li><li>Microsoft Office</li><li>Salesforce</li><li>Project management</li>
         </ul>
       </div>
