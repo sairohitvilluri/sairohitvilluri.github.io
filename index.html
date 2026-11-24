@@ -1426,9 +1426,11 @@ html.bp-on .bp-floor{display:block}
   html.bp-on .bp-cloud .w{display:inline-block;animation:bpWord .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d) + var(--i) * 65ms)}
   html.bp-on .bp-c1{--d:.55s}
   html.bp-on .bp-c2{--d:.95s}
-  html.bp-on .bp-mark{animation:bpMark .7s cubic-bezier(.4,0,.2,1) both}
-  html.bp-on .bp-mark-name{animation-delay:2.2s}
-  html.bp-on .bp-mark-role{animation-delay:2.6s}
+  /* the highlighter swipes in, then name and role gently pop in turn on a slow loop (scrolling or any key hides the splash; off with reduce motion) */
+  html.bp-on .bp-mark{display:inline-block;animation:bpMark .7s cubic-bezier(.4,0,.2,1) both, bpPop 3.6s ease-in-out infinite}
+  html.bp-on .bp-mark-name{animation-delay:2.2s, 3.2s}
+  html.bp-on .bp-mark-role{animation-delay:2.6s, 5s}
+  html.bp-on .bp-cloud{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
   html.bp-on .bp-wisp{animation:bpWisp 4.6s cubic-bezier(.3,.1,.3,1) .1s both}
   html.bp-on .bp-w2{animation-delay:.3s}
   html.bp-on .bp-w3{animation-delay:.5s}
@@ -1436,6 +1438,7 @@ html.bp-on .bp-floor{display:block}
 @keyframes bpIn1{from{opacity:0;transform:translate(-14vw,14px) scale(.9)}60%{opacity:1}to{opacity:1;transform:none}}
 @keyframes bpIn2{from{opacity:0;transform:translate(14vw,18px) scale(.9)}60%{opacity:1}to{opacity:1;transform:none}}
 @keyframes bpBob{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes bpPop{0%,62%,100%{transform:none;background-size:100% 38%}31%{transform:translateY(-2px) scale(1.06);background-size:100% 60%}}
 @keyframes bpWord{from{opacity:0;transform:translateY(.45em) scale(.96)}to{opacity:1;transform:none}}
 @keyframes bpMark{from{background-size:0% 38%}to{background-size:100% 38%}}
 @keyframes bpWisp{from{opacity:0;transform:translateX(-40px)}25%{opacity:1}to{opacity:1;transform:translateX(40px)}}
@@ -1479,6 +1482,35 @@ a.mail-addr:hover{text-decoration-thickness:2px}
   .exp-tl .org::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;align-self:center;opacity:.7}
   .exp-tl p{grid-column:2;max-width:68ch}
 }
+
+/* skills grouped by kind: two columns on laptops, one on phones */
+.skill-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
+.skill-grp{min-width:0}
+.skill-grp h4{margin:0 0 10px;font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.skill-grp:last-child:nth-child(odd){grid-column:1 / -1}
+@media (max-width:640px){.skill-groups{grid-template-columns:1fr;gap:20px}}
+
+/* AI tools: a note on hover, keyboard focus or tap (WCAG 1.4.13: hoverable, stays until moved away, Esc dismisses) */
+.tags li.has-tip{position:static;padding:0;border:0;background:none}
+.skill-grp .tags{position:relative}
+.chip-btn{font:inherit;font-size:var(--fs-small);line-height:1.4;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:help;
+  text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:4px;min-height:32px}
+.chip-btn:hover{border-color:var(--accent)}
+.chip-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tip{position:absolute;left:0;top:0;z-index:20;width:max-content;max-width:min(260px, 78vw);padding:10px 14px;border-radius:12px;
+  background:var(--ink);color:var(--bg);font-size:14px;line-height:1.45;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  display:none;animation:tipIn .15s ease both}
+.tip::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px} /* bridge so the pointer can move onto the note */
+.has-tip:hover .tip,.has-tip.open .tip,.chip-btn:focus-visible + .tip{display:block}
+@keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.has-tip.hush .tip{display:none!important}
+@media (prefers-reduced-motion: reduce){.tip{animation:none}}
+
+/* hint for the AI tools: wording matches the device (mouse vs touch) */
+.tip-hint{display:flex;align-items:center;gap:7px;margin:-4px 0 10px;font-size:14px;line-height:1.4;color:var(--muted)}
+.tip-hint svg{flex:none}
+.tip-hint .h-touch{display:none}
+@media (hover:none),(pointer:coarse){.tip-hint .h-fine{display:none}.tip-hint .h-touch{display:inline}}
 
 </style>
 </head>
@@ -1764,10 +1796,29 @@ a.mail-addr:hover{text-decoration-thickness:2px}
           <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
         </ol>
         <h3 class="skills-h" id="h-skills">Skills &amp; tools</h3>
-        <ul class="tags skills" aria-labelledby="h-skills">
-          <li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Accessibility (WCAG AA)</li><li>Developer handoff</li><li>Leadership</li><li>Strategic thinking</li>
-          <li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li>Canva</li><li>Google Docs</li><li>Microsoft Office</li><li>Salesforce</li><li>Project management</li>
-        </ul>
+        <div class="skill-groups">
+          <div class="skill-grp">
+            <h4 id="h-sk1">UI/UX skills</h4>
+            <ul class="tags" aria-labelledby="h-sk1"><li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Developer handoff</li></ul>
+          </div>
+          <div class="skill-grp">
+            <h4 id="h-sk2">Analytical skills</h4>
+            <ul class="tags" aria-labelledby="h-sk2"><li>Strategic thinking</li><li>Accessibility auditing (WCAG AA)</li></ul>
+          </div>
+          <div class="skill-grp">
+            <h4 id="h-sk3">Leadership skills</h4>
+            <ul class="tags" aria-labelledby="h-sk3"><li>Leadership</li><li>Project management</li></ul>
+          </div>
+          <div class="skill-grp">
+            <h4 id="h-sk4">General skills</h4>
+            <ul class="tags" aria-labelledby="h-sk4"><li>Sales and marketing</li><li>Microsoft Office</li><li>Google Docs</li></ul>
+          </div>
+          <div class="skill-grp">
+            <h4 id="h-sk5">Tools</h4>
+            <p class="tip-hint"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span><span class="h-fine">Hover over or focus</span><span class="h-touch">Tap</span> the dotted AI tools to see how I use them</span></p>
+            <ul class="tags" aria-labelledby="h-sk5"><li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai1">Claude</button><span class="tip" role="tooltip" id="tip-ai1">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai2">Gemini</button><span class="tip" role="tooltip" id="tip-ai2">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li class="has-tip"><button type="button" class="chip-btn" aria-describedby="tip-ai3">ChatGPT</button><span class="tip" role="tooltip" id="tip-ai3">Used for rapid prototyping and iteration, and for creating high-fidelity prototypes.</span></li><li>Canva</li><li>Salesforce</li></ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -3262,6 +3313,36 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   if(document.activeElement&&document.activeElement!==document.body&&document.activeElement!==document.documentElement) finishSoon();
   const rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null;
   if(rm&&rm.addEventListener) rm.addEventListener('change',()=>{ if(rm.matches) finish() });
+})();
+
+/* AI tool notes: tap toggles, Esc dismisses, and the note is kept inside the screen */
+(function(){
+  const items=[...document.querySelectorAll('.has-tip')]; if(!items.length) return;
+  // the note is placed inside its list, above the chip, so it never runs off the screen or widens the page
+  const fit=li=>{ const ul=li.parentElement, b=li.querySelector('.chip-btn'), t=li.querySelector('.tip');
+    t.style.maxWidth=Math.min(260,ul.clientWidth)+'px';
+    const L=Math.max(0,Math.min(b.offsetLeft, ul.clientWidth-t.offsetWidth));
+    t.style.left=L+'px'; t.style.top=(b.offsetTop-t.offsetHeight-10)+'px' };
+  items.forEach(li=>{
+    const b=li.querySelector('.chip-btn');
+    const solo=()=>items.forEach(x=>{ if(x!==li){ x.classList.add('hush'); x.classList.remove('open') } });
+    li.addEventListener('mouseenter',()=>{ solo(); li.classList.remove('hush'); requestAnimationFrame(()=>fit(li)) });
+    li.addEventListener('mouseleave',()=>{ li.classList.remove('hush'); items.forEach(x=>{ if(x!==li&&!x.contains(document.activeElement)) x.classList.remove('hush') }) });
+    b.addEventListener('focus',()=>{ solo(); li.classList.remove('hush'); requestAnimationFrame(()=>fit(li)) });
+    b.addEventListener('blur',()=>{ li.classList.remove('open'); items.forEach(x=>x.classList.remove('hush')) });
+    b.addEventListener('click',()=>{ const o=!li.classList.contains('open'); items.forEach(x=>x.classList.remove('open')); li.classList.toggle('open',o); li.classList.remove('hush'); if(o){ solo(); requestAnimationFrame(()=>fit(li)) } });
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') items.forEach(li=>{ if(li.matches(':hover')||li.contains(document.activeElement)||li.classList.contains('open')){ li.classList.add('hush'); li.classList.remove('open') } }) });
+  document.addEventListener('click',e=>{ if(!e.target.closest('.has-tip')) items.forEach(li=>li.classList.remove('open')) });
+})();
+
+/* Splash clouds are playful: a tap or click makes a cloud puff up and spring back (it does not open the site) */
+(function(){
+  const rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('.bp-cloud').forEach(c=>c.addEventListener('click',()=>{
+    if(rm&&rm.matches||!c.animate) return;
+    c.animate([{scale:1},{scale:1.13,offset:.3},{scale:.96,offset:.55},{scale:1.03,offset:.75},{scale:1}],{duration:760,easing:'cubic-bezier(.3,.7,.3,1)'});
+  }));
 })();
 </script>
 
