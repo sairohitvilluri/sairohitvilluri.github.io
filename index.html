@@ -6,7 +6,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Sai Rohit Villuri</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Sai Rohit Villuri, Innovative UI/UX Designer. User-centered client work including SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM, with Figma and Lovable prototypes, case studies and handover documents.">
+<meta name="description" content="Sai Rohit Villuri, Innovative UI/UX Designer. User-centered client work including SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM, with Figma and Lovable prototypes and case studies.">
 <meta name="author" content="Sai Rohit Villuri">
 <meta name="theme-color" content="#04070e">
 <script>/* Backpack opening: plays on every load; skipped for "reduce motion". Safety net: never leave the page hidden. */
@@ -1367,6 +1367,16 @@ html.bp-on .kite-sky,html.bp-on .kite-string{display:none!important}
    lags a frame behind the browser's scroll (that lag was the jitter). The gutter stays so nothing shifts when it ends. */
 html{scrollbar-gutter:stable}
 html.bp-on,html.bp-on body{overflow:hidden;overscroll-behavior:none;touch-action:none}
+/* reveal after unpacking: content rises in gently, one piece after another */
+@media (prefers-reduced-motion: no-preference){
+  html.bp-reveal [data-view="home"] .hero > h1,
+  html.bp-reveal [data-view="home"] .home-row > *{animation:bpRise .62s cubic-bezier(.2,.8,.2,1) both}
+  html.bp-reveal [data-view="home"] .home-row > :nth-child(1){animation-delay:.08s}
+  html.bp-reveal [data-view="home"] .home-row > :nth-child(2){animation-delay:.16s}
+  html.bp-reveal [data-view="home"] .home-row > :nth-child(3){animation-delay:.24s}
+  html.bp-reveal header.top .bar > *{animation:bpRise .5s cubic-bezier(.2,.8,.2,1) both}
+}
+@keyframes bpRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 html.bp-on body{overflow:clip;overflow-clip-margin:0;background:#04070E}
 html.bp-on{background:#04070E}
 .bp-back{position:fixed;left:0;top:0;z-index:1;pointer-events:none;transform-origin:50% 100%}
@@ -1413,6 +1423,17 @@ html.bp-on .bp-floor{display:block}
 }
 @keyframes bpCloud{from{opacity:0;transform:translate(-26px,10px) scale(.97)}to{opacity:1;transform:none}}
 @media print{.bp-sky{display:none!important}}
+
+/* recruiter additions: experience line on Home, work experience + skills on About, clickable email */
+.hero .hero-exp{margin:16px 0 0;font-size:var(--fs-small);line-height:1.55}
+.hero-exp a{color:var(--band-accent);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.hero-exp a:hover{text-decoration-thickness:2px}
+.hero-exp a:focus-visible,a.mail-addr:focus-visible,.foot-mail a:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:3px}
+.timeline .org{display:block;margin-top:4px;font-family:var(--body);font-size:var(--fs-small);font-weight:500;letter-spacing:0;color:var(--muted)}
+.skills-h{margin:clamp(26px, 1.4rem + 1vw, 38px) 0 12px;font-size:var(--fs-label);font-family:var(--mono);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+a.mail-addr{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;display:inline-block}
+a.mail-addr:hover{text-decoration-thickness:2px}
+.foot-mail a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;display:inline-block;padding-block:4px}
 
 </style>
 </head>
@@ -1522,6 +1543,7 @@ html.bp-on .bp-floor{display:block}
       <div class="hero-row home-row">
         <div>
           <p>I design user-centered websites and mobile apps that turn complex needs into simple, intuitive experiences, backed by a Human-Computer Interaction background from UT Dallas.</p>
+          <p class="hero-exp">3+ years of product design at TechGlobe Inc., for clients including JCPenney and CBRE. <a href="#about">See my experience</a></p>
         </div>
         <div aria-hidden="true" data-alt="SV monogram logo with the name Sai Villuri" class="ph hero-img" data-src="images/hero-sm" data-w="1480" data-md="images/hero-md.webp" data-mdw="2064" data-ext="webp" data-hd="images/hero.png"></div>
         <div class="hero-actions"><a class="btn btn-resume" href="Sai-Rohit-Villuri-Resume.pdf?v=2026-11-22b" target="_blank" rel="noopener">View Resume<span class="sr-only"> (PDF, opens in a new tab)</span><span class="btn-badge" aria-hidden="true"><svg class="btn-ico" viewBox="0 0 24 24" focusable="false"><path d="M14 2.75H7.25a2 2 0 0 0-2 2v14.5a2 2 0 0 0 2 2h9.5a2 2 0 0 0 2-2V7.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M14 2.75V7.5h4.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="10.6" r="2.05" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.6 16.1c.6-1.6 1.9-2.5 3.4-2.5s2.8.9 3.4 2.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9 18.75h6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span></a></div>
@@ -1534,22 +1556,6 @@ html.bp-on .bp-floor{display:block}
       <h2 id="h-trusted" class="trusted-title">TRUSTED BY PEOPLE</h2>
       <p class="trusted-sub">My Work</p>
       <p class="body trusted-body">I have had the privilege of working with various clients, transforming their visions into user-friendly solutions that not only attract but retain customers. Explore some of the work I have done along my UI/UX journey.</p>
-    </div>
-  </section>
-  <section class="sec" aria-labelledby="h-self">
-    <div class="wrap sec-grid">
-      <span class="label">Self-initiated</span>
-      <div>
-        <h2 id="h-self">Designs for self</h2>
-        <p class="body">A collection of creative explorations and independent design experiments that allow me to step outside traditional project constraints. Through these conceptual pieces, I constantly push my creative boundaries and experiment with new interaction patterns.</p>
-        <div class="carousel" role="region" aria-label="Designs for self gallery">
-          <ul class="track" aria-label="Designs for self images">
-            <li><figure class="slide"><div aria-hidden="true" data-alt="T-shirt design: glowing green interlocking A and S monogram with the words Since 2020, on deep navy" class="ph" data-src="images/tshirt-design-sm" data-w="590" data-md="images/tshirt-design-md.webp" data-mdw="876" data-ext="webp" data-hd="images/tshirt-design.jpg" data-bg="#00004d"></div><figcaption>T-shirt design</figcaption></figure></li>
-            <li><figure class="slide"><div aria-hidden="true" data-alt="Dating app logo: METEOR wordmark with EST. MMXXIII, plus App Store and Android badges, on black" class="ph" data-src="images/dating-app-logo-sm" data-w="590" data-md="images/dating-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/dating-app-logo-hd.webp" data-fit="contain" data-bg="#000000"></div><figcaption>Dating app logo</figcaption></figure></li>
-            <li><figure class="slide"><div aria-hidden="true" data-alt="Easy weigh app logo: the words Easy weigh in teal script with a stopwatch, inside a hand-drawn circle" class="ph" data-frame="mat" data-src="images/easy-weigh-app-logo-sm" data-w="500" data-md="images/easy-weigh-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/easy-weigh-app-logo-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Easy weigh app logo</figcaption></figure></li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
   <section class="sec" aria-labelledby="h-proj">
@@ -1570,7 +1576,7 @@ html.bp-on .bp-floor{display:block}
               <div aria-hidden="true" data-alt="SKYLIFT emergency help app poster: the SKY LIFT logo with a drone and a red cross, the tagline Emergency Help. Right When You Need It., icons for Request Emergency Help, Share Your Location and Get Fast Response, and a drone flying over a city at dusk" class="ph pcard-img" data-src="images/client-project-1-sm" data-w="524" data-md="images/client-project-1-md.webp" data-mdw="777" data-ext="webp" data-hd="images/client-project-1.jpg"></div>
               <span class="label">01 · Client</span>
               <span class="pcard-title">SKYLIFT</span>
-              <span class="pcard-sub">Emergency help app for a client</span>
+              <span class="pcard-sub">Emergency help app · WCAG AA iOS prototype</span>
               <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
             </a>
           </li>
@@ -1579,7 +1585,7 @@ html.bp-on .bp-floor{display:block}
               <div aria-hidden="true" data-alt="GENZ IN ACTION banner: a logo of a diverse group cheering under a globe with rising arrows, the GENZ IN ACTION wordmark and the tagline Meet, Learn, and Build Together for a Better Tomorrow, on a bright blue background" class="ph pcard-img" data-src="images/client-project-2-sm" data-w="524" data-md="images/client-project-2-md.webp" data-mdw="777" data-ext="webp" data-hd="images/client-project-2.jpg"></div>
               <span class="label">02 · Client</span>
               <span class="pcard-title">GENZ IN ACTION</span>
-              <span class="pcard-sub">Educational social media app for a client</span>
+              <span class="pcard-sub">Learning-first social app · phone, tablet &amp; desktop</span>
               <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
             </a>
           </li>
@@ -1588,7 +1594,7 @@ html.bp-on .bp-floor{display:block}
               <div aria-hidden="true" data-alt="ByteBalance banner: a violet asterisk logo, the ByteBalance wordmark with the line Your Wellness Compass, the tagline Track Nutrition. Achieve Goals. Live Healthier., and icons for Track Your Meals, Monitor Your Progress and Reach Your Health Goals, on a soft lavender background" class="ph pcard-img" data-src="images/client-project-3-sm" data-w="524" data-md="images/client-project-3-md.webp" data-mdw="777" data-ext="webp" data-hd="images/client-project-3.jpg"></div>
               <span class="label">03 · Client</span>
               <span class="pcard-title">BYTEBALANCE</span>
-              <span class="pcard-sub">Nutrition tracker app for a client</span>
+              <span class="pcard-sub">Nutrition tracker · working prototype with an AI assistant</span>
               <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
             </a>
           </li>
@@ -1597,7 +1603,7 @@ html.bp-on .bp-floor{display:block}
               <div aria-hidden="true" data-alt="MAKARANDAM honey website banner: a jar of honey with a wooden dipper, the Makarandam Pure as Honey logo, the headline Pure. Natural. Wholesome., badges for 100% Pure and Natural, No Added Sugar and Rich in Nutrition, and a Shop Now button" class="ph pcard-img" data-src="images/makarandam-cover-sm" data-w="524" data-md="images/makarandam-cover-md.webp" data-mdw="777" data-ext="webp" data-hd="images/makarandam-cover.jpg"></div>
               <span class="label">04 · Client</span>
               <span class="pcard-title">MAKARANDAM</span>
-              <span class="pcard-sub">Honey business website for a client</span>
+              <span class="pcard-sub">Honey e-commerce website · end-to-end design</span>
               <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
             </a>
           </li>
@@ -1606,11 +1612,27 @@ html.bp-on .bp-floor{display:block}
               <div aria-hidden="true" data-alt="FAMGRAM app banner: a family on a sofa looking at a phone beside a large phone showing the FAMGRAM Welcome back sign-in screen, the headline Meet. Connect. Chat. Share. Together., the line A secure space for your family to stay closer, always, and badges for Family First, Instant Messaging, Share Photos and Memories and End-to-End Secure" class="ph pcard-img" data-src="images/famgram-cover-sm" data-w="524" data-md="images/famgram-cover-md.webp" data-mdw="777" data-ext="webp" data-hd="images/famgram-cover.jpg"></div>
               <span class="label">05 · Client</span>
               <span class="pcard-title">FAMGRAM</span>
-              <span class="pcard-sub">Secure family cloud app for a client</span>
+              <span class="pcard-sub">Secure family cloud app · app and website prototypes</span>
               <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
             </a>
           </li>
         </ul>
+      </div>
+    </div>
+  </section>
+  <section class="sec" aria-labelledby="h-self">
+    <div class="wrap sec-grid">
+      <span class="label">Self-initiated</span>
+      <div>
+        <h2 id="h-self">Designs for self</h2>
+        <p class="body">A collection of creative explorations and independent design experiments that allow me to step outside traditional project constraints. Through these conceptual pieces, I constantly push my creative boundaries and experiment with new interaction patterns.</p>
+        <div class="carousel" role="region" aria-label="Designs for self gallery">
+          <ul class="track" aria-label="Designs for self images">
+            <li><figure class="slide"><div aria-hidden="true" data-alt="T-shirt design: glowing green interlocking A and S monogram with the words Since 2020, on deep navy" class="ph" data-src="images/tshirt-design-sm" data-w="590" data-md="images/tshirt-design-md.webp" data-mdw="876" data-ext="webp" data-hd="images/tshirt-design.jpg" data-bg="#00004d"></div><figcaption>T-shirt design</figcaption></figure></li>
+            <li><figure class="slide"><div aria-hidden="true" data-alt="Dating app logo: METEOR wordmark with EST. MMXXIII, plus App Store and Android badges, on black" class="ph" data-src="images/dating-app-logo-sm" data-w="590" data-md="images/dating-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/dating-app-logo-hd.webp" data-fit="contain" data-bg="#000000"></div><figcaption>Dating app logo</figcaption></figure></li>
+            <li><figure class="slide"><div aria-hidden="true" data-alt="Easy weigh app logo: the words Easy weigh in teal script with a stopwatch, inside a hand-drawn circle" class="ph" data-frame="mat" data-src="images/easy-weigh-app-logo-sm" data-w="500" data-md="images/easy-weigh-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/easy-weigh-app-logo-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Easy weigh app logo</figcaption></figure></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -1685,6 +1707,25 @@ html.bp-on .bp-floor{display:block}
     </div>
   </section>
 
+  <section class="sec" aria-labelledby="h-exp">
+    <div class="wrap sec-grid">
+      <span class="label">Experience</span>
+      <div>
+        <h2 id="h-exp">Work Experience</h2>
+        <ol class="timeline">
+          <li><span class="yr">Jun 2026</span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
+          <li><span class="yr">Aug 2024 –<br>May 2026</span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
+          <li><span class="yr">Jan 2023 –<br>Jul 2024</span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
+        </ol>
+        <h3 class="skills-h" id="h-skills">Skills &amp; tools</h3>
+        <ul class="tags skills" aria-labelledby="h-skills">
+          <li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Accessibility (WCAG AA)</li><li>Developer handoff</li>
+          <li>Figma</li><li>FigJam</li><li>Figma Make</li><li>Lovable</li><li>Canva</li><li>Google Docs</li><li>Microsoft Office</li><li>Salesforce</li><li>Project management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" aria-labelledby="h-profile">
     <div class="wrap profile">
       <h2 id="h-profile" class="label" style="margin:0;font-weight:400">Personal Profile</h2>
@@ -1725,8 +1766,8 @@ html.bp-on .bp-floor{display:block}
       <div>
         <h2 id="h-honors">Honor Societies</h2>
         <ol class="timeline honors-tl">
-          <li><span class="yr">2015</span><h3>Member of Phi Theta Kappa Honor Society</h3><p>Phi Theta Kappa (PTK) is the premier honor society for community college students with high GPAs, offering invitation-only membership that provides lifelong value through exclusive transfer scholarships, leadership programs, and professional networking.</p><figure class="slide cert"><div aria-hidden="true" data-alt="Phi Theta Kappa Honor Society certificate certifying that Sai Villuri has been inducted into Phi Theta Kappa, Alpha Zeta Eta Chapter, dated August 20, 2015, with the society's gold seal and the membership card beside it" class="ph" data-frame="mat" data-src="images/ptk-certificate-sm" data-w="1192" data-md="images/ptk-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/ptk-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>Phi Theta Kappa membership certificate</figcaption></figure></li>
-          <li><span class="yr">2026</span><h3>Member of The National Society of Leadership and Success</h3><p>The National Society of Leadership and Success (NSLS) is an invitation-only U.S. honor society requiring a strong GPA and leadership training induction. Members gain lifelong access to exclusive scholarships, a professional career network, resume credentials, and leadership development.</p><figure class="slide cert"><div aria-hidden="true" data-alt="The National Society of Leadership and Success certificate presented to Sai Rohit Villuri for completing the NSLS Foundations of Leadership training program, with membership in The University of Texas at Dallas Alumni chapter, effective July 12th, 2026" class="ph" data-frame="mat" data-src="images/nsls-certificate-sm" data-w="1040" data-md="images/nsls-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/nsls-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>NSLS membership certificate</figcaption></figure></li>
+          <li><span class="yr">2015</span><h3>Member of Phi Theta Kappa Honor Society</h3><p>The honor society for community college students, by invitation for high academic achievement.</p><figure class="slide cert"><div aria-hidden="true" data-alt="Phi Theta Kappa Honor Society certificate certifying that Sai Villuri has been inducted into Phi Theta Kappa, Alpha Zeta Eta Chapter, dated August 20, 2015, with the society's gold seal and the membership card beside it" class="ph" data-frame="mat" data-src="images/ptk-certificate-sm" data-w="1192" data-md="images/ptk-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/ptk-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>Phi Theta Kappa membership certificate</figcaption></figure></li>
+          <li><span class="yr">2026</span><h3>Member of The National Society of Leadership and Success</h3><p>An invitation-only U.S. honor society for leadership, based on GPA and leadership training.</p><figure class="slide cert"><div aria-hidden="true" data-alt="The National Society of Leadership and Success certificate presented to Sai Rohit Villuri for completing the NSLS Foundations of Leadership training program, with membership in The University of Texas at Dallas Alumni chapter, effective July 12th, 2026" class="ph" data-frame="mat" data-src="images/nsls-certificate-sm" data-w="1040" data-md="images/nsls-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/nsls-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>NSLS membership certificate</figcaption></figure></li>
         </ol>
         <ul class="logos">
           <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://utdallas.edu/" data-learn-name="The University of Texas at Dallas" data-learn-host="utdallas.edu"><span aria-hidden="true" data-alt="The University of Texas at Dallas logo" class="ph" data-src="images/utd-logo-sm" data-ext="webp" data-hd="images/utd-logo.png" data-fit="contain"></span><span class="sr-only">The University of Texas at Dallas: learn more</span></button><figcaption>The University of Texas at Dallas <span class="learn-hint" aria-hidden="true">Learn more</span></figcaption></figure></li>
@@ -1768,7 +1809,7 @@ html.bp-on .bp-floor{display:block}
     <span class="label">01 · Client</span>
     <div>
       <h2 id="h-proj1">SKYLIFT</h2>
-      <p class="sub">Emergency help app for a client</p>
+      <p class="sub">Emergency help app · WCAG AA iOS prototype</p>
       <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 42 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed SKYLIFT, an emergency services app that helps someone who has been in an accident call a quadcopter for help. With a single tap, the app shares their location, sends the nearest SKYLIFT quadcopter to them, and gets them to a hospital connected to the SKYLIFT network quickly and efficiently.</p>
       <div class="story">
@@ -1793,7 +1834,7 @@ html.bp-on .bp-floor{display:block}
     <span class="label">02 · Client</span>
     <div>
       <h2 id="h-proj2">GENZ IN ACTION</h2>
-      <p class="sub">Educational social media app for a client</p>
+      <p class="sub">Learning-first social app · phone, tablet &amp; desktop</p>
       <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 32 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Educational social app for iOS, Android and desktop, including tablets</dd></div><div><dt>Goal</dt><dd>Help people share resources, learn and grow, and get educated in a friendly format</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed GENZ IN ACTION, an app all about collaboration and learning from each other in a social-media-like format. Its core goal is to help people share resources, learn and grow, and get educated in a friendly format.</p>
       <div class="story">
@@ -1818,7 +1859,7 @@ html.bp-on .bp-floor{display:block}
     <span class="label">03 · Client</span>
     <div>
       <h2 id="h-proj3">BYTEBALANCE</h2>
-      <p class="sub">Nutrition tracker app for a client</p>
+      <p class="sub">Nutrition tracker · working prototype with an AI assistant</p>
       <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 40 hours in Lovable</dd></div><div><dt>Project</dt><dd>Nutrition tracker app with a working prototype built in Lovable</dd></div><div><dt>Goal</dt><dd>Help people build and keep a healthy lifestyle by making it quick to log meals and water, see daily goals at a glance, and stay motivated</dd></div><div><dt>Delivered</dt><dd>Lovable prototype, case study</dd></div></dl>
       <p class="body">I designed BYTEBALANCE, a nutrition tracking app intentionally made to look familiar, like other calorie and fitness tracking apps. Its goal is to motivate users to stay healthy by tracking their calorie intake, so the habit forms naturally.</p>
       <div class="story">
@@ -1843,17 +1884,16 @@ html.bp-on .bp-floor{display:block}
     <span class="label">04 · Client</span>
     <div>
       <h2 id="h-mak">MAKARANDAM</h2>
-      <p class="sub">Honey business website for a client</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 100 hours in Figma</dd></div><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study, handover document</dd></div></dl>
+      <p class="sub">Honey e-commerce website · end-to-end design</p>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 100 hours in Figma</dd></div><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study</dd></div></dl>
       <p class="body">I designed an end-to-end e-commerce experience for a local honey brand, focused entirely on building customer trust and simplifying the user journey. The project featured a custom logo theme and an intuitive site architecture that reflects a clean, natural aesthetic while ensuring a seamless path to purchase.</p>
       <div class="story">
         <div><h3>How I approached it</h3><p>Trust matters most when buying food online, so I built a clean, natural look around a custom logo theme and kept the path from browsing to checkout short and clear.</p></div>
-        <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype, a case study and a handover document, giving the client everything needed to build the site.</p></div>
+        <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype and a case study, giving the client everything needed to build the site.</p></div>
       </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/Gp88uGsvAzn3j9nPuvbgto/Makarandam?node-id=15-9&amp;starting-point-node-id=15%3A9&amp;t=o8ZeuLbse0WWH3TK-1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
-        <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_6701aa6592274a73a01b4c4fe80bbfdd.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
-        <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_c5c0aee17f68456c9709f79ec1354475.pdf" target="_blank" rel="noopener">Handover document (PDF)<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
+        <a class="chip" href="Makarandam-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
       </div>
       <div class="carousel" role="region" aria-label="Makarandam screens">
         <ul class="track" aria-label="Makarandam screens">
@@ -1869,17 +1909,16 @@ html.bp-on .bp-floor{display:block}
     <span class="label">05 · Client</span>
     <div>
       <h2 id="h-fam">FAMGRAM</h2>
-      <p class="sub">Secure family cloud app for a client</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 200 hours in Figma</dd></div><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, handover document, presentation</dd></div></dl>
+      <p class="sub">Secure family cloud app · app and website prototypes</p>
+      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 200 hours in Figma</dd></div><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, presentation</dd></div></dl>
       <p class="body">I designed a secure, private cloud storage solution focused on family connectivity, translating complex security features into intuitive multi-page user interfaces. The project prioritized building user trust and ease of use as core goals, ensuring a seamless and reliable experience for families.</p>
       <div class="story">
         <div><h3>How I approached it</h3><p>I translated complex security features into simple, friendly screens, so families can store and share privately without needing to understand the technology behind it.</p></div>
-        <div><h3>Outcome</h3><p>Multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study, a handover document and a client presentation.</p></div>
+        <div><h3>Outcome</h3><p>Multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study and a client presentation.</p></div>
       </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/0ndWszmmMOJpQlHvAJxQWf/FAMGRAM-masterfile?node-id=205-7667&amp;t=6jakqiisTDsxqIr5-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=205%3A7667&amp;show-proto-sidebar=1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
-        <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_c994b3e47d114d0abc9a684a27d588f6.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
-        <a class="chip" href="https://244f7826-04a9-4c05-8bab-910f2d2282c8.filesusr.com/ugd/441771_1d9ba81f46464a11b788db7a5f077486.pdf" target="_blank" rel="noopener">Handover document (PDF)<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
+        <a class="chip" href="FamGram-UI-UX-Case-Study.pdf" target="_blank" rel="noopener">Case study (PDF)<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
         <a class="chip" href="https://www.figma.com/deck/inElC4Ux42XVCaP1fgzVO3" target="_blank" rel="noopener">Presentation made in Figma<span class="sr-only">, opens in a new tab</span></a>
       </div>
       <div class="carousel" role="region" aria-label="FAMGRAM app screens">
@@ -1928,7 +1967,7 @@ html.bp-on .bp-floor{display:block}
         <div class="cx">
           <div class="cx-mail">
             <h2 class="label">Email</h2>
-            <span class="mail-addr" id="mailAddr">srv26uxd@gmail.com</span>
+            <a class="mail-addr" id="mailAddr" href="mailto:srv26uxd@gmail.com">srv26uxd@gmail.com<span class="sr-only"> (opens your email app)</span></a>
             <button class="small-btn" id="copyMail" type="button">Copy email address</button>
           </div>
           <div class="cx-group">
@@ -1957,7 +1996,7 @@ html.bp-on .bp-floor{display:block}
     <div class="wrap hero compact">
       <span class="label">Legal</span>
       <h1 id="h-privacy" tabindex="-1">Privacy <span class="hl">Policy</span></h1>
-      <p class="updated">Effective and last updated: November 17, 2026</p>
+      <p class="updated">Effective and last updated: November 24, 2026</p>
     </div>
   </section>
   <div class="wrap legal">
@@ -2005,7 +2044,7 @@ html.bp-on .bp-floor{display:block}
           <li>browser type, device type and operating system</li>
           <li>the date and time of the request and the page requested</li>
         </ul>
-        <p>This data is processed by the services in section 3, not stored or analysed by me. When you use the "Copy email address" button, the address is copied on your own device and nothing is sent anywhere.</p>
+        <p>This data is processed by the services in section 3, not stored or analysed by me. When you use the "Copy email address" button, the address is copied on your own device and nothing is sent anywhere. Selecting the email address opens your own email app; nothing is sent unless you send a message yourself.</p>
       </section>
 
       <section id="p-third" tabindex="-1" aria-labelledby="ph-third">
@@ -2114,7 +2153,7 @@ html.bp-on .bp-floor{display:block}
     <div class="wrap hero compact">
       <span class="label">Legal</span>
       <h1 id="h-a11y" tabindex="-1">Accessibility <span class="hl">Statement</span></h1>
-      <p class="updated">Last updated: November 23, 2026</p>
+      <p class="updated">Last updated: November 24, 2026</p>
     </div>
   </section>
   <div class="wrap legal">
@@ -2182,7 +2221,7 @@ html.bp-on .bp-floor{display:block}
       <section id="a-limits" tabindex="-1" aria-labelledby="ah-limits">
         <h2 id="ah-limits">5. Known limitations</h2>
         <ul>
-          <li><strong>Linked PDFs:</strong> the MAKARANDAM and FAMGRAM case studies and handover documents are PDF files hosted by a third party and may not be fully tagged for screen readers. My resume and the SKYLIFT, GENZ IN ACTION and BYTEBALANCE case studies are hosted on this site as tagged PDFs.</li>
+          <li><strong>Linked PDFs:</strong> my resume and all five case studies (SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM) are hosted on this site as tagged PDFs with a title and language set.</li>
           <li><strong>Figma and Lovable prototypes and presentation:</strong> these open on Figma's and Lovable's websites, and their accessibility depends on those services.</li>
         </ul>
         <p>If any of this content is hard to use, email me and I will send it in an accessible format, such as a plain-text or tagged document, or walk you through it.</p>
@@ -2200,7 +2239,7 @@ html.bp-on .bp-floor{display:block}
           <li>Email: <strong>srv26uxd@gmail.com</strong></li>
         </ul>
         <p>Please tell me the page, what you were trying to do, and the device or assistive technology you use. I aim to reply within 5 business days.</p>
-        <p class="note">This statement was last reviewed on November 23, 2026.</p>
+        <p class="note">This statement was last reviewed on November 24, 2026.</p>
       </section>
     </div>
   </div>
@@ -2320,7 +2359,7 @@ html.bp-on .bp-floor{display:block}
       <div class="foot-brand">
         <p class="foot-sv" aria-hidden="true">SV</p>
         <p class="foot-role">Creating intuitive experiences</p>
-        <p class="foot-mail">srv26uxd@gmail.com</p>
+        <p class="foot-mail"><a href="mailto:srv26uxd@gmail.com">srv26uxd@gmail.com<span class="sr-only"> (opens your email app)</span></a></p>
       </div>
       <nav aria-label="Footer site links">
         <span class="label">Site</span>
@@ -3121,20 +3160,24 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     if(done) return; done=true; cancelAnimationFrame(raf);
     parts.forEach(el=>{el.style.transform='';el.style.transformOrigin=''});
     H.classList.remove('bp-on');
+    // the Home page then settles in: headline, intro, image and Resume button rise in one after another (under 1s)
+    H.classList.add('bp-reveal'); setTimeout(()=>H.classList.remove('bp-reveal'),1300);
     window.scrollTo({top:0,left:0,behavior:'instant'});
     [front,back,hint,sky,floor].forEach(el=>el.remove()); document.body.style.height='';
     guard=performance.now()+260; guardCap=performance.now()+1200;
     dispatchEvent(new Event('resize')); dispatchEvent(new Event('bp-done'));
   }
   // Input sets a target; the bag eases toward it every frame (time-based, so it is equally smooth at 60, 90 or 120Hz).
-  let cur=0, tgt=0, last=0, fast=false, snapT=0;
+  let cur=0, tgt=0, last=0, fast=false, snapT=0, vel=0;
   function tick(now){
     raf=0; if(done) return;
     const dt=last?Math.min(50,now-last):16.7; last=now;
     // keyboard / focus: a fixed, quick 420ms ease so it feels instant on any screen
-    if(fast){ const f=Math.min(1,(now-fast.t0)/420); cur=fast.from+(1-fast.from)*ease(f); apply(cur); if(f>=1){ finish(); return } raf=requestAnimationFrame(tick); return }
-    const k=1-Math.pow(1-.12,dt/16.67);
-    cur+=(tgt-cur)*k; if(Math.abs(tgt-cur)<.0006) cur=tgt;
+    // timed glide out of the bag (keyboard 420ms; after a scroll past a third, ~0.9s), easing to a gentle stop
+    // the glide picks up the speed the visitor's scroll already had and eases to a stop (no sudden jump in speed)
+    if(fast){ const f=Math.min(1,(now-fast.t0)/fast.dur), m=fast.m, g=m*(f*f*f-2*f*f+f)+(3*f*f-2*f*f*f); cur=fast.from+(1-fast.from)*g; apply(cur); if(f>=1){ finish(); return } raf=requestAnimationFrame(tick); return }
+    const k=1-Math.pow(1-.12,dt/16.67), prev=cur;
+    cur+=(tgt-cur)*k; vel=(cur-prev)/Math.max(1,dt); if(Math.abs(tgt-cur)<.0006) cur=tgt;
     apply(cur);
     // past 98% the eased motion is already at rest (under 0.01px), so finish without waiting for the long tail
     if(cur>=.98){ apply(1); finish(); return }
@@ -3143,8 +3186,9 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   const kick=()=>{ if(!raf&&!done) raf=requestAnimationFrame(tick) };
   // "smart" finish: once the visitor has unpacked about a third, a pause completes it; a smaller nudge stays put
   const setT=v=>{ if(done) return; tgt=Math.max(0,Math.min(1,v)); kick();
-    clearTimeout(snapT); snapT=setTimeout(()=>{ if(tgt>=.3&&tgt<1){ tgt=1; kick() } },240) };
-  const finishSoon=()=>{ if(done||fast) return; fast={t0:performance.now(),from:cur}; clearTimeout(snapT); tgt=1; kick() };
+    clearTimeout(snapT); snapT=setTimeout(()=>{ if(tgt>=.3&&tgt<1) glide(Math.round(500+400*(1-cur))) },200) };
+  const glide=d=>{ if(done||fast) return; fast={t0:performance.now(),from:cur,dur:d,m:Math.max(0,Math.min(2.5,vel*d/Math.max(.01,1-cur)))}; clearTimeout(snapT); tgt=1; kick() };
+  const finishSoon=()=>{ if(done) return; if(fast&&fast.dur<=420) return; fast={t0:performance.now(),from:cur,dur:420,m:0}; clearTimeout(snapT); tgt=1; kick() };
   try{ if('scrollRestoration' in history) history.scrollRestoration='manual' }catch(e){}
   window.scrollTo(0,0);
   layout(); apply(0);
@@ -3162,12 +3206,14 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   addEventListener('touchstart',e=>{ if(done) return; ty=e.touches[0].clientY; tt=performance.now(); tv=0 },{passive:true});
   addEventListener('touchmove',e=>{ if(done||ty===null) return; e.preventDefault();
     const y=e.touches[0].clientY, now=performance.now(), dy=ty-y; tv=dy/Math.max(1,now-tt); ty=y; tt=now; setT(tgt+dy*1.25/D) },{passive:false});
-  addEventListener('touchend',()=>{ if(done) return; ty=null; if(tv>.45) setT(1) },{passive:true});
+  addEventListener('touchend',()=>{ if(done) return; ty=null; if(tv>.45) glide(Math.round(450+350*(1-cur))); else if(tgt>=.3) glide(Math.round(500+400*(1-cur))) },{passive:true});
   // scrollbar drag or anything else that scrolls the page (eg. assistive tech) also opens it
   addEventListener('scroll',()=>{ if(!done&&scrollY>2) finishSoon() },{passive:true});
   // keyboard and screen-reader users (who may not scroll) get the page at once (WCAG 2.1.1)
   addEventListener('keydown',e=>{ if(!['Shift','Control','Alt','Meta','CapsLock'].includes(e.key)) finishSoon() },true);
   document.addEventListener('focusin',finishSoon);
+  // a keyboard user who pressed Tab before this script was ready still gets the page straight away
+  if(document.activeElement&&document.activeElement!==document.body&&document.activeElement!==document.documentElement) finishSoon();
   const rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null;
   if(rm&&rm.addEventListener) rm.addEventListener('change',()=>{ if(rm.matches) finish() });
 })();
