@@ -666,16 +666,17 @@ html{scroll-padding-top:calc(80px + env(safe-area-inset-top, 0px))}
 }
 @media print{.lb{display:none!important}}
 /* On the Connect page the contact details are already above, so the footer drops its own copy */
-body[data-page="connect"] footer nav[aria-label="Connect with me"],
+body[data-page="connect"] footer nav.foot-nav-connect,
 body[data-page="connect"] footer .foot-mail{display:none}
 /* Connect page footer: name on the left, site links as one tidy row on the right */
 body[data-page="connect"] .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:24px 48px}
 /* the Site heading sits directly above its first link, like a normal footer column */
-body[data-page="connect"] .foot-top nav[aria-label="Footer site links"]{display:flex;flex-direction:column;align-items:flex-start}
-body[data-page="connect"] .foot-top nav[aria-label="Footer site links"] .label{text-align:left;margin-bottom:6px}
-body[data-page="connect"] .foot-top nav[aria-label="Footer site links"] ul{display:flex;flex-wrap:wrap;gap:4px 28px;justify-content:flex-start}
+body[data-page="connect"] .foot-top nav.foot-nav-site{display:flex;flex-direction:column;align-items:flex-start}
+body[data-page="connect"] .foot-top nav.foot-nav-site .label{text-align:left;margin-bottom:6px}
+body[data-page="connect"] .foot-top nav.foot-nav-site ul{display:flex;flex-wrap:wrap;gap:4px 28px;justify-content:flex-start}
 @media (max-width:820px){
-  body[data-page="connect"] .foot-top{flex-direction:column;align-items:flex-start}
+  body[data-page="connect"] .foot-top{flex-direction:column;align-items:flex-start;row-gap:32px}
+  body[data-page="connect"] .foot-base{margin-top:40px!important}
 }
 /* Phone screens: whole screen visible, tile takes the screen's own colour; long captions wrap */
 .slide.tall .ph.filled[data-fit="contain"] img{padding:0}
@@ -685,7 +686,7 @@ body[data-page="connect"] .foot-top nav[aria-label="Footer site links"] ul{displ
 /* Side labels that are headings for screen readers look exactly like every other side label */
 .sec h2.label,.profile h2.label{font-size:var(--fs-label);letter-spacing:.14em;line-height:1.6;font-weight:400;margin:0}
 /* optical nudge so the SITE heading starts on the same line as the tagline */
-@media (min-width:821px){body[data-page="connect"] .foot-top nav[aria-label="Footer site links"]{margin-top:1px}}
+@media (min-width:821px){body[data-page="connect"] .foot-top nav.foot-nav-site{margin-top:1px}}
 /* ===== Mobile & tablet: same structure as desktop ===== */
 /* Galleries show every image at once, three across, exactly like desktop (tap any image to view it large) */
 .track{grid-auto-flow:row!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-columns:auto!important;overflow:visible!important;padding:0}
@@ -912,7 +913,7 @@ body footer{padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
 /* Footer on phones and tablets: Site on the left, Connect with me pinned to the right, with more breathing room */
 @media (max-width:820px){
   body:not([data-page="connect"]) .foot-top{grid-template-columns:1fr auto;column-gap:24px;row-gap:32px!important}
-  body:not([data-page="connect"]) .foot-top nav[aria-label="Connect with me"]{justify-self:end}
+  body:not([data-page="connect"]) .foot-top nav.foot-nav-connect{justify-self:end}
   .foot-brand{gap:10px}
   .foot-top ul{gap:12px}
   .foot-sv{margin-top:2.5rem!important}
@@ -920,7 +921,7 @@ body footer{padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
 }
 @media (max-width:360px){
   body:not([data-page="connect"]) .foot-top{grid-template-columns:1fr;row-gap:28px!important}
-  body:not([data-page="connect"]) .foot-top nav[aria-label="Connect with me"]{justify-self:start}
+  body:not([data-page="connect"]) .foot-top nav.foot-nav-connect{justify-self:start}
 }
 /* ===== Clients: large project carousel — one project at a time, with every project name always visible ===== */
 .cs-bar{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding-block:clamp(20px, 1rem + 1vw, 32px) 0;position:relative}
@@ -1234,7 +1235,7 @@ body footer .foot-top .label{margin-bottom:14px}
 body footer .foot-top ul{gap:8px}
 body:not([data-page="connect"]) footer .foot-top{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) auto;column-gap:clamp(32px, 1.5rem + 3vw, 96px);row-gap:40px!important;align-items:start}
 body:not([data-page="connect"]) footer .foot-top > .foot-brand{grid-column:auto}
-body:not([data-page="connect"]) footer .foot-top nav[aria-label="Connect with me"]{justify-self:start}
+body:not([data-page="connect"]) footer .foot-top nav.foot-nav-connect{justify-self:start}
 body footer .foot-base{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px 32px;margin-top:clamp(40px, 2rem + 2vw, 64px)!important;padding-top:20px!important}
 body footer .foot-base > span{margin-right:auto}
 body footer .foot-base .theme-switch{margin:0}
@@ -2517,7 +2518,7 @@ html.bp-on .bp-bgfx{display:block}
         <p class="foot-role">Creating intuitive experiences</p>
         <p class="foot-mail"><a href="mailto:srv26uxd@gmail.com">srv26uxd@gmail.com<span class="sr-only"> (opens your email app)</span></a></p>
       </div>
-      <nav aria-label="Footer site links">
+      <nav class="foot-nav-site" aria-label="Footer site links">
         <span class="label">Site</span>
         <ul>
           <li><a href="#home">Home</a></li>
@@ -2525,7 +2526,7 @@ html.bp-on .bp-bgfx{display:block}
           <li><a href="#clients">Work</a></li>
         </ul>
       </nav>
-      <nav aria-label="Connect with Me">
+      <nav class="foot-nav-connect" aria-label="Connect with Me">
         <span class="label">Connect with Me</span>
         <ul class="foot-social">
           <li><a class="soc" href="https://www.linkedin.com/in/sairohitvilluri/" target="_blank" rel="noopener"><img class="soc-ico" src="data:image/png;base64,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" alt="" width="24" height="24">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
