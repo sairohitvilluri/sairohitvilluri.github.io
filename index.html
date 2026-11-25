@@ -6,7 +6,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Sai Rohit Villuri · UI/UX Designer Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Sai Rohit Villuri, Innovative UI/UX Designer. User-centered client work including SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM, with Figma and Lovable prototypes and case studies.">
+<meta name="description" content="Sai Rohit Villuri, UI/UX Designer, open to full-time UI/UX roles. User-centered client work including SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM, with Figma and Lovable prototypes and case studies.">
 <meta name="author" content="Sai Rohit Villuri">
 <meta name="theme-color" content="#04070e">
 <script>/* Backpack opening: plays on every load; skipped for "reduce motion". Safety net: never leave the page hidden. */
@@ -1571,6 +1571,40 @@ html.bp-on .bp-bgfx{display:block}
 .bp-pen.is-role .bp-nib{fill:#4FCB95}
 @media (prefers-reduced-motion: no-preference){ html.bp-on .bp-pen{display:block} }
 
+/* Scannability: About paragraphs stay at a comfortable reading length on wide screens (~70 characters per line) */
+[data-view="about"] li > p,[data-view="home"] .sec .body{max-width:34em}
+
+/* ===== Recruiter audit (Nov 2026) ===== */
+/* Home headline: name first, role in the accent colour, so a recruiter sees who and what at a glance */
+.hero-title{display:flex;flex-wrap:wrap;column-gap:.28em;max-width:none;font-size:clamp(34px, 1.2rem + 3.6vw, 64px);line-height:1.04;margin:0 0 clamp(.75rem, .5rem + .6vw, 1.1rem)}
+.hero-title .ht-name{color:var(--band-ink, #F6F7FA)}
+.hero-title .ht-role{color:var(--band-accent)}
+.open-roles{display:inline-flex;align-items:center;gap:10px;margin:0 0 clamp(1.25rem, 1rem + 1vw, 2rem);padding:6px 14px 6px 12px;border:1px solid color-mix(in srgb, var(--band-accent) 45%, transparent);border-radius:999px;font-size:var(--fs-small, 14px);font-weight:600;color:var(--band-ink, #F6F7FA)}
+.open-roles .dot{width:9px;height:9px;border-radius:50%;background:#5FD3A0;box-shadow:0 0 0 3px color-mix(in srgb, #5FD3A0 28%, transparent)}
+/* Phones and tablets: View Resume comes straight after the intro, before the logo card, so it is on the first screen */
+@media (max-width:820px){
+  .home-row > div:first-child{order:1}
+  .home-row > .hero-actions{order:2;justify-self:start}
+  .home-row > .hero-img{order:3}
+}
+/* Desktop: all five client case studies are visible at once (3 + 2 grid), no arrows to click */
+@media (min-width:900px){
+  .pcards.pc-track{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}
+  .pc-head .pc-ctrl{display:none}
+}
+/* About: certificates as compact thumbnails (they still open full screen), shorter logo tiles */
+.timeline .cert{max-width:280px}
+@media (max-width:820px){.timeline .cert{max-width:240px}}
+.logos .ph{aspect-ratio:16/10}
+/* Short phones (e.g. iPhone SE): tighter hero spacing so View Resume still fits on the first screen */
+@media (max-width:420px) and (max-height:640px){
+  .hero-title{font-size:30px;margin-bottom:10px}
+  .open-roles{margin-bottom:14px;padding-block:4px}
+  .hero-row.home-row{row-gap:14px}
+  [data-view="home"] .hero{padding-top:20px}
+  [data-view="home"] .hero-row p{margin-block:0 10px;line-height:1.5}
+}
+
 </style>
 </head>
 <body>
@@ -1677,7 +1711,8 @@ html.bp-on .bp-bgfx{display:block}
 <div class="view" data-view="home" data-title="Home">
   <section class="band" aria-labelledby="h-home">
     <div class="wrap hero">
-      <h1 id="h-home" tabindex="-1" class="tagline one-line">Innovative UI/UX Designer</h1>
+      <h1 id="h-home" tabindex="-1" class="tagline hero-title"><span class="ht-name">Sai Rohit Villuri</span> <span class="ht-role">UI/UX Designer</span></h1>
+      <p class="open-roles"><span class="dot" aria-hidden="true"></span>Open to full-time UI/UX roles</p>
       <div class="hero-row home-row">
         <div>
           <p>I design user-centered websites and mobile apps that turn complex needs into simple, intuitive experiences, backed by a Human-Computer Interaction background from UT Dallas.</p>
@@ -1689,13 +1724,6 @@ html.bp-on .bp-bgfx{display:block}
     </div>
   </section>
 
-  <section class="sec trusted" aria-labelledby="h-trusted">
-    <div class="wrap">
-      <h2 id="h-trusted" class="trusted-title">Trusted by People</h2>
-      <p class="trusted-sub">My Work</p>
-      <p class="body trusted-body">I have had the privilege of working with various clients, transforming their visions into user-friendly solutions that not only attract but retain customers. Explore some of the work I have done along my UI/UX journey.</p>
-    </div>
-  </section>
   <section class="sec" aria-labelledby="h-proj">
     <div class="wrap sec-grid">
       <span class="label">Work</span>
@@ -1851,8 +1879,8 @@ html.bp-on .bp-bgfx{display:block}
       <div>
         <h2 id="h-exp">Work Experience</h2>
         <ol class="timeline exp-tl">
-          <li><span class="yr"><span>Jun 2026 –</span> <span>Present</span></span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep</span></h3><p>Practised core UX/UI design methods through hands-on exercises, refining my work with peers and mentors.</p></li>
-          <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
+          <li><span class="yr"><span>Jun 2026 –</span> <span>Present</span></span><h3>UX Design Community Member<span class="org">UX Gym by UX Anudeep · Full-time</span></h3><p>Completed 25 hands-on UX exercises, defining user and business needs before designing anything. Learning to tie design decisions to business value, and now finishing a major project.</p></li>
+          <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associate Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
           <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
         </ol>
         <h3 class="skills-h" id="h-skills">Skills &amp; Tools</h3>
@@ -1871,7 +1899,7 @@ html.bp-on .bp-bgfx{display:block}
           </div>
           <div class="skill-grp">
             <h4 id="h-sk4">General Skills</h4>
-            <ul class="tags" aria-labelledby="h-sk4"><li>Sales and marketing</li><li>Microsoft Office</li><li>Google Docs</li></ul>
+            <ul class="tags" aria-labelledby="h-sk4"><li>Sales and marketing</li></ul>
           </div>
           <div class="skill-grp">
             <h4 id="h-sk5">Tools</h4>
@@ -1892,7 +1920,6 @@ html.bp-on .bp-bgfx{display:block}
           <dl class="pfacts">
             <div><dt>Program</dt><dd>Arts and Technology and Emerging Communications (ATEC), The University of Texas at Dallas</dd></div>
             <div><dt>Specialization</dt><dd>Human-Computer Interaction and Design</dd></div>
-            <div><dt>Honors</dt><dd>Two undergraduate scholarships · Member, Phi Theta Kappa Honor Society and The National Society of Leadership and Success</dd></div>
             <div><dt>Five Electives</dt><dd><ul class="tags"><li>Human-Computer Interaction (both levels)</li><li>Design (both levels)</li><li>Project Management</li><li>Sales and Marketing, business school</li></ul></dd></div>
           </dl>
           <blockquote class="pquote"><p>These experiences transformed my perspective: good design starts with the foundational theories and human behaviors behind each decision, not just the tools we use.</p></blockquote>
@@ -1971,7 +1998,7 @@ html.bp-on .bp-bgfx{display:block}
       <p class="body">I designed SKYLIFT, an emergency services app that helps someone who has been in an accident call a quadcopter for help. With a single tap, the app shares their location, sends the nearest SKYLIFT quadcopter to them, and gets them to a hospital connected to the SKYLIFT network quickly and efficiently.</p>
       <div class="story">
         <div><h3>How I Approached It</h3><p>Because people use this app under stress, I designed every screen around one clear action: a large help button in the centre of Home, three simple tabs, and live status and arrival time during dispatch.</p></div>
-        <div><h3>Outcome</h3><p>An interactive iOS prototype built to WCAG AA: all 36 colour pairs pass contrast in light and dark mode, and every control is at least 44px. Next, I&#x27;d test it with realistic emergency scenarios.</p></div>
+        <div><h3>Outcome</h3><p>An interactive iOS prototype built in 42 hours to WCAG AA: all 36 colour pairs pass contrast in light and dark mode, and every control is at least 44px. Next, I&#x27;d test it with realistic emergency scenarios.</p></div>
       </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/make/Hizacy8k7pT5N5Eon4cilG/Skylift-updated?fullscreen=1&amp;t=aD4PXSd69P4RyVu8-1&amp;code-node-id=0-6" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for SKYLIFT, opens in a new tab</span></a>
@@ -2046,7 +2073,7 @@ html.bp-on .bp-bgfx{display:block}
       <p class="body">I designed an end-to-end e-commerce experience for a local honey brand, focused entirely on building customer trust and simplifying the user journey. The project featured a custom logo theme and an intuitive site architecture that reflects a clean, natural aesthetic while ensuring a seamless path to purchase.</p>
       <div class="story">
         <div><h3>How I Approached It</h3><p>Trust matters most when buying food online, so I built a clean, natural look around a custom logo theme and kept the path from browsing to checkout short and clear.</p></div>
-        <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype and a case study, giving the client everything needed to build the site.</p></div>
+        <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype, from brand to checkout in 100 hours over two weeks, plus a case study giving the client everything needed to build the site.</p></div>
       </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/Gp88uGsvAzn3j9nPuvbgto/Makarandam?node-id=15-9&amp;starting-point-node-id=15%3A9&amp;t=o8ZeuLbse0WWH3TK-1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for Makarandam, opens in a new tab</span></a>
@@ -2071,7 +2098,7 @@ html.bp-on .bp-bgfx{display:block}
       <p class="body">I designed a secure, private cloud storage solution focused on family connectivity, translating complex security features into intuitive multi-page user interfaces. The project prioritized building user trust and ease of use as core goals, ensuring a seamless and reliable experience for families.</p>
       <div class="story">
         <div><h3>How I Approached It</h3><p>I translated complex security features into simple, friendly screens, so families can store and share privately without needing to understand the technology behind it.</p></div>
-        <div><h3>Outcome</h3><p>Multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study and a client presentation.</p></div>
+        <div><h3>Outcome</h3><p>Delivered in 200 hours over two months: multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study and a client presentation.</p></div>
       </div>
       <div class="chips">
         <a class="chip primary" href="https://www.figma.com/proto/0ndWszmmMOJpQlHvAJxQWf/FAMGRAM-masterfile?node-id=205-7667&amp;t=6jakqiisTDsxqIr5-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=205%3A7667&amp;show-proto-sidebar=1" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for FAMGRAM, opens in a new tab</span></a>
@@ -3114,7 +3141,10 @@ html.bp-on .bp-bgfx{display:block}
     next.addEventListener('click',()=>go(1,next));
     t.addEventListener('keydown',e=>{ if(e.target!==t) return; if(e.key==='ArrowRight'){e.preventDefault();go(1,next)} if(e.key==='ArrowLeft'){e.preventDefault();go(-1,prev)} });
     let raf; t.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(update)},{passive:true});
-    addEventListener('resize',update); update();
+    function mode(){ const scrolls=t.scrollWidth>t.clientWidth+2;
+      if(scrolls){t.setAttribute('tabindex','0');t.setAttribute('aria-label','Client case studies, scrolls sideways')}
+      else{t.removeAttribute('tabindex');t.setAttribute('aria-label','Client case studies')} }
+    addEventListener('resize',()=>{update();mode()}); update(); mode();
   })();
 
   // Copy email
