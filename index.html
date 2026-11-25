@@ -270,7 +270,7 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 @media (forced-colors: active){.btn,.chip,.small-btn,.hbtn,.menu-btn{border:1px solid ButtonText}}
 /* "TRUSTED BY PEOPLE" intro, mirroring the original Wix order */
 .trusted{padding-block:96px 72px;text-align:center}
-.trusted-title{margin:0;font-size:clamp(40px,8vw,104px);line-height:.95;letter-spacing:-.04em;font-weight:800}
+.trusted-title{margin:0;text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:.95;letter-spacing:-.04em;font-weight:800}
 .trusted-sub{margin:20px 0 18px;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--accent)}
 .trusted .trusted-body{margin:0 auto;max-width:52ch}
 .trusted-hero .trusted-sub{color:var(--band-accent);margin:22px 0 14px}
@@ -1436,8 +1436,8 @@ html.bp-on .bp-floor{display:block}
   html.bp-on .bp-c2{--d:.95s}
   /* the highlighter swipes in, then name and role each pop once and settle (no loop) */
   html.bp-on .bp-mark{display:inline-block;animation:bpMark .7s cubic-bezier(.4,0,.2,1) both, bpPopOnce 1.1s cubic-bezier(.34,1.3,.64,1) 1}
-  html.bp-on .bp-mark-name{animation-delay:2.2s, 2.95s}
-  html.bp-on .bp-mark-role{animation-delay:3.3s, 4.05s}
+  html.bp-on .bp-mark-name{animation-delay:1.25s, 2s}
+  html.bp-on .bp-mark-role{animation-delay:2.35s, 3.1s}
   html.bp-on .bp-puff{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;will-change:transform}
 .bp-puff{display:block;max-width:100%}
 @keyframes bpPuff{0%{transform:scale(1)}38%{transform:scale(1.06)}72%{transform:scale(.995)}100%{transform:scale(1)}}
@@ -1627,8 +1627,8 @@ html.bp-on .bp-bgfx{display:block}
   <div class="bp-puff"><p class="bp-cloud bp-c1"><span class="w" style="--i:0">Hey!</span> <span class="w" style="--i:1">Welcome</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">my</span> <span class="w" style="--i:4">portfolio.</span></p></div>
   <div class="bp-puff"><p class="bp-cloud bp-c2"><span class="w" style="--i:0">I'm</span> <span class="bp-mark bp-mark-name"><span class="w" style="--i:1">Sai</span> <span class="w" style="--i:2">Rohit</span> <span class="w" style="--i:3">Villuri,</span></span> <span class="w" style="--i:4">a</span> <span class="bp-mark bp-mark-role"><span class="w" style="--i:5">UI/UX</span> <span class="w" style="--i:6">Designer</span></span> <span class="w" style="--i:7">who</span> <span class="w" style="--i:8">loves</span> <span class="w" style="--i:9">to</span> <span class="w" style="--i:10">create</span> <span class="w" style="--i:11">intuitive</span> <span class="w" style="--i:12">experiences.</span><span class="bp-pen" aria-hidden="true"><svg viewBox="0 0 24 66" focusable="false"><path class="bp-nib" d="M8 53h8v5l-8 7z" stroke="#0B1B33" stroke-width="1.1" stroke-linejoin="round"/><rect x="6" y="44" width="12" height="10" rx="1.6" fill="#0E1524"/><rect x="4" y="12" width="16" height="34" rx="4" fill="#2E4E84" stroke="#0B1B33" stroke-width="1.2"/><rect x="7.2" y="16" width="2.8" height="25" rx="1.4" fill="#fff" opacity=".35"/><rect class="bp-nib" x="4" y="1.5" width="16" height="13" rx="4.5" stroke="#0B1B33" stroke-width="1.2"/><rect x="16.5" y="4" width="3.4" height="19" rx="1.7" fill="#17284C" stroke="#0B1B33" stroke-width="1"/></svg></span></p></div>
 </div>
-<p class="bp-hint" aria-hidden="true"><b class="bp-hint-t">Scroll to unpack</b> <span>↓</span></p>
-<a class="skip" href="#main" id="skipLink">Skip to main content</a>
+<p class="bp-hint" aria-hidden="true"><b class="bp-hint-t">Scroll to Unpack</b> <span>↓</span></p>
+<a class="skip" href="#main" id="skipLink">Skip to Main Content</a>
 
 <header class="top">
   <div class="wrap bar">
@@ -1680,7 +1680,7 @@ html.bp-on .bp-bgfx{display:block}
       <div class="hero-row home-row">
         <div>
           <p>I design user-centered websites and mobile apps that turn complex needs into simple, intuitive experiences, backed by a Human-Computer Interaction background from UT Dallas.</p>
-          <p class="hero-exp">3+ years of product design at TechGlobe Inc., for clients including JCPenney and CBRE. <a href="#about">See my experience</a></p>
+          <p class="hero-exp">3+ years of product design at TechGlobe Inc., for clients including JCPenney and CBRE. <a href="#about">See My Experience</a></p>
         </div>
         <div aria-hidden="true" data-alt="SV monogram logo with the name Sai Villuri" class="ph hero-img" data-src="images/hero-sm" data-w="1480" data-md="images/hero-md.webp" data-mdw="2064" data-ext="webp" data-hd="images/hero.png"></div>
         <div class="hero-actions"><a class="btn btn-resume" href="Sai-Rohit-Villuri-Resume.pdf?v=2026-11-22b" target="_blank" rel="noopener">View Resume<span class="sr-only"> (PDF, opens in a new tab)</span><span class="btn-badge" aria-hidden="true"><svg class="btn-ico" viewBox="0 0 24 24" focusable="false"><path d="M14 2.75H7.25a2 2 0 0 0-2 2v14.5a2 2 0 0 0 2 2h9.5a2 2 0 0 0 2-2V7.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M14 2.75V7.5h4.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="10.6" r="2.05" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.6 16.1c.6-1.6 1.9-2.5 3.4-2.5s2.8.9 3.4 2.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9 18.75h6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span></a></div>
@@ -1690,7 +1690,7 @@ html.bp-on .bp-bgfx{display:block}
 
   <section class="sec trusted" aria-labelledby="h-trusted">
     <div class="wrap">
-      <h2 id="h-trusted" class="trusted-title">TRUSTED BY PEOPLE</h2>
+      <h2 id="h-trusted" class="trusted-title">Trusted by People</h2>
       <p class="trusted-sub">My Work</p>
       <p class="body trusted-body">I have had the privilege of working with various clients, transforming their visions into user-friendly solutions that not only attract but retain customers. Explore some of the work I have done along my UI/UX journey.</p>
     </div>
@@ -1700,7 +1700,7 @@ html.bp-on .bp-bgfx{display:block}
       <span class="label">Work</span>
       <div>
         <div class="pc-head">
-          <h2 id="h-proj">Client case studies</h2>
+          <h2 id="h-proj">Client Case Studies</h2>
           <div class="pc-ctrl" role="group" aria-label="Scroll client case studies">
             <button type="button" class="pc-btn" data-pc-prev aria-label="Previous project" aria-controls="pcTrack"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 6 8.5 12l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <span class="pc-count" id="pcCount" aria-live="polite">1–3 of 5</span>
@@ -1714,7 +1714,7 @@ html.bp-on .bp-bgfx{display:block}
               <span class="label">01 · Client</span>
               <span class="pcard-title">SKYLIFT</span>
               <span class="pcard-sub">Emergency help app · WCAG AA iOS prototype</span>
-              <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
+              <span class="pcard-cta">View Case Study <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
@@ -1723,7 +1723,7 @@ html.bp-on .bp-bgfx{display:block}
               <span class="label">02 · Client</span>
               <span class="pcard-title">GENZ IN ACTION</span>
               <span class="pcard-sub">Learning-first social app · phone, tablet &amp; desktop</span>
-              <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
+              <span class="pcard-cta">View Case Study <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
@@ -1732,7 +1732,7 @@ html.bp-on .bp-bgfx{display:block}
               <span class="label">03 · Client</span>
               <span class="pcard-title">BYTEBALANCE</span>
               <span class="pcard-sub">Nutrition tracker · working prototype with an AI assistant</span>
-              <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
+              <span class="pcard-cta">View Case Study <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
@@ -1741,7 +1741,7 @@ html.bp-on .bp-bgfx{display:block}
               <span class="label">04 · Client</span>
               <span class="pcard-title">MAKARANDAM</span>
               <span class="pcard-sub">Honey e-commerce website · end-to-end design</span>
-              <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
+              <span class="pcard-cta">View Case Study <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
@@ -1750,7 +1750,7 @@ html.bp-on .bp-bgfx{display:block}
               <span class="label">05 · Client</span>
               <span class="pcard-title">FAMGRAM</span>
               <span class="pcard-sub">Secure family cloud app · app and website prototypes</span>
-              <span class="pcard-cta">View case study <span aria-hidden="true">→</span></span>
+              <span class="pcard-cta">View Case Study <span aria-hidden="true">→</span></span>
             </a>
           </li>
         </ul>
@@ -1759,15 +1759,15 @@ html.bp-on .bp-bgfx{display:block}
   </section>
   <section class="sec" aria-labelledby="h-self">
     <div class="wrap sec-grid">
-      <span class="label">Self-initiated</span>
+      <span class="label">Self-Initiated</span>
       <div>
-        <h2 id="h-self">Designs for self</h2>
+        <h2 id="h-self">Designs for Self</h2>
         <p class="body">A collection of creative explorations and independent design experiments that allow me to step outside traditional project constraints. Through these conceptual pieces, I constantly push my creative boundaries and experiment with new interaction patterns.</p>
         <div class="carousel" role="region" aria-label="Designs for self gallery">
           <ul class="track" aria-label="Designs for self images">
-            <li><figure class="slide"><div aria-hidden="true" data-alt="T-shirt design: glowing green interlocking A and S monogram with the words Since 2020, on deep navy" class="ph" data-src="images/tshirt-design-sm" data-w="590" data-md="images/tshirt-design-md.webp" data-mdw="876" data-ext="webp" data-hd="images/tshirt-design.jpg" data-bg="#00004d"></div><figcaption>T-shirt design</figcaption></figure></li>
-            <li><figure class="slide"><div aria-hidden="true" data-alt="Dating app logo: METEOR wordmark with EST. MMXXIII, plus App Store and Android badges, on black" class="ph" data-src="images/dating-app-logo-sm" data-w="590" data-md="images/dating-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/dating-app-logo-hd.webp" data-fit="contain" data-bg="#000000"></div><figcaption>Dating app logo</figcaption></figure></li>
-            <li><figure class="slide"><div aria-hidden="true" data-alt="Easy weigh app logo: the words Easy weigh in teal script with a stopwatch, inside a hand-drawn circle" class="ph" data-frame="mat" data-src="images/easy-weigh-app-logo-sm" data-w="500" data-md="images/easy-weigh-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/easy-weigh-app-logo-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Easy weigh app logo</figcaption></figure></li>
+            <li><figure class="slide"><div aria-hidden="true" data-alt="T-shirt design: glowing green interlocking A and S monogram with the words Since 2020, on deep navy" class="ph" data-src="images/tshirt-design-sm" data-w="590" data-md="images/tshirt-design-md.webp" data-mdw="876" data-ext="webp" data-hd="images/tshirt-design.jpg" data-bg="#00004d"></div><figcaption>T-Shirt Design</figcaption></figure></li>
+            <li><figure class="slide"><div aria-hidden="true" data-alt="Dating app logo: METEOR wordmark with EST. MMXXIII, plus App Store and Android badges, on black" class="ph" data-src="images/dating-app-logo-sm" data-w="590" data-md="images/dating-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/dating-app-logo-hd.webp" data-fit="contain" data-bg="#000000"></div><figcaption>Dating App Logo</figcaption></figure></li>
+            <li><figure class="slide"><div aria-hidden="true" data-alt="Easy weigh app logo: the words Easy weigh in teal script with a stopwatch, inside a hand-drawn circle" class="ph" data-frame="mat" data-src="images/easy-weigh-app-logo-sm" data-w="500" data-md="images/easy-weigh-app-logo-md.webp" data-mdw="876" data-ext="webp" data-hd="images/easy-weigh-app-logo-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Easy Weigh App Logo</figcaption></figure></li>
           </ul>
         </div>
       </div>
@@ -1854,22 +1854,22 @@ html.bp-on .bp-bgfx{display:block}
           <li><span class="yr"><span>Aug 2024 –</span> <span>May 2026</span></span><h3>Associated Product Designer<span class="org">TechGlobe Inc.</span></h3><p>Designed the FamGram web and mobile apps (iOS and Android) from UX research and discovery to wireframes and interactive prototypes. Built high-fidelity Figma prototypes and presentations for developer handoff, and designed a mobile app for managing retail property data for CBRE.</p></li>
           <li><span class="yr"><span>Jan 2023 –</span> <span>Jul 2024</span></span><h3>Junior UX/UI Designer<span class="org">TechGlobe Inc.</span></h3><p>Worked on UX research, discovery and design for JCPenney members' Loyalty and Rewards experience on iOS, Android and web, and created a design system, website and mobile app for Welcab.</p></li>
         </ol>
-        <h3 class="skills-h" id="h-skills">Skills &amp; tools</h3>
+        <h3 class="skills-h" id="h-skills">Skills &amp; Tools</h3>
         <div class="skill-groups">
           <div class="skill-grp">
-            <h4 id="h-sk1">UI/UX skills</h4>
+            <h4 id="h-sk1">UI/UX Skills</h4>
             <ul class="tags" aria-labelledby="h-sk1"><li>UX research &amp; discovery</li><li>Wireframing</li><li>Interactive prototyping</li><li>Design systems</li><li>Developer handoff</li></ul>
           </div>
           <div class="skill-grp">
-            <h4 id="h-sk2">Analytical skills</h4>
+            <h4 id="h-sk2">Analytical Skills</h4>
             <ul class="tags" aria-labelledby="h-sk2"><li>Strategic thinking</li><li>Accessibility auditing (WCAG AA)</li></ul>
           </div>
           <div class="skill-grp">
-            <h4 id="h-sk3">Leadership skills</h4>
+            <h4 id="h-sk3">Leadership Skills</h4>
             <ul class="tags" aria-labelledby="h-sk3"><li>Leadership</li><li>Project management</li></ul>
           </div>
           <div class="skill-grp">
-            <h4 id="h-sk4">General skills</h4>
+            <h4 id="h-sk4">General Skills</h4>
             <ul class="tags" aria-labelledby="h-sk4"><li>Sales and marketing</li><li>Microsoft Office</li><li>Google Docs</li></ul>
           </div>
           <div class="skill-grp">
@@ -1892,7 +1892,7 @@ html.bp-on .bp-bgfx{display:block}
             <div><dt>Program</dt><dd>Arts and Technology and Emerging Communications (ATEC), The University of Texas at Dallas</dd></div>
             <div><dt>Specialization</dt><dd>Human-Computer Interaction and Design</dd></div>
             <div><dt>Honors</dt><dd>Two undergraduate scholarships · Member, Phi Theta Kappa Honor Society and The National Society of Leadership and Success</dd></div>
-            <div><dt>Five electives</dt><dd><ul class="tags"><li>Human-Computer Interaction (both levels)</li><li>Design (both levels)</li><li>Project Management</li><li>Sales and Marketing, business school</li></ul></dd></div>
+            <div><dt>Five Electives</dt><dd><ul class="tags"><li>Human-Computer Interaction (both levels)</li><li>Design (both levels)</li><li>Project Management</li><li>Sales and Marketing, business school</li></ul></dd></div>
           </dl>
           <blockquote class="pquote"><p>These experiences transformed my perspective: good design starts with the foundational theories and human behaviors behind each decision, not just the tools we use.</p></blockquote>
         </div>
@@ -1908,8 +1908,8 @@ html.bp-on .bp-bgfx{display:block}
         <h2 id="h-edu">Education &amp; Scholarships</h2>
         <ol class="timeline">
         <li><span class="yr">2017-2022</span><h3>University of Texas at Dallas</h3><p>I studied Arts and Technology and Emerging Communications, focusing on design and human-computer interaction, with self-chosen electives in project management and sales and marketing.</p></li>
-        <li><span class="yr">2017</span><h3>UT Dallas Comet transfer scholarship</h3><p>Awarded each semester for academic excellence and for proactively pursuing my education at The University of Texas at Dallas.</p></li>
-        <li><span class="yr">2017</span><h3>UT Dallas Phi Theta Kappa scholarship</h3><p>Awarded each semester in recognition of my membership in the Phi Theta Kappa Honor Society.</p></li>
+        <li><span class="yr">2017</span><h3>UT Dallas Comet Transfer Scholarship</h3><p>Awarded each semester for academic excellence and for proactively pursuing my education at The University of Texas at Dallas.</p></li>
+        <li><span class="yr">2017</span><h3>UT Dallas Phi Theta Kappa Scholarship</h3><p>Awarded each semester in recognition of my membership in the Phi Theta Kappa Honor Society.</p></li>
         <li><span class="yr">2015-2016</span><h3>Northlake Community College</h3><p>I studied at a community college for one year to complete my core curriculum before attending a university. I took a lot of drawing and a little bit of programming.</p></li>
       </ol>
       </div>
@@ -1922,13 +1922,13 @@ html.bp-on .bp-bgfx{display:block}
       <div>
         <h2 id="h-honors">Honor Societies</h2>
         <ol class="timeline honors-tl">
-          <li><span class="yr">2015</span><h3>Member of Phi Theta Kappa Honor Society</h3><p>The honor society for community college students, by invitation for high academic achievement.</p><figure class="slide cert"><div aria-hidden="true" data-alt="Phi Theta Kappa Honor Society certificate certifying that Sai Villuri has been inducted into Phi Theta Kappa, Alpha Zeta Eta Chapter, dated August 20, 2015, with the society's gold seal and the membership card beside it" class="ph" data-frame="mat" data-src="images/ptk-certificate-sm" data-w="1192" data-md="images/ptk-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/ptk-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>Phi Theta Kappa membership certificate</figcaption></figure></li>
-          <li><span class="yr">2026</span><h3>Member of The National Society of Leadership and Success</h3><p>An invitation-only U.S. honor society for leadership, based on GPA and leadership training.</p><figure class="slide cert"><div aria-hidden="true" data-alt="The National Society of Leadership and Success certificate presented to Sai Rohit Villuri for completing the NSLS Foundations of Leadership training program, with membership in The University of Texas at Dallas Alumni chapter, effective July 12th, 2026" class="ph" data-frame="mat" data-src="images/nsls-certificate-sm" data-w="1040" data-md="images/nsls-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/nsls-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>NSLS membership certificate</figcaption></figure></li>
+          <li><span class="yr">2015</span><h3>Member of Phi Theta Kappa Honor Society</h3><p>The honor society for community college students, by invitation for high academic achievement.</p><figure class="slide cert"><div aria-hidden="true" data-alt="Phi Theta Kappa Honor Society certificate certifying that Sai Villuri has been inducted into Phi Theta Kappa, Alpha Zeta Eta Chapter, dated August 20, 2015, with the society's gold seal and the membership card beside it" class="ph" data-frame="mat" data-src="images/ptk-certificate-sm" data-w="1192" data-md="images/ptk-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/ptk-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>Phi Theta Kappa Membership Certificate</figcaption></figure></li>
+          <li><span class="yr">2026</span><h3>Member of The National Society of Leadership and Success</h3><p>An invitation-only U.S. honor society for leadership, based on GPA and leadership training.</p><figure class="slide cert"><div aria-hidden="true" data-alt="The National Society of Leadership and Success certificate presented to Sai Rohit Villuri for completing the NSLS Foundations of Leadership training program, with membership in The University of Texas at Dallas Alumni chapter, effective July 12th, 2026" class="ph" data-frame="mat" data-src="images/nsls-certificate-sm" data-w="1040" data-md="images/nsls-certificate-md.webp" data-mdw="1530" data-ext="webp" data-hd="images/nsls-certificate.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>NSLS Membership Certificate</figcaption></figure></li>
         </ol>
         <ul class="logos">
-          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://utdallas.edu/" data-learn-name="The University of Texas at Dallas" data-learn-host="utdallas.edu"><span aria-hidden="true" data-alt="The University of Texas at Dallas logo" class="ph" data-src="images/utd-logo-sm" data-ext="webp" data-hd="images/utd-logo.png" data-fit="contain"></span><span class="sr-only">The University of Texas at Dallas: learn more</span></button><figcaption>The University of Texas at Dallas <span class="learn-hint" aria-hidden="true">Learn more</span></figcaption></figure></li>
-          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://www.ptk.org/" data-learn-name="Phi Theta Kappa honor society" data-learn-host="ptk.org"><span aria-hidden="true" data-alt="Phi Theta Kappa honor society logo" class="ph" data-src="images/ptk-logo-sm" data-ext="webp" data-hd="images/ptk-logo.png" data-fit="contain"></span><span class="sr-only">Phi Theta Kappa honor society: learn more</span></button><figcaption>Phi Theta Kappa honor society <span class="learn-hint" aria-hidden="true">Learn more</span></figcaption></figure></li>
-          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://www.nsls.org/" data-learn-name="The NSLS honor society" data-learn-host="nsls.org"><span aria-hidden="true" data-alt="The NSLS honor society logo" class="ph" data-src="images/nsls-logo" data-ext="png" data-fit="contain"></span><span class="sr-only">The NSLS honor society: learn more</span></button><figcaption>The NSLS honor society <span class="learn-hint" aria-hidden="true">Learn more</span></figcaption></figure></li>
+          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://utdallas.edu/" data-learn-name="The University of Texas at Dallas" data-learn-host="utdallas.edu"><span aria-hidden="true" data-alt="The University of Texas at Dallas logo" class="ph" data-src="images/utd-logo-sm" data-ext="webp" data-hd="images/utd-logo.png" data-fit="contain"></span><span class="sr-only">The University of Texas at Dallas: learn more</span></button><figcaption>The University of Texas at Dallas <span class="learn-hint" aria-hidden="true">Learn More</span></figcaption></figure></li>
+          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://www.ptk.org/" data-learn-name="Phi Theta Kappa honor society" data-learn-host="ptk.org"><span aria-hidden="true" data-alt="Phi Theta Kappa honor society logo" class="ph" data-src="images/ptk-logo-sm" data-ext="webp" data-hd="images/ptk-logo.png" data-fit="contain"></span><span class="sr-only">Phi Theta Kappa honor society: learn more</span></button><figcaption>Phi Theta Kappa Honor Society <span class="learn-hint" aria-hidden="true">Learn More</span></figcaption></figure></li>
+          <li><figure><button type="button" class="logo-btn" aria-haspopup="dialog" data-learn="https://www.nsls.org/" data-learn-name="The NSLS honor society" data-learn-host="nsls.org"><span aria-hidden="true" data-alt="The NSLS honor society logo" class="ph" data-src="images/nsls-logo" data-ext="png" data-fit="contain"></span><span class="sr-only">The NSLS honor society: learn more</span></button><figcaption>The NSLS Honor Society <span class="learn-hint" aria-hidden="true">Learn More</span></figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -1939,7 +1939,7 @@ html.bp-on .bp-bgfx{display:block}
 <div class="view" data-view="clients" data-title="Work" hidden>
   <section class="band" aria-labelledby="h-clients">
     <div class="wrap hero compact trusted-hero">
-      <span class="label">Selected work · 5 projects</span>
+      <span class="label">Selected Work · 5 Projects</span>
       <h1 id="h-clients" tabindex="-1">Client <span class="hl">Case Studies</span></h1>
       <p class="trusted-body">Pick a project to see its goal, what I delivered, key screens and the full case study.</p>
     </div>
@@ -1966,10 +1966,10 @@ html.bp-on .bp-bgfx{display:block}
     <div>
       <h2 id="h-proj1">SKYLIFT</h2>
       <p class="sub">Emergency help app · WCAG AA iOS prototype</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 42 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My Role</dt><dd>UI/UX Designer · 42 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Emergency drone-dispatch iOS app with an interactive prototype</dd></div><div><dt>Goal</dt><dd>Make requesting aerial help a single tap, keep dispatch status always visible, and get critical medical info to responders fast</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed SKYLIFT, an emergency services app that helps someone who has been in an accident call a quadcopter for help. With a single tap, the app shares their location, sends the nearest SKYLIFT quadcopter to them, and gets them to a hospital connected to the SKYLIFT network quickly and efficiently.</p>
       <div class="story">
-        <div><h3>How I approached it</h3><p>Because people use this app under stress, I designed every screen around one clear action: a large help button in the centre of Home, three simple tabs, and live status and arrival time during dispatch.</p></div>
+        <div><h3>How I Approached It</h3><p>Because people use this app under stress, I designed every screen around one clear action: a large help button in the centre of Home, three simple tabs, and live status and arrival time during dispatch.</p></div>
         <div><h3>Outcome</h3><p>An interactive iOS prototype built to WCAG AA: all 36 colour pairs pass contrast in light and dark mode, and every control is at least 44px. Next, I&#x27;d test it with realistic emergency scenarios.</p></div>
       </div>
       <div class="chips">
@@ -1978,9 +1978,9 @@ html.bp-on .bp-bgfx{display:block}
       </div>
       <div class="carousel" role="region" aria-label="SKYLIFT screens">
         <ul class="track" aria-label="SKYLIFT screens">
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT splash screen on an iPhone: the SKY LIFT logo with a drone and a red cross on brand teal, the words Emergency Quadrocopter Services, the line Secure, Rapid, Life-saving, and the hint Select the Skylift logo to continue" class="ph" data-frame="cutout" data-src="images/skylift-splash-sm" data-w="424" data-md="images/skylift-splash-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-splash-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Splash screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT home screen: Welcome, Neel Ravi; a Fleet Status card reading Available 24/7, 3 quadrocopters ready, Unit S-42 nearest, marked Live; a large round Dispatch SKYLIFT, Accident and Emergency button; a map with the drone route from point A to point B, Old 54 Street, a Pause animation button and a Ready for immediate response card; and tabs for Home, Medical Card and Profile" class="ph" data-frame="cutout" data-src="images/skylift-home-sm" data-w="424" data-md="images/skylift-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-home-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Home screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT medical card screen: My Medical Card, Secure and Encrypted; emergency contacts Shreya Neel, sister, and Indra Neel, father, each with a call button; blood type O-Positive; allergies Penicillin, Latex and Shellfish; current medication NyQuil; conditions Asthma and Acrophobia; and a Sanctuary ID digital pass, SJ8822" class="ph" data-frame="cutout" data-src="images/skylift-medical-card-sm" data-w="424" data-md="images/skylift-medical-card-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-medical-card-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Medical card</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT splash screen on an iPhone: the SKY LIFT logo with a drone and a red cross on brand teal, the words Emergency Quadrocopter Services, the line Secure, Rapid, Life-saving, and the hint Select the Skylift logo to continue" class="ph" data-frame="cutout" data-src="images/skylift-splash-sm" data-w="424" data-md="images/skylift-splash-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-splash-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Splash Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT home screen: Welcome, Neel Ravi; a Fleet Status card reading Available 24/7, 3 quadrocopters ready, Unit S-42 nearest, marked Live; a large round Dispatch SKYLIFT, Accident and Emergency button; a map with the drone route from point A to point B, Old 54 Street, a Pause animation button and a Ready for immediate response card; and tabs for Home, Medical Card and Profile" class="ph" data-frame="cutout" data-src="images/skylift-home-sm" data-w="424" data-md="images/skylift-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-home-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Home Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="SKYLIFT medical card screen: My Medical Card, Secure and Encrypted; emergency contacts Shreya Neel, sister, and Indra Neel, father, each with a call button; blood type O-Positive; allergies Penicillin, Latex and Shellfish; current medication NyQuil; conditions Asthma and Acrophobia; and a Sanctuary ID digital pass, SJ8822" class="ph" data-frame="cutout" data-src="images/skylift-medical-card-sm" data-w="424" data-md="images/skylift-medical-card-md.webp" data-mdw="660" data-ext="webp" data-hd="images/skylift-medical-card-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Medical Card</figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -1991,10 +1991,10 @@ html.bp-on .bp-bgfx{display:block}
     <div>
       <h2 id="h-proj2">GENZ IN ACTION</h2>
       <p class="sub">Learning-first social app · phone, tablet &amp; desktop</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 32 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Educational social app for iOS, Android and desktop, including tablets</dd></div><div><dt>Goal</dt><dd>Help people share resources, learn and grow, and get educated in a friendly format</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My Role</dt><dd>UI/UX Designer · 32 hours in Figma Make</dd></div><div><dt>Project</dt><dd>Educational social app for iOS, Android and desktop, including tablets</dd></div><div><dt>Goal</dt><dd>Help people share resources, learn and grow, and get educated in a friendly format</dd></div><div><dt>Delivered</dt><dd>Figma Make prototype, case study</dd></div></dl>
       <p class="body">I designed GENZ IN ACTION, an app all about collaboration and learning from each other in a social-media-like format. Its core goal is to help people share resources, learn and grow, and get educated in a friendly format.</p>
       <div class="story">
-        <div><h3>How I approached it</h3><p>I reframed the social feed as a learning loop: collaborate, share, learn and grow. Familiar patterns from apps Gen Z already use mean there&#x27;s nothing new to learn, and clear privacy controls help young users feel safe.</p></div>
+        <div><h3>How I Approached It</h3><p>I reframed the social feed as a learning loop: collaborate, share, learn and grow. Familiar patterns from apps Gen Z already use mean there&#x27;s nothing new to learn, and clear privacy controls help young users feel safe.</p></div>
         <div><h3>Outcome</h3><p>A clickable prototype for phones, tablets and desktop, with one bold brand identity carried into every screen. Next, I&#x27;d run usability tests with Gen Z users and design moderation tools for the community.</p></div>
       </div>
       <div class="chips">
@@ -2003,9 +2003,9 @@ html.bp-on .bp-bgfx{display:block}
       </div>
       <div class="carousel" role="region" aria-label="GENZ IN ACTION screens">
         <ul class="track" aria-label="GENZ IN ACTION screens">
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION splash screen on an iPhone: the app logo of a diverse group cheering under a globe with rising arrows on deep navy, the line Learn, Experiment, Build, Demo, Improve and Repeat, and page dots" class="ph" data-frame="cutout" data-src="images/genz-splash-sm" data-w="425" data-md="images/genz-splash-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-splash-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Splash screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION sign in screen: the GENZ IN ACTION banner logo, the line Learn, Experiment, Build, Demo, Improve and Repeat, a Create your account button, an I already have an account button, and a note that joining means agreeing to the Terms of Service and Privacy Policy" class="ph" data-frame="cutout" data-src="images/genz-sign-in-sm" data-w="425" data-md="images/genz-sign-in-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-sign-in-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Sign in screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION home screen: Welcome back, Jamie Lee; a This week's impact card with +240 points, a 5-day streak and rank 142 globally; a featured action, Write to Your Rep: Fund Title I Schools; People to Follow with Maya, Sam and Alex; Trending Right Now with #ClimateNow, #MentalHealthMatters and #GenZRising; and a bottom tab bar with Home, Explore, a create button, Saved and Profile" class="ph" data-frame="cutout" data-src="images/genz-home-sm" data-w="425" data-md="images/genz-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-home-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Home screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION splash screen on an iPhone: the app logo of a diverse group cheering under a globe with rising arrows on deep navy, the line Learn, Experiment, Build, Demo, Improve and Repeat, and page dots" class="ph" data-frame="cutout" data-src="images/genz-splash-sm" data-w="425" data-md="images/genz-splash-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-splash-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Splash Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION sign in screen: the GENZ IN ACTION banner logo, the line Learn, Experiment, Build, Demo, Improve and Repeat, a Create your account button, an I already have an account button, and a note that joining means agreeing to the Terms of Service and Privacy Policy" class="ph" data-frame="cutout" data-src="images/genz-sign-in-sm" data-w="425" data-md="images/genz-sign-in-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-sign-in-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Sign In Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="GENZ IN ACTION home screen: Welcome back, Jamie Lee; a This week's impact card with +240 points, a 5-day streak and rank 142 globally; a featured action, Write to Your Rep: Fund Title I Schools; People to Follow with Maya, Sam and Alex; Trending Right Now with #ClimateNow, #MentalHealthMatters and #GenZRising; and a bottom tab bar with Home, Explore, a create button, Saved and Profile" class="ph" data-frame="cutout" data-src="images/genz-home-sm" data-w="425" data-md="images/genz-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/genz-home-hd.webp" data-fit="contain" data-bg="#f5f5f5"></div><figcaption>Home Screen</figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -2016,10 +2016,10 @@ html.bp-on .bp-bgfx{display:block}
     <div>
       <h2 id="h-proj3">BYTEBALANCE</h2>
       <p class="sub">Nutrition tracker · working prototype with an AI assistant</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 40 hours in Lovable</dd></div><div><dt>Project</dt><dd>Nutrition tracker app with a working prototype built in Lovable</dd></div><div><dt>Goal</dt><dd>Help people build and keep a healthy lifestyle by making it quick to log meals and water, see daily goals at a glance, and stay motivated</dd></div><div><dt>Delivered</dt><dd>Lovable prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My Role</dt><dd>UI/UX Designer · 40 hours in Lovable</dd></div><div><dt>Project</dt><dd>Nutrition tracker app with a working prototype built in Lovable</dd></div><div><dt>Goal</dt><dd>Help people build and keep a healthy lifestyle by making it quick to log meals and water, see daily goals at a glance, and stay motivated</dd></div><div><dt>Delivered</dt><dd>Lovable prototype, case study</dd></div></dl>
       <p class="body">I designed BYTEBALANCE, a nutrition tracking app intentionally made to look familiar, like other calorie and fitness tracking apps. Its goal is to motivate users to stay healthy by tracking their calorie intake, so the habit forms naturally.</p>
       <div class="story">
-        <div><h3>How I approached it</h3><p>I kept the design deliberately familiar, with calorie rings, macro bars, streaks and a centre + button people already know from fitness apps, so new users need no explanation and logging a meal takes seconds.</p></div>
+        <div><h3>How I Approached It</h3><p>I kept the design deliberately familiar, with calorie rings, macro bars, streaks and a centre + button people already know from fitness apps, so new users need no explanation and logging a meal takes seconds.</p></div>
         <div><h3>Outcome</h3><p>A working prototype built in Lovable in 40 hours, including Nutrition Buddy, an AI assistant for meal ideas and plans. Next, I&#x27;d time how quickly people log a meal and refine onboarding.</p></div>
       </div>
       <div class="chips">
@@ -2028,9 +2028,9 @@ html.bp-on .bp-bgfx{display:block}
       </div>
       <div class="carousel" role="region" aria-label="BYTEBALANCE screens">
         <ul class="track" aria-label="BYTEBALANCE screens">
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE login screen: the ByteBalance Nutrition OS logo, the headline Build Better Habits., a line about tracking calories, macros and hydration, a Create account button, an I already have an account button, a Demo experience login link, and a note linking the Terms of Use and Privacy Policy" class="ph" data-src="images/bytebalance-login-sm" data-w="427" data-md="images/bytebalance-login-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-login-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Login screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE home screen: Good Evening, First-time Guests; a card reading Your day starts at zero; a 0-day streak and On track chips; a Today's Calories ring at 0 of 2,000 kcal with 2,000 left; protein, carbs and fat bars at zero, each with a help button; and a bottom tab bar with Home, Journey, a center add button, Buddy and Profile" class="ph" data-src="images/bytebalance-home-sm" data-w="427" data-md="images/bytebalance-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-home-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Home screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE add a meal screen: Log a meal, pick from your library or enter it manually; 2,000 kcal remaining today; a Tap to scan barcode area; a food search; Breakfast, Lunch, Dinner and Snack filters with Lunch selected; and foods with calories, including avocado toast and eggs, Greek yoghurt and berries, a chicken and rice bowl, a whey protein shake, and salmon and greens" class="ph" data-src="images/bytebalance-add-meal-sm" data-w="427" data-md="images/bytebalance-add-meal-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-add-meal-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Add a meal screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE login screen: the ByteBalance Nutrition OS logo, the headline Build Better Habits., a line about tracking calories, macros and hydration, a Create account button, an I already have an account button, a Demo experience login link, and a note linking the Terms of Use and Privacy Policy" class="ph" data-src="images/bytebalance-login-sm" data-w="427" data-md="images/bytebalance-login-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-login-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Login Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE home screen: Good Evening, First-time Guests; a card reading Your day starts at zero; a 0-day streak and On track chips; a Today's Calories ring at 0 of 2,000 kcal with 2,000 left; protein, carbs and fat bars at zero, each with a help button; and a bottom tab bar with Home, Journey, a center add button, Buddy and Profile" class="ph" data-src="images/bytebalance-home-sm" data-w="427" data-md="images/bytebalance-home-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-home-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Home Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE add a meal screen: Log a meal, pick from your library or enter it manually; 2,000 kcal remaining today; a Tap to scan barcode area; a food search; Breakfast, Lunch, Dinner and Snack filters with Lunch selected; and foods with calories, including avocado toast and eggs, Greek yoghurt and berries, a chicken and rice bowl, a whey protein shake, and salmon and greens" class="ph" data-src="images/bytebalance-add-meal-sm" data-w="427" data-md="images/bytebalance-add-meal-md.webp" data-mdw="660" data-ext="webp" data-hd="images/bytebalance-add-meal-hd.webp" data-fit="contain" data-bg="#212120"></div><figcaption>Add a Meal Screen</figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -2041,10 +2041,10 @@ html.bp-on .bp-bgfx{display:block}
     <div>
       <h2 id="h-mak">MAKARANDAM</h2>
       <p class="sub">Honey e-commerce website · end-to-end design</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 100 hours in Figma</dd></div><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study</dd></div></dl>
+      <dl class="facts"><div><dt>My Role</dt><dd>UI/UX Designer · 100 hours in Figma</dd></div><div><dt>Project</dt><dd>End-to-end e-commerce website</dd></div><div><dt>Goal</dt><dd>Customer trust and a seamless path to purchase</dd></div><div><dt>Delivered</dt><dd>Logo theme, site architecture, Figma prototype, case study</dd></div></dl>
       <p class="body">I designed an end-to-end e-commerce experience for a local honey brand, focused entirely on building customer trust and simplifying the user journey. The project featured a custom logo theme and an intuitive site architecture that reflects a clean, natural aesthetic while ensuring a seamless path to purchase.</p>
       <div class="story">
-        <div><h3>How I approached it</h3><p>Trust matters most when buying food online, so I built a clean, natural look around a custom logo theme and kept the path from browsing to checkout short and clear.</p></div>
+        <div><h3>How I Approached It</h3><p>Trust matters most when buying food online, so I built a clean, natural look around a custom logo theme and kept the path from browsing to checkout short and clear.</p></div>
         <div><h3>Outcome</h3><p>A complete clickable e-commerce prototype and a case study, giving the client everything needed to build the site.</p></div>
       </div>
       <div class="chips">
@@ -2055,7 +2055,7 @@ html.bp-on .bp-bgfx{display:block}
         <ul class="track" aria-label="Makarandam screens">
           <li><figure class="slide"><div aria-hidden="true" data-alt="MAKARANDAM home page design: navigation with Home, Shop, Our Story, My Account, a cart and Login; a Shop Now button; a Shop section with a 500g jar for 500 rupees and a 1kg jar for 1000 rupees, each with Add to cart; and a honey photo with the Makarandam logo" class="ph" data-frame="mat" data-src="images/makarandam-home-sm" data-w="590" data-md="images/makarandam-home-md.webp" data-mdw="885" data-ext="webp" data-hd="images/makarandam-home.jpg" data-fit="contain" data-bg="#ffffff"></div><figcaption>Home</figcaption></figure></li>
           <li><figure class="slide"><div aria-hidden="true" data-alt="MAKARANDAM sign up page design: Join the Makarandam. Start your healthy journey. Sign up with email, using full name, email and a password, or with a mobile number and a one-time code, plus a Login now link for members" class="ph" data-frame="mat" data-src="images/makarandam-sign-up-sm" data-w="590" data-md="images/makarandam-sign-up-md.webp" data-mdw="885" data-ext="webp" data-hd="images/makarandam-sign-up-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Sign up</figcaption></figure></li>
-          <li><figure class="slide"><div aria-hidden="true" data-alt="MAKARANDAM profile page design: Welcome back to Makarandam, with a profile picture and editable name and email, payment methods, saved addresses and order history" class="ph" data-frame="mat" data-src="images/makarandam-profile-sm" data-w="590" data-md="images/makarandam-profile-md.webp" data-mdw="885" data-ext="webp" data-hd="images/makarandam-profile-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Profile section</figcaption></figure></li>
+          <li><figure class="slide"><div aria-hidden="true" data-alt="MAKARANDAM profile page design: Welcome back to Makarandam, with a profile picture and editable name and email, payment methods, saved addresses and order history" class="ph" data-frame="mat" data-src="images/makarandam-profile-sm" data-w="590" data-md="images/makarandam-profile-md.webp" data-mdw="885" data-ext="webp" data-hd="images/makarandam-profile-hd.webp" data-fit="contain" data-bg="#ffffff"></div><figcaption>Profile Section</figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -2066,10 +2066,10 @@ html.bp-on .bp-bgfx{display:block}
     <div>
       <h2 id="h-fam">FAMGRAM</h2>
       <p class="sub">Secure family cloud app · app and website prototypes</p>
-      <dl class="facts"><div><dt>My role</dt><dd>UI/UX Designer · 200 hours in Figma</dd></div><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, presentation</dd></div></dl>
+      <dl class="facts"><div><dt>My Role</dt><dd>UI/UX Designer · 200 hours in Figma</dd></div><div><dt>Project</dt><dd>Private family cloud storage, plus an informational website</dd></div><div><dt>Goal</dt><dd>Make complex security features intuitive and build user trust</dd></div><div><dt>Delivered</dt><dd>Multi-page UI, Figma prototypes, case study, presentation</dd></div></dl>
       <p class="body">I designed a secure, private cloud storage solution focused on family connectivity, translating complex security features into intuitive multi-page user interfaces. The project prioritized building user trust and ease of use as core goals, ensuring a seamless and reliable experience for families.</p>
       <div class="story">
-        <div><h3>How I approached it</h3><p>I translated complex security features into simple, friendly screens, so families can store and share privately without needing to understand the technology behind it.</p></div>
+        <div><h3>How I Approached It</h3><p>I translated complex security features into simple, friendly screens, so families can store and share privately without needing to understand the technology behind it.</p></div>
         <div><h3>Outcome</h3><p>Multi-page app prototypes, an informational website designed to make the offer easy to understand, a case study and a client presentation.</p></div>
       </div>
       <div class="chips">
@@ -2081,12 +2081,12 @@ html.bp-on .bp-bgfx{display:block}
         <ul class="track" aria-label="FAMGRAM app screens">
           <li><figure class="slide tall"><div aria-hidden="true" data-alt="FAMGRAM app sign in screen: Welcome back, Sign in FamGram, RoRiB Cloud, with email and password fields, a Forgot password link, a Sign in button and a Sign up link" class="ph" data-src="images/famgram-app-1-sm" data-w="400" data-md="images/famgram-app-1-md.webp" data-mdw="660" data-ext="webp" data-hd="images/famgram-app-1-hd.webp" data-fit="contain" data-bg="#1e293b"></div><figcaption>Sign in</figcaption></figure></li>
           <li><figure class="slide tall"><div aria-hidden="true" data-alt="FAMGRAM app sign up screen: Create your account, Start your family's RoRiB Cloud on FamGram, with full name, email and password fields, a Create account button and a Sign in link" class="ph" data-src="images/famgram-app-2-sm" data-w="436" data-md="images/famgram-app-2-md.webp" data-mdw="660" data-ext="webp" data-hd="images/famgram-app-2-hd.webp" data-fit="contain" data-bg="#1e293b"></div><figcaption>Sign up</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="FAMGRAM app home screen with the weather widget open: files shared with you, active agents such as Birthday Reminder, Grocery Planner and Scan classifier, AI conversations, storage use of 2.4 GB of 10 GB, and a weather card for Hyderabad showing 40°C and partly cloudy" class="ph no-zoom-badge" data-frame="mat" data-src="images/famgram-app-3-sm" data-w="436" data-md="images/famgram-app-3-md.webp" data-mdw="660" data-ext="webp" data-hd="images/famgram-app-3-hd.webp" data-fit="contain" data-bg="#f1f1f1"></div><figcaption>Home screen with weather widget clicked</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="FAMGRAM app home screen with the weather widget open: files shared with you, active agents such as Birthday Reminder, Grocery Planner and Scan classifier, AI conversations, storage use of 2.4 GB of 10 GB, and a weather card for Hyderabad showing 40°C and partly cloudy" class="ph no-zoom-badge" data-frame="mat" data-src="images/famgram-app-3-sm" data-w="436" data-md="images/famgram-app-3-md.webp" data-mdw="660" data-ext="webp" data-hd="images/famgram-app-3-hd.webp" data-fit="contain" data-bg="#f1f1f1"></div><figcaption>Home Screen with Weather Widget Clicked</figcaption></figure></li>
         </ul>
       </div>
 
       <div class="subproject">
-        <h3 id="h-famweb">Informational website (FAMGRAM)</h3>
+        <h3 id="h-famweb">Informational Website (FAMGRAM)</h3>
         <p class="body">I designed an informational website for the Famgram platform using a tailored color palette and engaging layouts to highlight its core products. The site is designed for a high conversion rate, with a simple-to-navigate interface that makes it easy for visitors to understand the offerings.</p>
         <div class="chips">
           <a class="chip primary" href="https://www.figma.com/proto/AY4V1JUKsUPLrbXE97AYA6/FAMGRAM-informational-website?node-id=1-4&amp;t=ls2JfORCkJoKO1bT-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A4" target="_blank" rel="noopener">Figma prototype<span class="sr-only"> for FAMGRAM informational website, opens in a new tab</span></a>
@@ -2113,8 +2113,8 @@ html.bp-on .bp-bgfx{display:block}
 <div class="view" data-view="connect" data-title="Contact" hidden>
   <section class="band" aria-labelledby="h-touch">
     <div class="wrap hero compact">
-      <span class="label">Come say hello</span>
-      <h1 id="h-touch" tabindex="-1">Good design starts with <span class="hl">a conversation</span></h1>
+      <span class="label">Come Say Hello</span>
+      <h1 id="h-touch" tabindex="-1">Good Design Starts with <span class="hl">a Conversation</span></h1>
     </div>
   </section>
   <section class="connect-bg" aria-label="Contact details">
@@ -2124,19 +2124,19 @@ html.bp-on .bp-bgfx{display:block}
           <div class="cx-mail">
             <h2 class="label">Email</h2>
             <a class="mail-addr" id="mailAddr" href="mailto:srv26uxd@gmail.com">srv26uxd@gmail.com<span class="sr-only"> (opens your email app)</span></a>
-            <button class="small-btn" id="copyMail" type="button">Copy email address</button>
+            <button class="small-btn" id="copyMail" type="button">Copy Email Address</button>
           </div>
           <div class="cx-group">
-            <h2 class="label">Connect with me</h2>
+            <h2 class="label">Connect with Me</h2>
             <ul class="cx-list">
               <li><a class="ct" href="https://www.linkedin.com/in/sairohitvilluri/" target="_blank" rel="noopener"><span class="ct-ico"><img alt="" class="lk-logo" src="data:image/png;base64,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" width="28" height="28"></span><span class="ct-txt"><span class="ct-t">LinkedIn</span><span class="sr-only">, </span><span class="ct-d">Professional profile</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
               <li><a class="ct" href="https://www.behance.net/gallery/249369555/Sai-Villuri" target="_blank" rel="noopener"><span class="ct-ico"><img alt="" class="lk-logo" src="data:image/png;base64,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" width="28" height="28"></span><span class="ct-txt"><span class="ct-t">Behance</span><span class="sr-only">, </span><span class="ct-d">Design portfolio</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
             </ul>
           </div>
           <div class="cx-group">
-            <h2 class="label">Contact card &amp; resume</h2>
+            <h2 class="label">Contact Card &amp; Resume</h2>
             <ul class="cx-list">
-              <li><a class="ct ct-card" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><span class="ct-fx" aria-hidden="true"></span><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="ct-txt"><span class="ct-t">Digital contact card</span><span class="sr-only">, </span><span class="ct-d">Save my details</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
+              <li><a class="ct ct-card" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><span class="ct-fx" aria-hidden="true"></span><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="ct-txt"><span class="ct-t">Digital Contact Card</span><span class="sr-only">, </span><span class="ct-d">Save my details</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
               <li><a class="ct" href="Sai-Rohit-Villuri-Resume.pdf?v=2026-11-22b" target="_blank" rel="noopener"><span class="ct-ico"><svg class="lk-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2.75H7.25a2 2 0 0 0-2 2v14.5a2 2 0 0 0 2 2h9.5a2 2 0 0 0 2-2V7.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2.75V7.5h4.75M9 12.5h6M9 16h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ct-txt"><span class="ct-t">View Resume</span><span class="sr-only">, </span><span class="ct-d">One-page PDF</span></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only"> (opens in a new tab)</span></a></li>
             </ul>
           </div>
@@ -2157,24 +2157,24 @@ html.bp-on .bp-bgfx{display:block}
   </section>
   <div class="wrap legal">
     <nav class="toc" aria-label="Privacy Policy contents">
-      <span class="label">On this page</span>
+      <span class="label">On This Page</span>
       <ol>
-        <li><a href="#privacy-policy" data-jump="p-who">Who is responsible</a></li>
-        <li><a href="#privacy-policy" data-jump="p-collect">What this site collects</a></li>
-        <li><a href="#privacy-policy" data-jump="p-third">Third-party services</a></li>
-        <li><a href="#privacy-policy" data-jump="p-cookies">Cookies and tracking</a></li>
-        <li><a href="#privacy-policy" data-jump="p-email">If you email me</a></li>
-        <li><a href="#privacy-policy" data-jump="p-basis">Legal basis</a></li>
-        <li><a href="#privacy-policy" data-jump="p-retain">Retention and security</a></li>
-        <li><a href="#privacy-policy" data-jump="p-transfer">International transfers</a></li>
-        <li><a href="#privacy-policy" data-jump="p-rights">Your rights by region</a></li>
+        <li><a href="#privacy-policy" data-jump="p-who">Who Is Responsible</a></li>
+        <li><a href="#privacy-policy" data-jump="p-collect">What This Site Collects</a></li>
+        <li><a href="#privacy-policy" data-jump="p-third">Third-Party Services</a></li>
+        <li><a href="#privacy-policy" data-jump="p-cookies">Cookies and Tracking</a></li>
+        <li><a href="#privacy-policy" data-jump="p-email">If You Email Me</a></li>
+        <li><a href="#privacy-policy" data-jump="p-basis">Legal Basis</a></li>
+        <li><a href="#privacy-policy" data-jump="p-retain">Retention and Security</a></li>
+        <li><a href="#privacy-policy" data-jump="p-transfer">International Transfers</a></li>
+        <li><a href="#privacy-policy" data-jump="p-rights">Your Rights by Region</a></li>
         <li><a href="#privacy-policy" data-jump="p-children">Children</a></li>
-        <li><a href="#privacy-policy" data-jump="p-changes">Changes and contact</a></li>
+        <li><a href="#privacy-policy" data-jump="p-changes">Changes and Contact</a></li>
       </ol>
     </nav>
     <div class="prose">
       <div class="summary">
-        <h2>The short version</h2>
+        <h2>The Short Version</h2>
         <ul>
           <li>This is a personal design portfolio. It has no sign-up, no forms, no ads and no analytics.</li>
           <li>I am based in India. This policy follows India's Digital Personal Data Protection Act, 2023, and respects the privacy laws of other countries too.</li>
@@ -2186,13 +2186,13 @@ html.bp-on .bp-bgfx{display:block}
       </div>
 
       <section id="p-who" tabindex="-1" aria-labelledby="ph-who">
-        <h2 id="ph-who">1. Who is responsible</h2>
+        <h2 id="ph-who">1. Who Is Responsible</h2>
         <p>This website is the personal portfolio of Sai Rohit Villuri ("I", "me"), an individual based in India. Under India's Digital Personal Data Protection Act, 2023 (DPDP Act) I am the <strong>Data Fiduciary</strong> for any personal information I receive through this site. Where other laws such as the GDPR apply, I am also the "controller".</p>
         <p>Contact for privacy questions, requests and grievances: <strong>Sai Rohit Villuri, srv26uxd@gmail.com</strong>.</p>
       </section>
 
       <section id="p-collect" tabindex="-1" aria-labelledby="ph-collect">
-        <h2 id="ph-collect">2. What this site collects</h2>
+        <h2 id="ph-collect">2. What This Site Collects</h2>
         <p>This site is purely informational and is meant to show my work. I do not ask you to create an account, fill in a form, or give me any personal information to use it.</p>
         <p>The only data handled when you visit is basic technical data that any web browser sends to load a page:</p>
         <ul>
@@ -2200,15 +2200,15 @@ html.bp-on .bp-bgfx{display:block}
           <li>browser type, device type and operating system</li>
           <li>the date and time of the request and the page requested</li>
         </ul>
-        <p>This data is processed by the services in section 3, not stored or analysed by me. When you use the "Copy email address" button, the address is copied on your own device and nothing is sent anywhere. Selecting the email address opens your own email app; nothing is sent unless you send a message yourself.</p>
+        <p>This data is processed by the services in section 3, not stored or analysed by me. When you use the "Copy Email Address" button, the address is copied on your own device and nothing is sent anywhere. Selecting the email address opens your own email app; nothing is sent unless you send a message yourself.</p>
       </section>
 
       <section id="p-third" tabindex="-1" aria-labelledby="ph-third">
-        <h2 id="ph-third">3. Third-party services</h2>
+        <h2 id="ph-third">3. Third-Party Services</h2>
         <div class="tbl" role="region" aria-label="Third-party services table" tabindex="0">
           <table>
-            <caption class="sr-only">Third-party services used by this website</caption>
-            <thead><tr><th scope="col">Service</th><th scope="col">Why</th><th scope="col">Data involved</th></tr></thead>
+            <caption class="sr-only">Third-Party Services Used by This Website</caption>
+            <thead><tr><th scope="col">Service</th><th scope="col">Why</th><th scope="col">Data Involved</th></tr></thead>
             <tbody>
               <tr><td>GitHub Pages (GitHub, Inc.), website hosting</td><td>To deliver the pages to your browser and keep the service secure</td><td>IP address, which GitHub logs and stores for security purposes, plus browser details and request time</td></tr>
               <tr><td>Google Fonts</td><td>To display the site's typefaces</td><td>IP address and browser details sent to Google when fonts load</td></tr>
@@ -2219,17 +2219,17 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="p-cookies" tabindex="-1" aria-labelledby="ph-cookies">
-        <h2 id="ph-cookies">4. Cookies and tracking</h2>
+        <h2 id="ph-cookies">4. Cookies and Tracking</h2>
         <p>This site does not set cookies, use analytics, use advertising or tracking pixels, or build profiles of visitors. It also does not save anything in your browser's local storage. The site always opens in light mode. If you turn on the Dark mode switch at the bottom of the page, dark mode lasts only while the page is open; it is not saved, sent to me or shared, and the site opens in light mode again the next time you visit. An earlier version of this site saved that light or dark choice in your browser; the site now deletes that old setting automatically when you visit. Because there are no cookies or similar technologies, no cookie banner is needed. If this changes, I will update this policy and ask for your consent first where the law requires it.</p>
       </section>
 
       <section id="p-email" tabindex="-1" aria-labelledby="ph-email">
-        <h2 id="ph-email">5. If you email me</h2>
+        <h2 id="ph-email">5. If You Email Me</h2>
         <p>If you contact me at srv26uxd@gmail.com, I receive your name, email address and whatever you choose to write. I use this only to reply to you, for example about a job opportunity, a project, or a privacy or accessibility request. I do not add you to mailing lists or pass your details on to anyone else, unless the law requires it.</p>
       </section>
 
       <section id="p-basis" tabindex="-1" aria-labelledby="ph-basis">
-        <h2 id="ph-basis">6. Legal basis for processing</h2>
+        <h2 id="ph-basis">6. Legal Basis for Processing</h2>
         <p><strong>India (DPDP Act, 2023):</strong> when you email me, you are voluntarily sharing your details for a specific purpose, getting a reply, and I use them only for that purpose. You can withdraw your consent at any time by asking me to delete your messages, and withdrawing is as easy as giving it. The basic technical data in section 2 is handled by GitHub Pages and Google Fonts only so the page can load. Where they apply, I also follow the Information Technology Act, 2000 and its rules on reasonable security practices. The DPDP Rules, 2025 bring most of the Act's duties, including your rights in section 9, into force on 14 May 2027; I already follow them.</p>
         <p><strong>Elsewhere:</strong> where laws such as the EU or UK GDPR apply, I rely on:</p>
         <ul>
@@ -2240,17 +2240,17 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="p-retain" tabindex="-1" aria-labelledby="ph-retain">
-        <h2 id="ph-retain">7. Retention and security</h2>
+        <h2 id="ph-retain">7. Retention and Security</h2>
         <p>Emails are kept only as long as needed to handle your enquiry and any follow-up, then deleted on request or when no longer needed. GitHub keeps the IP addresses of visitors for security purposes under its own privacy statement and retention policy, and Google handles font requests under its own policies. The site is served over HTTPS, and I use reasonable measures to protect any information I hold. No method of transmission over the internet is completely secure.</p>
       </section>
 
       <section id="p-transfer" tabindex="-1" aria-labelledby="ph-transfer">
-        <h2 id="ph-transfer">8. International transfers</h2>
+        <h2 id="ph-transfer">8. International Transfers</h2>
         <p>I am based in India. GitHub (which hosts the site), Google Fonts and my email provider may process data outside India, including in the United States. Under section 16 of the DPDP Act, personal data may be processed outside India unless the Government of India restricts transfers to a particular country, and I will follow any such restriction. Where data leaves the EU, UK or another region with its own transfer rules, it is protected by the safeguards those providers use, such as standard contractual clauses or adequacy decisions.</p>
       </section>
 
       <section id="p-rights" tabindex="-1" aria-labelledby="ph-rights">
-        <h2 id="ph-rights">9. Your rights by region</h2>
+        <h2 id="ph-rights">9. Your Rights by Region</h2>
         <p>Wherever you live, you can ask me what personal information I hold about you, ask me to correct it, or ask me to delete it. Email srv26uxd@gmail.com. I will respond free of charge and within the time limits set by the law that applies to you. I may need to confirm your identity first. Select your region for details:</p>
 
         <details class="region" open><summary>India (Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025)</summary><div>
@@ -2282,7 +2282,7 @@ html.bp-on .bp-bgfx{display:block}
           <p>You can request access to and correction of your personal information. If you are not satisfied with my response, you can complain to the Office of the Australian Information Commissioner (OAIC).</p>
         </div></details>
 
-        <details class="region"><summary>Other countries</summary><div>
+        <details class="region"><summary>Other Countries</summary><div>
           <p>If your local law gives you further rights, contact me and I will honour them as that law requires.</p>
         </div></details>
       </section>
@@ -2293,7 +2293,7 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="p-changes" tabindex="-1" aria-labelledby="ph-changes">
-        <h2 id="ph-changes">11. Changes and contact</h2>
+        <h2 id="ph-changes">11. Changes and Contact</h2>
         <p>I may update this policy when the site changes or the law requires it. The date at the top of this page shows when it was last updated.</p>
         <p>Questions, requests or complaints: <strong>srv26uxd@gmail.com</strong>.</p>
         <p>This policy is governed by the laws of India. Nothing in it takes away any rights you have under the law of the country where you live.</p>
@@ -2314,20 +2314,20 @@ html.bp-on .bp-bgfx{display:block}
   </section>
   <div class="wrap legal">
     <nav class="toc" aria-label="Accessibility Statement contents">
-      <span class="label">On this page</span>
+      <span class="label">On This Page</span>
       <ol>
         <li><a href="#accessibility-statement" data-jump="a-commit">Commitment</a></li>
-        <li><a href="#accessibility-statement" data-jump="a-status">Conformance status</a></li>
-        <li><a href="#accessibility-statement" data-jump="a-features">Accessibility features</a></li>
+        <li><a href="#accessibility-statement" data-jump="a-status">Conformance Status</a></li>
+        <li><a href="#accessibility-statement" data-jump="a-features">Accessibility Features</a></li>
         <li><a href="#accessibility-statement" data-jump="a-compat">Compatibility</a></li>
-        <li><a href="#accessibility-statement" data-jump="a-limits">Known limitations</a></li>
-        <li><a href="#accessibility-statement" data-jump="a-assess">How it was assessed</a></li>
-        <li><a href="#accessibility-statement" data-jump="a-feedback">Feedback and help</a></li>
+        <li><a href="#accessibility-statement" data-jump="a-limits">Known Limitations</a></li>
+        <li><a href="#accessibility-statement" data-jump="a-assess">How It Was Assessed</a></li>
+        <li><a href="#accessibility-statement" data-jump="a-feedback">Feedback and Help</a></li>
       </ol>
     </nav>
     <div class="prose">
       <div class="summary">
-        <h2>The short version</h2>
+        <h2>The Short Version</h2>
         <ul>
           <li>This site is designed to meet WCAG 2.2 Level AA, which also covers India's accessibility standard, IS 17802.</li>
           <li>It works with a keyboard, screen readers and browser zoom. It opens in light mode, and a dark mode switch at the bottom of every page turns on dark mode for your visit.</li>
@@ -2342,14 +2342,14 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="a-status" tabindex="-1" aria-labelledby="ah-status">
-        <h2 id="ah-status">2. Conformance status</h2>
+        <h2 id="ah-status">2. Conformance Status</h2>
         <p>This website is designed to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.2, Level AA</strong>, published by the W3C. WCAG 2.x Level AA is the benchmark used by accessibility laws and standards in many countries.</p>
         <p><strong>India:</strong> I am based in India, where the Rights of Persons with Disabilities Act, 2016 requires equal access to information and communication technology, and the Supreme Court has recognised digital access as part of the right to life under Article 21 (<em>Amar Jain v. Union of India</em>, 2025). India's ICT accessibility standard, IS 17802, is aligned with WCAG 2.1, so meeting WCAG 2.2 Level AA also covers it.</p>
         <p>Status: <strong>partially conformant</strong>. The pages of this site are built to meet Level AA. Some third-party content linked from the site (see section 5) may not.</p>
       </section>
 
       <section id="a-features" tabindex="-1" aria-labelledby="ah-features">
-        <h2 id="ah-features">3. Accessibility features</h2>
+        <h2 id="ah-features">3. Accessibility Features</h2>
         <ul>
           <li><strong>Colour contrast:</strong> text meets at least 4.5:1 contrast, and large text and controls at least 3:1, in both light and dark mode.</li>
           <li><strong>Keyboard access:</strong> every link, button, menu and gallery can be used with a keyboard, with a clearly visible focus outline.</li>
@@ -2361,7 +2361,7 @@ html.bp-on .bp-bgfx{display:block}
           <li><strong>Touch targets:</strong> buttons and links are at least 44 by 44 pixels where possible.</li>
           <li><strong>Zoom and reflow:</strong> the layout adapts to 400% zoom and small screens without sideways scrolling.</li>
           <li><strong>Motion:</strong> all animation turns off when your device's "reduce motion" setting is on. Nothing moves on its own for more than 5 seconds: the colours on the Digital contact card buttons flow once when they appear, then only while you hover over or focus them.</li>
-          <li><strong>Opening animation:</strong> when the site loads, a short greeting appears and the page comes out of a laptop bag as you scroll. Scrolling opens it, and a "Scroll to unpack" note says so. Keyboard and screen reader users get the page straight away: pressing any key or moving focus opens it at once. It is skipped completely when "reduce motion" is on, and the page stays fully usable by keyboard and screen readers.</li>
+          <li><strong>Opening animation:</strong> when the site loads, a short greeting appears and the page comes out of a laptop bag as you scroll. Scrolling opens it, and a "Scroll to Unpack" note says so. Keyboard and screen reader users get the page straight away: pressing any key or moving focus opens it at once. It is skipped completely when "reduce motion" is on, and the page stays fully usable by keyboard and screen readers.</li>
           <li><strong>Decorative kite:</strong> the kite on the Home page sways gently in the wind. It flies on the right-hand side of the page, beside the content, with its string tied to the hand of the man standing at the bottom left. The wind only blows while you are scrolling, moving the pointer, tapping or typing, and it settles within 5 seconds once you stop. With "reduce motion" on, it stays still. On phones it flies behind the page content so it never covers anything. The kite is hidden from screen readers, cannot be clicked, and fades out of the way if it overlaps something you have focused.</li>
           <li><strong>High contrast mode:</strong> controls keep visible borders in Windows high contrast mode.</li>
           <li><strong>Light and dark mode:</strong> the site opens in light mode. The switch at the bottom of every page turns on dark mode (it reads "Try dark mode" when off and "Dark mode" when on), which stays on as you move between pages until you close or reload the site. It is a labelled on/off switch that tells screen readers whether dark mode is on, and both modes meet the same contrast standards.</li>
@@ -2375,7 +2375,7 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="a-limits" tabindex="-1" aria-labelledby="ah-limits">
-        <h2 id="ah-limits">5. Known limitations</h2>
+        <h2 id="ah-limits">5. Known Limitations</h2>
         <ul>
           <li><strong>Linked PDFs:</strong> my resume and all five case studies (SKYLIFT, GENZ IN ACTION, BYTEBALANCE, MAKARANDAM and FAMGRAM) are hosted on this site as tagged PDFs with a title and language set.</li>
           <li><strong>Figma and Lovable prototypes and presentation:</strong> these open on Figma's and Lovable's websites, and their accessibility depends on those services.</li>
@@ -2384,12 +2384,12 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="a-assess" tabindex="-1" aria-labelledby="ah-assess">
-        <h2 id="ah-assess">6. How it was assessed</h2>
+        <h2 id="ah-assess">6. How It Was Assessed</h2>
         <p>Accessibility was assessed by self-evaluation against the WCAG 2.2 AA success criteria during design and build. This includes automated testing with the axe-core accessibility engine on every page in light and dark mode, colour-contrast measurement, keyboard-only navigation, checks at 200% text size, 400% zoom and 320-pixel-wide screens, and screen reader review. The checks are repeated whenever the site changes.</p>
       </section>
 
       <section id="a-feedback" tabindex="-1" aria-labelledby="ah-feedback">
-        <h2 id="ah-feedback">7. Feedback and help</h2>
+        <h2 id="ah-feedback">7. Feedback and Help</h2>
         <p>If you have trouble using any part of this site, or would like information in another format, contact me:</p>
         <ul>
           <li>Email: <strong>srv26uxd@gmail.com</strong></li>
@@ -2411,23 +2411,23 @@ html.bp-on .bp-bgfx{display:block}
   </section>
   <div class="wrap legal">
     <nav class="toc" aria-label="Terms of Use contents">
-      <span class="label">On this page</span>
+      <span class="label">On This Page</span>
       <ol>
-        <li><a href="#terms-of-use" data-jump="t-about">About these terms</a></li>
-        <li><a href="#terms-of-use" data-jump="t-own">Ownership and copyright</a></li>
-        <li><a href="#terms-of-use" data-jump="t-may">What you may do</a></li>
-        <li><a href="#terms-of-use" data-jump="t-not">What you may not do</a></li>
-        <li><a href="#terms-of-use" data-jump="t-third">Third-party names and logos</a></li>
+        <li><a href="#terms-of-use" data-jump="t-about">About These Terms</a></li>
+        <li><a href="#terms-of-use" data-jump="t-own">Ownership and Copyright</a></li>
+        <li><a href="#terms-of-use" data-jump="t-may">What You May Do</a></li>
+        <li><a href="#terms-of-use" data-jump="t-not">What You May Not Do</a></li>
+        <li><a href="#terms-of-use" data-jump="t-third">Third-Party Names and Logos</a></li>
         <li><a href="#terms-of-use" data-jump="t-disclaim">Disclaimer</a></li>
-        <li><a href="#terms-of-use" data-jump="t-liab">Misuse and limitation of liability</a></li>
-        <li><a href="#terms-of-use" data-jump="t-report">Reporting misuse</a></li>
-        <li><a href="#terms-of-use" data-jump="t-law">Governing law</a></li>
-        <li><a href="#terms-of-use" data-jump="t-changes">Changes and contact</a></li>
+        <li><a href="#terms-of-use" data-jump="t-liab">Misuse and Limitation of Liability</a></li>
+        <li><a href="#terms-of-use" data-jump="t-report">Reporting Misuse</a></li>
+        <li><a href="#terms-of-use" data-jump="t-law">Governing Law</a></li>
+        <li><a href="#terms-of-use" data-jump="t-changes">Changes and Contact</a></li>
       </ol>
     </nav>
     <div class="prose">
       <div class="summary">
-        <h2>The short version</h2>
+        <h2>The Short Version</h2>
         <ul>
           <li>Everything on this site is my original work and is protected by copyright. All rights reserved.</li>
           <li>You are welcome to view it and share links. Recruiters and clients can share my resume and portfolio internally to assess me.</li>
@@ -2438,18 +2438,18 @@ html.bp-on .bp-bgfx{display:block}
       </div>
 
       <section id="t-about" tabindex="-1" aria-labelledby="th-about">
-        <h2 id="th-about">1. About these terms</h2>
+        <h2 id="th-about">1. About These Terms</h2>
         <p>This website is the personal design portfolio of Sai Rohit Villuri ("I", "me"), an individual based in India. These terms apply to everyone who visits or uses it. By using the site, you agree to them. If you do not agree, please do not use the site.</p>
       </section>
 
       <section id="t-own" tabindex="-1" aria-labelledby="th-own">
-        <h2 id="th-own">2. Ownership and copyright</h2>
+        <h2 id="th-own">2. Ownership and Copyright</h2>
         <p>Unless stated otherwise, all content on this site is my original work and belongs to me. This includes the designs, mockups, prototypes, case studies, images, written text, layout, my resume and my SV logo and monogram.</p>
         <p>This content is protected by copyright under India's Copyright Act, 1957 and, through international copyright treaties such as the Berne Convention, in other countries too. Copyright applies automatically; no registration is needed. All rights are reserved.</p>
       </section>
 
       <section id="t-may" tabindex="-1" aria-labelledby="th-may">
-        <h2 id="th-may">3. What you may do</h2>
+        <h2 id="th-may">3. What You May Do</h2>
         <ul>
           <li>View and browse the site for personal, non-commercial purposes.</li>
           <li>Share links to the site or to individual pages.</li>
@@ -2458,7 +2458,7 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="t-not" tabindex="-1" aria-labelledby="th-not">
-        <h2 id="th-not">4. What you may not do</h2>
+        <h2 id="th-not">4. What You May Not Do</h2>
         <p>Without my written permission, you may not:</p>
         <ul>
           <li>copy, reproduce, download, redistribute, republish or sell any of my designs, images or text, except as allowed above;</li>
@@ -2472,7 +2472,7 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="t-third" tabindex="-1" aria-labelledby="th-third">
-        <h2 id="th-third">5. Third-party names and logos</h2>
+        <h2 id="th-third">5. Third-Party Names and Logos</h2>
         <p>Client project names, logos and brand assets belong to their respective owners and are shown only to present my design work. The names and logos of The University of Texas at Dallas, Phi Theta Kappa, the NSLS, LinkedIn, Behance, Figma and Lovable are trademarks of their owners. They are used only to identify those organisations and do not mean that any of them endorses this site.</p>
       </section>
 
@@ -2483,23 +2483,23 @@ html.bp-on .bp-bgfx{display:block}
       </section>
 
       <section id="t-liab" tabindex="-1" aria-labelledby="th-liab">
-        <h2 id="th-liab">7. Misuse and limitation of liability</h2>
+        <h2 id="th-liab">7. Misuse and Limitation of Liability</h2>
         <p>I am <strong>not responsible or liable for any misuse of the content on this site by anyone else</strong>, including copying, altering, misrepresenting or using it without permission. Anyone who misuses the content is solely responsible for their actions and any consequences.</p>
         <p>To the fullest extent permitted by law, I am not liable for any loss or damage arising from your use of this site, from relying on its content, or from your use of any linked website. Nothing in these terms limits any liability that cannot be limited under applicable law.</p>
       </section>
 
       <section id="t-report" tabindex="-1" aria-labelledby="th-report">
-        <h2 id="th-report">8. Reporting misuse</h2>
+        <h2 id="th-report">8. Reporting Misuse</h2>
         <p>If you find my work being used without permission, or anything on this site that you believe infringes your rights, please email <strong>srv26uxd@gmail.com</strong> with a link and details. I take misuse seriously and may take action, including asking platforms to remove copied content and pursuing remedies available under the Copyright Act, 1957 and the Information Technology Act, 2000.</p>
       </section>
 
       <section id="t-law" tabindex="-1" aria-labelledby="th-law">
-        <h2 id="th-law">9. Governing law</h2>
+        <h2 id="th-law">9. Governing Law</h2>
         <p>These terms are governed by the laws of India, and the courts of India have jurisdiction over any dispute about them. Nothing in these terms takes away any rights you have under the law of the country where you live.</p>
       </section>
 
       <section id="t-changes" tabindex="-1" aria-labelledby="th-changes">
-        <h2 id="th-changes">10. Changes and contact</h2>
+        <h2 id="th-changes">10. Changes and Contact</h2>
         <p>I may update these terms when the site changes or the law requires it. The date at the top of this page shows when they were last updated.</p>
         <p>Questions or permission requests: <strong>srv26uxd@gmail.com</strong>.</p>
         <p class="note">These terms explain how you may use this website. They are not legal advice.</p>
@@ -2525,12 +2525,12 @@ html.bp-on .bp-bgfx{display:block}
           <li><a href="#clients">Work</a></li>
         </ul>
       </nav>
-      <nav aria-label="Connect with me">
-        <span class="label">Connect with me</span>
+      <nav aria-label="Connect with Me">
+        <span class="label">Connect with Me</span>
         <ul class="foot-social">
           <li><a class="soc" href="https://www.linkedin.com/in/sairohitvilluri/" target="_blank" rel="noopener"><img class="soc-ico" src="data:image/png;base64,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" alt="" width="24" height="24">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
           <li><a class="soc" href="https://www.behance.net/gallery/249369555/Sai-Villuri" target="_blank" rel="noopener"><img class="soc-ico" src="data:image/png;base64,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" alt="" width="24" height="24">Behance<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a class="soc soc-btn" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Digital contact card<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a class="soc soc-btn" href="https://sairohitvilluri.linklee.in/?ig" target="_blank" rel="noopener"><svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14.5 10h3.5M14.5 13.5h3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Digital Contact Card<span class="sr-only"> (opens in a new tab)</span></a></li>
         </ul>
       </nav>
     </div>
@@ -2543,7 +2543,7 @@ html.bp-on .bp-bgfx{display:block}
           <li><a href="#terms-of-use" data-nav="terms-of-use">Terms of Use</a></li>
         </ul>
       </nav>
-      <button class="theme-switch" id="themeBtn" type="button" role="switch" aria-checked="false" aria-label="Try dark mode"><svg class="ts-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><span class="ts-text"><span class="ts-off">Try dark mode</span><span class="ts-on">Dark mode</span></span><span class="ts-track" aria-hidden="true"><span class="ts-thumb"></span></span></button>
+      <button class="theme-switch" id="themeBtn" type="button" role="switch" aria-checked="false" aria-label="Try Dark Mode"><svg class="ts-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><span class="ts-text"><span class="ts-off">Try Dark Mode</span><span class="ts-on">Dark Mode</span></span><span class="ts-track" aria-hidden="true"><span class="ts-thumb"></span></span></button>
     </div>
   </div>
 </footer>
@@ -2559,7 +2559,7 @@ html.bp-on .bp-bgfx{display:block}
           <button type="button" class="lb-btn lb-zlevel" id="lbZoomReset" aria-label="Reset zoom, currently 100%">100%</button>
           <button type="button" class="lb-btn lb-ico" id="lbZoomIn" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="m15.5 15.5 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M10.5 7.5v6M7.5 10.5h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button>
         </div>
-        <button type="button" class="lb-btn" id="lbFull"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="lbFullTxt">Full screen</span></button>
+        <button type="button" class="lb-btn" id="lbFull"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="lbFullTxt">Full Screen</span></button>
         <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close image"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       </div>
     </div>
@@ -2571,12 +2571,12 @@ html.bp-on .bp-bgfx{display:block}
 </div>
 <div class="learn-overlay" id="learnDlg" hidden>
   <div class="learn-box" role="dialog" aria-modal="true" aria-labelledby="learnTitle" aria-describedby="learnDesc">
-    <span class="label">Learn more</span>
-    <h2 id="learnTitle">Would you like to learn more?</h2>
+    <span class="label">Learn More</span>
+    <h2 id="learnTitle">Would You Like to Learn More?</h2>
     <p id="learnDesc">This opens the website of <strong id="learnName"></strong> (<span id="learnHost"></span>) in a new tab.</p>
     <div class="learn-actions">
-      <a class="btn" id="learnGo" href="#" target="_blank" rel="noopener">Yes, take me there<span class="sr-only">, opens in a new tab</span></a>
-      <button class="btn ghost" type="button" id="learnNo">Not now</button>
+      <a class="btn" id="learnGo" href="#" target="_blank" rel="noopener">Yes, Take Me There<span class="sr-only">, opens in a new tab</span></a>
+      <button class="btn ghost" type="button" id="learnNo">Not Now</button>
     </div>
   </div>
 </div>
@@ -2825,7 +2825,7 @@ html.bp-on .bp-bgfx{display:block}
     });
     ['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{
       const on=!!(document.fullscreenElement||document.webkitFullscreenElement);
-      fullTxt.textContent=on?'Exit full screen':'Full screen'; requestAnimationFrame(sizeToImage);
+      fullTxt.textContent=on?'Exit Full Screen':'Full Screen'; requestAnimationFrame(sizeToImage);
     }));
     window.addEventListener('resize',()=>{ if(!lb.hidden) sizeToImage(); });
     closeBtn.addEventListener('click',close);
@@ -3146,7 +3146,7 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   var root=document.documentElement, btn=document.getElementById('themeBtn'); if(!btn) return;
   var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
   function current(){var a=root.getAttribute('data-theme');if(a==='dark'||a==='light')return a;return mq&&mq.matches?'dark':'light'}
-  function sync(){var on=current()==='dark';btn.setAttribute('aria-checked',on?'true':'false');btn.setAttribute('aria-label',on?'Dark mode':'Try dark mode')}
+  function sync(){var on=current()==='dark';btn.setAttribute('aria-checked',on?'true':'false');btn.setAttribute('aria-label',on?'Dark Mode':'Try Dark Mode')}
   btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);sync()});
   if(mq){if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync)}
   if(window.MutationObserver)new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['data-theme']});
