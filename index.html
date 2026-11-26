@@ -1621,6 +1621,58 @@ html.bp-on .bp-bgfx{display:block}
 .slide .ph[data-src^="images/bytebalance-"]{aspect-ratio:393/852;height:auto}
 .slide .ph[data-src^="images/bytebalance-"] img{object-fit:cover;padding:0}
 
+/* ===== Phones held sideways (short, wide screens): desktop-style arrangement, tight spacing, no stranded space ===== */
+@media (orientation:landscape) and (max-height:540px) and (min-width:560px){
+  /* Home intro: text + resume on the left, SV card on the right (instead of a full-screen card below) */
+  .hero-row.home-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"text img" "text cta";column-gap:clamp(20px, 3vw, 40px);row-gap:14px;align-items:start}
+  .home-row > div:first-child{grid-area:text}
+  .home-row > .hero-actions{grid-area:cta;justify-self:start;align-self:start}
+  .home-row > .hero-img{grid-area:img;align-self:start;justify-self:start;width:min(100%, calc((100svh - 230px) * 1.47));min-width:150px}
+  /* one-row header on sideways phones: name, Home / About / Work, Connect button */
+  header.top .bar{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"brand nav cta";align-items:center;padding-block:6px}
+  header.top nav.main{margin:0;border-top:0;justify-self:center}
+  header.top nav.main ul{gap:clamp(14px, 2.5vw, 28px)}
+  header.top nav.main a{padding-block:10px}
+  /* keep View Resume on the first screen of a sideways phone */
+  [data-view="home"] .hero{padding-top:12px;padding-bottom:20px}
+  .hero-title{font-size:clamp(24px, 3.6vw, 34px);margin-bottom:8px}
+  .open-roles{margin-bottom:10px;padding-block:3px}
+  [data-view="home"] .hero-row p{margin-block:0 8px;line-height:1.45;font-size:14px}
+  .hero-row.home-row{row-gap:8px}
+  /* Client case studies: no swipe/counter needed; featured card + compact 2 x 2 cards that fit the short screen */
+  .pcards.pc-track{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none;gap:12px}
+  .pc-head .pc-ctrl{display:none}
+  .pcards.pc-track > li:first-child{grid-column:1 / -1}
+  .pcards.pc-track > li:first-child .pcard{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto auto auto auto 1fr;column-gap:clamp(16px, 2.5vw, 32px);row-gap:8px;padding:12px clamp(14px, 2.5vw, 28px) 12px 12px}
+  .pcards.pc-track > li:first-child .pcard-img{grid-column:1;grid-row:1 / -1;margin:0;aspect-ratio:16/10}
+  .pcards.pc-track > li:first-child .label{grid-column:2;grid-row:2}
+  .pcards.pc-track > li:first-child .pcard-title{grid-column:2;grid-row:3;font-size:clamp(1.35rem, 1rem + 1.4vw, 1.8rem)}
+  .pcards.pc-track > li:first-child .pcard-sub{grid-column:2;grid-row:4}
+  .pcards.pc-track > li:first-child .pcard-cta{grid-column:2;grid-row:5}
+  .pcards.pc-track > li:not(:first-child) .pcard{grid-template-columns:clamp(84px, 13vw, 116px) minmax(0,1fr);grid-template-rows:auto auto 1fr auto;column-gap:14px;row-gap:4px;padding:10px;border-radius:14px;height:100%;align-items:start}
+  .pcards.pc-track > li:not(:first-child) .pcard-img{grid-column:1;grid-row:1 / -1;margin:0;aspect-ratio:1/1;align-self:center}
+  .pcards.pc-track > li:not(:first-child) .label{grid-column:2;grid-row:1;padding-top:2px}
+  .pcards.pc-track > li:not(:first-child) .pcard-title{grid-column:2;grid-row:2;font-size:1.0625rem}
+  .pcards.pc-track > li:not(:first-child) .pcard-sub{grid-column:2;grid-row:3}
+  .pcards.pc-track > li:not(:first-child) .pcard-cta{grid-column:2;grid-row:4;margin-top:2px}
+  /* About: dates beside each role and each school, like desktop */
+  .timeline:not(.honors-tl):not(.exp-tl) li{grid-template-columns:110px minmax(0,1fr) minmax(0,1.3fr);gap:16px 20px}
+  .exp-tl li{grid-template-columns:150px minmax(0,1fr);column-gap:22px;row-gap:6px}
+  .exp-tl .yr{grid-row:1 / span 2;padding-top:4px}
+  .exp-tl h3{grid-column:2;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px}
+  .exp-tl .org{display:inline-flex;align-items:baseline;gap:10px;margin-top:0;font-size:15px;font-weight:600;color:var(--muted)}
+  .exp-tl .org::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;align-self:center;opacity:.7}
+  .exp-tl p{grid-column:2}
+  /* About: profile text and photo side by side */
+  .profile{grid-template-columns:minmax(0,1fr) clamp(150px, 24vw, 220px);column-gap:clamp(18px, 3vw, 32px)}
+  .profile > .label{grid-column:1 / -1;order:-2}
+  .profile > div:not(.sticker){grid-column:1;grid-row:2}
+  .profile > .sticker.portrait{grid-column:2;grid-row:2;order:0;margin:0;align-self:start}
+}
+
+/* Splash: only scrolling/swiping (or the keyboard) opens it. Clicks and taps never reach the hidden site underneath. */
+html.bp-on body > :not([class*="bp-"]),html.bp-on body > :not([class*="bp-"]) *{pointer-events:none!important}
+
 </style>
 </head>
 <body>
@@ -3419,7 +3471,8 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   addEventListener('scroll',()=>{ if(!done&&scrollY>2) finishSoon() },{passive:true});
   // keyboard and screen-reader users (who may not scroll) get the page at once (WCAG 2.1.1)
   addEventListener('keydown',e=>{ if(!['Shift','Control','Alt','Meta','CapsLock'].includes(e.key)) finishSoon() },true);
-  document.addEventListener('focusin',finishSoon);
+  // only keyboard focus opens it (a mouse click or a tap never does; :focus-visible is false for those)
+  document.addEventListener('focusin',e=>{ try{ if(e.target.matches(':focus-visible')) finishSoon() }catch(_){ finishSoon() } });
   // a keyboard user who pressed Tab before this script was ready still gets the page straight away
   if(document.activeElement&&document.activeElement!==document.body&&document.activeElement!==document.documentElement) finishSoon();
   const rm=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null;
