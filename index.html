@@ -1624,10 +1624,11 @@ html.bp-on .bp-bgfx{display:block}
 /* ===== Phones held sideways (short, wide screens): desktop-style arrangement, tight spacing, no stranded space ===== */
 @media (orientation:landscape) and (max-height:540px) and (min-width:560px){
   /* Home intro: text + resume on the left, SV card on the right (instead of a full-screen card below) */
-  .hero-row.home-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"text img" "text cta";column-gap:clamp(20px, 3vw, 40px);row-gap:14px;align-items:start}
+  /* same arrangement as desktop: intro + View Resume on the left, the SV card at full column size on the right */
+  .hero-row.home-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"text img" "cta img";column-gap:clamp(24px, 4vw, 48px);row-gap:14px;align-items:center}
   .home-row > div:first-child{grid-area:text}
   .home-row > .hero-actions{grid-area:cta;justify-self:start;align-self:start}
-  .home-row > .hero-img{grid-area:img;align-self:start;justify-self:start;width:min(100%, calc((100svh - 230px) * 1.47));min-width:150px}
+  .home-row > .hero-img{grid-area:img;align-self:center;justify-self:stretch;width:100%}
   /* one-row header on sideways phones: name, Home / About / Work, Connect button */
   header.top .bar{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"brand nav cta";align-items:center;padding-block:6px}
   header.top nav.main{margin:0;border-top:0;justify-self:center}
@@ -1692,6 +1693,21 @@ html.bp-split .bp-sky .bp-c2{max-width:min(clamp(320px, 40vw, 440px), 100%);font
   .tbl tr td:last-child{border-bottom:0}
   .tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
   .tbl td:first-child{font-weight:700}
+}
+
+/* Shortest sideways screens (up to 400px tall, e.g. iPhone SE or Safari's tab bar showing): the intro becomes one
+   two-column grid. Left: name, role, "open to roles", intro text. Right: the SV card starting level with the name, with
+   View Resume right under it, so everything a recruiter needs fits on the first screen and the card keeps a good size.
+   (Reading and tab order are unchanged: name, badge, text, resume.) */
+@media (orientation:landscape) and (max-height:400px) and (min-width:560px){
+  [data-view="home"] .wrap.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;
+    grid-template-areas:"title img" "badge img" "text img" "text cta";column-gap:clamp(22px, 3.5vw, 40px);row-gap:0;align-items:start}
+  [data-view="home"] .hero-title{grid-area:title;font-size:clamp(24px, 3.4vw, 32px);margin-bottom:8px}
+  [data-view="home"] .open-roles{grid-area:badge;justify-self:start}
+  .hero-row.home-row{display:contents}
+  .home-row > div:first-child{grid-area:text}
+  .home-row > .hero-img{grid-area:img;align-self:start;justify-self:stretch;width:min(100%, calc((100svh - 140px) * 1.47));margin-top:4px}
+  .home-row > .hero-actions{grid-area:cta;align-self:start;justify-self:start;margin-top:12px}
 }
 
 </style>
