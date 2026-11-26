@@ -1673,6 +1673,27 @@ html.bp-on .bp-bgfx{display:block}
 /* Splash: only scrolling/swiping (or the keyboard) opens it. Clicks and taps never reach the hidden site underneath. */
 html.bp-on body > :not([class*="bp-"]),html.bp-on body > :not([class*="bp-"]) *{pointer-events:none!important}
 
+/* Splash on short, wide screens (phone on its side, browser tab bar showing): clouds stacked on the left in their
+   natural cloud shape, bag + "Scroll to Unpack" on the right; the page unpacks out of the bag wherever it sits */
+html.bp-on.bp-split .bp-sky{left:0;right:auto;width:52vw;top:0;bottom:0;justify-content:center;align-items:center;gap:8px;padding-inline:max(16px, env(safe-area-inset-left, 0px)) 8px}
+html.bp-split .bp-cloud{max-width:100%;line-height:1.25}
+html.bp-split .bp-sky .bp-c1{white-space:normal;max-width:min(clamp(280px, 30vw, 380px), 100%);font-size:clamp(16px, 5.2vh, 26px);padding:30px 40px 15px}
+html.bp-split .bp-c1 br{display:inline}
+html.bp-split .bp-sky .bp-c2{max-width:min(clamp(320px, 40vw, 440px), 100%);font-size:clamp(13px, 4vh, 20px);padding:30px 42px 15px;line-height:1.35}
+
+/* Narrow phones: the services table becomes one card per service (heading shown above each value), so nothing is cut off
+   or needs sideways scrolling. ARIA table roles keep it a table for screen readers. */
+@media (max-width:480px){
+  .tbl{overflow:visible;border:0;border-radius:0}
+  .tbl table,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .tbl tr{border:1.5px solid var(--line);border-radius:12px;padding:4px 14px;margin-bottom:12px}
+  .tbl td{border-bottom:1px solid var(--line);padding:10px 0}
+  .tbl tr td:last-child{border-bottom:0}
+  .tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .tbl td:first-child{font-weight:700}
+}
+
 </style>
 </head>
 <body>
@@ -2302,12 +2323,12 @@ html.bp-on body > :not([class*="bp-"]),html.bp-on body > :not([class*="bp-"]) *{
       <section id="p-third" tabindex="-1" aria-labelledby="ph-third">
         <h2 id="ph-third">3. Third-Party Services</h2>
         <div class="tbl" role="region" aria-label="Third-party services table" tabindex="0">
-          <table>
+          <table role="table">
             <caption class="sr-only">Third-Party Services Used by This Website</caption>
-            <thead><tr><th scope="col">Service</th><th scope="col">Why</th><th scope="col">Data Involved</th></tr></thead>
-            <tbody>
-              <tr><td>GitHub Pages (GitHub, Inc.), website hosting</td><td>To deliver the pages to your browser and keep the service secure</td><td>IP address, which GitHub logs and stores for security purposes, plus browser details and request time</td></tr>
-              <tr><td>Google Fonts</td><td>To display the site's typefaces</td><td>IP address and browser details sent to Google when fonts load</td></tr>
+            <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Service</th><th scope="col" role="columnheader">Why</th><th scope="col" role="columnheader">Data Involved</th></tr></thead>
+            <tbody role="rowgroup">
+              <tr role="row"><td role="cell" data-label="Service">GitHub Pages (GitHub, Inc.), website hosting</td><td role="cell" data-label="Why">To deliver the pages to your browser and keep the service secure</td><td role="cell" data-label="Data Involved">IP address, which GitHub logs and stores for security purposes, plus browser details and request time</td></tr>
+              <tr role="row"><td role="cell" data-label="Service">Google Fonts</td><td role="cell" data-label="Why">To display the site's typefaces</td><td role="cell" data-label="Data Involved">IP address and browser details sent to Google when fonts load</td></tr>
             </tbody>
           </table>
         </div>
@@ -3377,6 +3398,8 @@ document.addEventListener('touchstart',()=>{},{passive:true});
   let W,Hh,s0,mouth,bw,bx,D,offs,rise=0,riseStart=null,done=false,force=null,raf=0;
   function layout(){
     W=innerWidth; Hh=innerHeight; s0=W>900?.62:.8;
+    // short, wide screens (a phone on its side, Safari tab bar showing): clouds on the left, bag on the right
+    const split=W>=560&&Hh<=600&&W/Hh>=1.6; H.classList.toggle('bp-split',split);
     bw=Math.min(W-8,s0*W/0.86); mouth=Math.round(Hh*(W>900?.7:.72)); D=Math.round(Hh*.9);
     // keep the bag's top below the greeting clouds on any screen (short landscape phones included)
     // the "Scroll to unpack" note sits in the gap between the clouds and the bag, never on the bag itself
@@ -3393,11 +3416,15 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     bw=Math.max(96,Math.min(bw,room/.965));
     mouth=Math.round(Hh-foot-bw*.75);                                    // bag's bottom edge rests just above the margin
     s0=Math.min(s0,bw*.86/W); bx=(W-bw)/2;
+    if(split){ const x0=Math.round(W*.52), colW=W-x0-Math.max(16,W*.03);
+      bw=Math.max(110,Math.min(colW, (Hh-foot-hintH-12-10)/.965)); mouth=Math.round(Hh-foot-bw*.75);
+      s0=Math.min(.8,bw*.86/W); bx=x0+(colW-bw)/2 }
     front.style.cssText+=';left:'+bx+'px;width:'+bw+'px;top:'+(mouth-bw*12/1000)+'px';
     // the floor starts just above the bag's rounded bottom so no gap shows at its corners
     floorY=Math.round(mouth-bw*12/1000+bw*.76-bw*.06); floor.style.top=floorY+'px';
     const bh=bw*.22, backTop=mouth-bh+bw*.02; back.style.cssText+=';left:'+bx+'px;width:'+bw+'px;height:'+bh+'px;top:'+backTop+'px';
-    hint.style.bottom='auto'; hint.style.top=Math.round(Math.max(skyB+8,Math.min(backTop-hintH-14,(skyB+backTop)/2-hintH/2)))+'px';
+    hint.style.bottom='auto'; hint.style.top=Math.round(split?Math.max(8,backTop-hintH-12):Math.max(skyB+8,Math.min(backTop-hintH-14,(skyB+backTop)/2-hintH/2)))+'px';
+    hint.style.left=split?Math.round(bx+bw/2)+'px':'';
     offs=parts.map(el=>[el.offsetLeft,el.offsetTop]);
   }
   function apply(t){
@@ -3405,8 +3432,11 @@ document.addEventListener('touchstart',()=>{},{passive:true});
     const peek=(mouth-Hh*.16)*ease(rise);
     const top0=mouth+12-peek;
     const topY=top0*(1-e), sy=0;
+    // the page shrinks around the screen's centre, then slides so it sits centred inside the bag (the bag is off-centre
+    // in the split layout); the slide eases to zero as the page opens up to full size
+    const dx=(bx+bw/2-W/2)*(1-e);
     parts.forEach((el,i)=>{ el.style.transformOrigin=(W/2-offs[i][0])+'px '+(-offs[i][1])+'px';
-      el.style.transform='translate3d(0,'+(topY+sy).toFixed(2)+'px,0) scale('+s.toFixed(5)+')' });
+      el.style.transform='translate3d('+dx.toFixed(2)+'px,'+(topY+sy).toFixed(2)+'px,0) scale('+s.toFixed(5)+')' });
     const drop=e*Hh*1.15, fade=Math.max(0,Math.min(1,(t-.5)/.45));
     front.style.transform=back.style.transform=floor.style.transform='translate3d(0,'+drop.toFixed(2)+'px,0)';
     // the website is clipped at the bag's bottom edge, so nothing of it is drawn below the bag (Safari shows the area
