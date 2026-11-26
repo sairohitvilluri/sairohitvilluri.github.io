@@ -1587,10 +1587,22 @@ html.bp-on .bp-bgfx{display:block}
   .home-row > .hero-actions{order:2;justify-self:start}
   .home-row > .hero-img{order:3}
 }
-/* Desktop: all five client case studies are visible at once (3 + 2 grid), no arrows to click */
+/* Desktop: all five client case studies visible at once, no arrows to click.
+   Project 01 is a wide featured card (image left, text right); the other four sit in one even row,
+   so there is no half-empty row and the section is about a third shorter. Phones and upright tablets keep the swipe row + counter. */
 @media (min-width:900px){
-  .pcards.pc-track{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}
+  .pcards.pc-track{grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none;gap:clamp(14px, .5rem + 1vw, 22px)}
   .pc-head .pc-ctrl{display:none}
+  .pcards.pc-track > li:first-child{grid-column:1 / -1}
+  .pcards.pc-track > li:first-child .pcard{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto auto auto auto 1fr;column-gap:clamp(20px, 1rem + 2vw, 44px);row-gap:10px;padding:16px clamp(16px, .5rem + 2vw, 40px) 16px 16px}
+  .pcards.pc-track > li:first-child .pcard-img{grid-column:1;grid-row:1 / -1;margin:0;aspect-ratio:16/10}
+  .pcards.pc-track > li:first-child .label{grid-column:2;grid-row:2}
+  .pcards.pc-track > li:first-child .pcard-title{grid-column:2;grid-row:3;font-size:clamp(1.6rem, 1rem + 1.4vw, 2.25rem)}
+  .pcards.pc-track > li:first-child .pcard-sub{grid-column:2;grid-row:4;font-size:var(--fs-body, 1rem);max-width:30em}
+  .pcards.pc-track > li:first-child .pcard-cta{grid-column:2;grid-row:5;font-size:var(--fs-body, 1rem)}
+  .pcards.pc-track > li:not(:first-child) .pcard{padding:10px 10px 16px;border-radius:16px;height:100%;grid-template-rows:auto auto auto 1fr auto}
+  .pcards.pc-track > li:not(:first-child) .pcard-img{margin-bottom:6px}
+  .pcards.pc-track > li:not(:first-child) .pcard-title{font-size:1.125rem}
 }
 /* About: certificates as compact thumbnails (they still open full screen), shorter logo tiles */
 .timeline .cert{max-width:280px}
@@ -1606,7 +1618,7 @@ html.bp-on .bp-bgfx{display:block}
 }
 
 /* ByteBalance screens: the tile takes the screenshot's exact shape, so there is no frame or side strips around the app */
-.slide .ph[data-src^="images/bytebalance-"]{aspect-ratio:395/855;height:auto}
+.slide .ph[data-src^="images/bytebalance-"]{aspect-ratio:393/852;height:auto}
 .slide .ph[data-src^="images/bytebalance-"] img{object-fit:cover;padding:0}
 
 </style>
@@ -2060,9 +2072,9 @@ html.bp-on .bp-bgfx{display:block}
       </div>
       <div class="carousel" role="region" aria-label="BYTEBALANCE screens">
         <ul class="track" aria-label="BYTEBALANCE screens">
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE login screen: the ByteBalance Nutrition OS logo, the headline Build Better Habits., a line about tracking calories, macros and hydration, a Create account button, an I already have an account button, a Demo experience login link, and a note linking the Terms of Use and Privacy Policy" class="ph" data-src="images/bytebalance-login-sm" data-w="395" data-md="images/bytebalance-login-md.webp" data-mdw="610" data-ext="webp" data-hd="images/bytebalance-login-hd.webp" data-fit="contain" data-bg="#120D1C"></div><figcaption>Login Screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE home screen: Good Evening, First-time Guests; a card reading Your day starts at zero; a 0-day streak and On track chips; a Today's Calories ring at 0 of 2,000 kcal with 2,000 left; protein, carbs and fat bars at zero, each with a help button; and a bottom tab bar with Home, Journey, a center add button, Buddy and Profile" class="ph" data-src="images/bytebalance-home-sm" data-w="395" data-md="images/bytebalance-home-md.webp" data-mdw="610" data-ext="webp" data-hd="images/bytebalance-home-hd.webp" data-fit="contain" data-bg="#14121E"></div><figcaption>Home Screen</figcaption></figure></li>
-          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE add a meal screen: Log a meal, pick from your library or enter it manually; 2,000 kcal remaining today; a Tap to scan barcode area; a food search; Breakfast, Lunch, Dinner and Snack filters with Lunch selected; and foods with calories, including avocado toast and eggs, Greek yoghurt and berries, a chicken and rice bowl, a whey protein shake, and salmon and greens" class="ph" data-src="images/bytebalance-add-meal-sm" data-w="395" data-md="images/bytebalance-add-meal-md.webp" data-mdw="610" data-ext="webp" data-hd="images/bytebalance-add-meal-hd.webp" data-fit="contain" data-bg="#19151D"></div><figcaption>Add a Meal Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE login screen: the ByteBalance Nutrition OS logo, the headline Build Better Habits., a line about tracking calories, macros and hydration, a Create account button, an I already have an account button, a Demo experience login link, and a note linking the Terms of Use and Privacy Policy" class="ph" data-src="images/bytebalance-login-sm" data-w="393" data-md="images/bytebalance-login-md.webp" data-mdw="606" data-ext="webp" data-hd="images/bytebalance-login-hd.webp" data-fit="contain" data-bg="#100B1B"></div><figcaption>Login Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE home screen: Good Evening, First-time Guests; a card reading Your day starts at zero; a 0-day streak and On track chips; a Today's Calories ring at 0 of 2,000 kcal with 2,000 left; protein, carbs and fat bars at zero, each with a help button; and a bottom tab bar with Home, Journey, a center add button, Buddy and Profile" class="ph" data-src="images/bytebalance-home-sm" data-w="393" data-md="images/bytebalance-home-md.webp" data-mdw="606" data-ext="webp" data-hd="images/bytebalance-home-hd.webp" data-fit="contain" data-bg="#100B1B"></div><figcaption>Home Screen</figcaption></figure></li>
+          <li><figure class="slide tall"><div aria-hidden="true" data-alt="BYTEBALANCE add a meal screen: Log a meal, pick from your library or enter it manually; 2,000 kcal remaining today; a Tap to scan barcode area; a food search; Breakfast, Lunch, Dinner and Snack filters with Lunch selected; and foods with calories, including avocado toast and eggs, Greek yoghurt and berries, a chicken and rice bowl, a whey protein shake, and salmon and greens" class="ph" data-src="images/bytebalance-add-meal-sm" data-w="393" data-md="images/bytebalance-add-meal-md.webp" data-mdw="606" data-ext="webp" data-hd="images/bytebalance-add-meal-hd.webp" data-fit="contain" data-bg="#100B1B"></div><figcaption>Add a Meal Screen</figcaption></figure></li>
         </ul>
       </div>
     </div>
