@@ -1710,6 +1710,34 @@ html.bp-split .bp-sky .bp-c2{max-width:min(clamp(320px, 40vw, 440px), 100%);font
   .home-row > .hero-actions{grid-area:cta;align-self:start;justify-self:start;margin-top:12px}
 }
 
+/* Connect page on sideways phones: email on one line with its Copy button, then the two link groups side by side
+   (Connect with Me | Contact Card & Resume), with tighter spacing, so the whole panel fits in about one screen */
+@media (orientation:landscape) and (max-height:540px) and (min-width:560px){
+  [data-view="connect"] .hero.compact{padding-block:14px 10px}
+  [data-view="connect"] #h-touch{font-size:clamp(24px, 3.6vw, 34px);margin-top:4px}
+  .connect-wrap{padding-block:12px 20px!important}
+  .touch-panel{padding:16px clamp(16px, 2.4vw, 26px)}
+  .cx{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px 20px!important}
+  .cx-mail{grid-column:1 / -1!important;display:grid!important;grid-template-columns:auto auto 1fr;grid-template-areas:"lbl lbl lbl" "addr btn .";justify-items:start;align-items:center;column-gap:16px;row-gap:6px;padding-bottom:14px!important;border-bottom:1px solid var(--line)!important}
+  .cx-mail .label{grid-area:lbl;margin-bottom:0}
+  .cx-mail .mail-addr{grid-area:addr;margin:0!important;font-size:clamp(16px, 2.2vw, 20px);display:inline-flex;align-items:center;min-height:44px}
+  .cx-mail .small-btn{grid-area:btn;margin:0!important}
+  .cx > div + div{padding-left:0!important;border-left:0!important}
+  .cx > .cx-group + .cx-group{padding-top:0!important;border-top:0!important;padding-left:20px!important;border-left:1px solid var(--line)!important}
+  .cx .label{margin-bottom:8px}
+  .cx-list{gap:8px;max-width:none}
+  .ct{min-height:52px;padding-block:8px;gap:10px;padding-left:10px}
+  .ct-ico{width:34px;height:34px}
+  .ct-ico .lk-logo{width:30px;height:30px}
+  .ct-t{font-size:15px;white-space:nowrap}
+  .ct-d{font-size:12.5px;white-space:nowrap}
+  .cx-group,.cx-list,.cx-list li,.ct,.ct-txt{min-width:0}
+}
+@media (orientation:landscape) and (max-height:540px) and (min-width:560px) and (max-width:719px){
+  .ct-t,.ct-d{white-space:normal}
+  .ct{padding-right:8px}
+}
+
 </style>
 </head>
 <body>
